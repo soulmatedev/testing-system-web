@@ -71,6 +71,7 @@ body {
   margin: 0;
   user-select: none;
   min-height: 100vh;
+  background-color: var(--default-bg-color);
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -104,5 +105,18 @@ body {
 button {
   border: none;
   background-color: transparent;
+}
+
+input,
+button,
+textarea,
+select {
+  padding: 0;
+  margin: 0;
+  font: inherit;
+}
+
+p {
+  margin: 0;
 }
 

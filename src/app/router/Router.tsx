@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styles from './Router.module.scss';
-import { TestListPage } from '../../pages/TestListPage';
+import { TestList } from '../../pages/test-list';
 
 const Router = () => (
 	<div className={styles.router}>
 		<Routes>
-			<Route path="/" element={<TestListPage />} />
+			<Route path="/" element={<TestList />} />
 			{/* <Route path="/authorization" element={<AuthorizationPage />} /> */}
 			{/* <Route path="/registration" element={<RegistrationPage />} /> */}
 		</Routes>

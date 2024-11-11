@@ -1,0 +1,14 @@
+.block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  min-width: var(--block-min-width);
+  background-color: var(--block-bg-color);
+  border-radius: var(--block-border-radius);
+  padding: var(--block-padding);
+
+  p {
+    font-size: var(--font-size-l);
+  }
+}
