@@ -1,7 +1,7 @@
-import css from './TestList.module.scss';
+import css from './TestListPage.module.scss';
 import { TestListBlock } from './test-list-block/TestListBlock';
 
-export const TestList = () => {
+export const TestListPage = () => {
 	const a = 'a';
 	return (
 		<div className={css.wrapper}>

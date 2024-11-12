@@ -1,8 +1,4 @@
 .block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   min-width: var(--block-min-width);
   background-color: var(--block-bg-color);
   border-radius: var(--block-border-radius);
@@ -12,3 +8,12 @@
     font-size: var(--font-size-l);
   }
 }
+
+.create_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: var(--margin-bottom);
+}
+

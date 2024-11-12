@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+
+  border-top: var(--border-top);
+
+  padding: var(--item-padding);
+
+  p {
+    font-size: var(--font-size-s);
+  }
+}
