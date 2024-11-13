@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/testing-system-web.iml" filepath="$PROJECT_DIR$/.idea/testing-system-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../wakadoo-web/.idea/wakadoo-web.iml" filepath="$PROJECT_DIR$/../wakadoo-web/.idea/wakadoo-web.iml" />
     </modules>
   </component>
 </project>

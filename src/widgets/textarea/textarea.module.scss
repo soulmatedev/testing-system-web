@@ -1,0 +1,18 @@
+.textarea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: var(--font-size-m);
+  background-color: var(--white-font-color);
+  border-radius: var(--main-button-border-radius);
+  padding: var(--main-button-padding);
+  border: var(--default-border);
+  outline: none;
+
+  resize: none;
+
+  ::placeholder {
+    color: var(--black-font-color);
+  }
+}

@@ -1,5 +1,7 @@
 :root {
   --default-bg-color: #EEF2F8;
+  --default-border: 1px solid #D8E1EF;
+  --default-border-radius: 12px;
 
   // * Fonts
   --font-size-l: 20px;
@@ -7,6 +9,7 @@
   --font-size-s: 12px;
 
   --white-font-color: #FFFFFF;
+  --black-font-color: #272727;
 
   // * Block
   --block-min-width: 500px;
@@ -17,8 +20,13 @@
 
   // * Button
   --main-button-bg-color: #F91F71;
+  --main-button-bg-color-focus: #af1c53;
   --main-button-border-radius: 8px;
   --main-button-padding: 10px 15px 10px 15px;
+
+  // * Input
+  --input-border-radius: 8px;
+  --input-padding: 10px 15px 10px 15px;
 
 
   // * CreateBar
@@ -27,4 +35,19 @@
   // * TestListItem
   --border-top: 1px solid #C9D4E7;
   --item-padding: 4px;
+
+  // * QuestionForm
+  --question-form-padding: 10px 15px 10px 15px;
+  --question-form-gap: 24px;
+  --question-form-margin-bottom: 10px;
+
+  // * QuestionType
+  --question-type-padding: 6px;
+  --question-type-border-radius: 8px;
+
+  // * SingleChooseForm
+  --single-choose-form-width: 873px;
+
+  // * InputResponse
+  --input-response-margin: 2px 0 0 10px;
 }

@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  height: auto;
+  width: var(--single-choose-form-width);
+
+  background-color: var(--block-bg-color);
+  padding: var(--question-form-padding);
+  border-radius: var(--default-border-radius);
+}

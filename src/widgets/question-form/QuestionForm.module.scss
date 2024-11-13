@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  gap: var(--question-form-gap);
+  background-color: var(--block-bg-color);
+  padding: var(--question-form-padding);
+  border-radius: var(--default-border-radius);
+  margin-bottom: var(--question-form-margin-bottom);
+}
+
+.right_side {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
