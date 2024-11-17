@@ -4,7 +4,12 @@ import { InputWithRoundedCheckbox } from '../../../input-with-rounded-checkbox/i
 // @ts-ignore
 import { ReactComponent as CrossIcon } from '../../../../shared/images/cross-icon.svg';
 
-export const SingleChoiceInputResponse = () => {
+interface SingleChoiceInputResponseProps {
+	index: number;
+	onDelete: (index: number) => void;
+}
+
+export const SingleChoiceInputResponse = ({ index, onDelete }: SingleChoiceInputResponseProps) => {
 	const a = '';
 	return (
 		<div className={css.wrapper}>
@@ -14,7 +19,7 @@ export const SingleChoiceInputResponse = () => {
 				height={36}
 				showCheckbox
 			/>
-			<CrossIcon className={css.cross_icon} />
+			<CrossIcon className={css.cross_icon} onClick={() => onDelete(index)} />
 		</div>
 
 	);

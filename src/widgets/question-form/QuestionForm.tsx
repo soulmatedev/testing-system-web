@@ -31,6 +31,10 @@ export const QuestionForm = () => {
 		}
 	};
 
+	const createTest = () => {
+		navigate('/');
+	};
+
 	return (
 		<>
 			<div className={css.wrapper}>
@@ -45,7 +49,7 @@ export const QuestionForm = () => {
 						<BackArrow className={css.back_arrow} />
 						<p>Вернуться назад</p>
 					</div>
-					<MainButton text="Создать тест" />
+					<MainButton text="Создать тест" onClick={createTest} />
 				</div>
 				<div className={css.block}>
 					<TextArea
