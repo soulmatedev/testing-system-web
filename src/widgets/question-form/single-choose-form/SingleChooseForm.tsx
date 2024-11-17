@@ -6,6 +6,7 @@ export const SingleChooseForm = () => {
 	return (
 		<div className={css.wrapper}>
 			<SingleChoiceInputResponse />
+			<p className={css.add_answer}>Добавить вариант</p>
 		</div>
 	);
 };

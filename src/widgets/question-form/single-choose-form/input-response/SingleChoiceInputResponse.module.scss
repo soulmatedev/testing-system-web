@@ -1,13 +1,9 @@
 .wrapper {
   display: flex;
+  margin-bottom: 6px;
 }
 
-.minus_icon {
-  cursor: pointer;
-  margin: var(--input-response-margin);
-}
-
-.plus_icon {
+.cross_icon {
   cursor: pointer;
   margin: var(--input-response-margin);
 }

@@ -2,10 +2,7 @@ import css from './RelationInputResponse.module.scss';
 import { InputWithRoundedCheckbox } from '../../../input-with-rounded-checkbox/input-with-rounded-checkbox';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { ReactComponent as MinusIcon } from '../../../../shared/images/minus-icon.svg';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { ReactComponent as PlusIcon } from '../../../../shared/images/plus-icon.svg';
+import { ReactComponent as CrossIcon } from '../../../../shared/images/cross-icon.svg';
 
 export const RelationInputResponse = () => {
 	const a = '';
@@ -23,8 +20,7 @@ export const RelationInputResponse = () => {
 					height={36}
 				/>
 			</div>
-			<PlusIcon className={css.minus_icon} />
-			<MinusIcon className={css.plus_icon} />
+			<CrossIcon className={css.cross_icon} />
 		</div>
 	);
 };
