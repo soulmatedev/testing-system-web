@@ -1,11 +1,11 @@
 import css from './SingleChooseForm.module.scss';
-import { InputResponse } from '../ui/input-response/InputResponse';
+import { SingleChoiceInputResponse } from './input-response/SingleChoiceInputResponse';
 
 export const SingleChooseForm = () => {
 	const a = '';
 	return (
 		<div className={css.wrapper}>
-			<InputResponse />
+			<SingleChoiceInputResponse />
 		</div>
 	);
 };

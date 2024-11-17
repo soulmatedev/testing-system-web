@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+}
+
+.minus_icon {
+  cursor: pointer;
+  margin: var(--input-response-margin);
+}
+
+.plus_icon {
+  cursor: pointer;
+  margin: var(--input-response-margin);
+}

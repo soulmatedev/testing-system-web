@@ -24,9 +24,18 @@
   --main-button-border-radius: 8px;
   --main-button-padding: 10px 15px 10px 15px;
 
-  // * Input
+  // * SquareCheckboxInput
   --input-border-radius: 8px;
   --input-padding: 10px 15px 10px 15px;
+  --input-gap: 10px;
+  --input-width: 100%;
+  --square-checkbox-input-border-radius: 4px;
+
+  // * Checkbox
+  --rounded-checkbox-height: 18px;
+  --rounded-checkbox-width: 18px;
+  --rounded-checkbox-border-radius: 50%;
+  --rounded-checkbox-background-size: 75%;
 
 
   // * CreateBar
@@ -45,9 +54,9 @@
   --question-type-padding: 6px;
   --question-type-border-radius: 8px;
 
-  // * SingleChooseForm
+  // * MultipleChooseForm
   --single-choose-form-width: 873px;
 
   // * InputResponse
-  --input-response-margin: 2px 0 0 10px;
+  --input-response-margin: 8px 0 0 10px;
 }
