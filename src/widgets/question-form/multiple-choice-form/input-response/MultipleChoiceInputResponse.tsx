@@ -4,7 +4,12 @@ import css from './MultipleChoiceInputResponse.module.scss';
 import { ReactComponent as CrossIcon } from '../../../../shared/images/cross-icon.svg';
 import { SquareCheckboxInput } from '../../../square-checkbox-input/square-checkbox-input';
 
-export const MultipleChoiceInputResponse = () => {
+interface MultipleChoiceInputResponseProps {
+	index: number;
+	onDelete: (index: number) => void;
+}
+
+export const MultipleChoiceInputResponse = ({ index, onDelete }: MultipleChoiceInputResponseProps) => {
 	const a = '';
 	return (
 		<div className={css.wrapper}>
@@ -14,7 +19,7 @@ export const MultipleChoiceInputResponse = () => {
 				height={36}
 				showCheckbox
 			/>
-			<CrossIcon className={css.cross_icon} />
+			<CrossIcon className={css.cross_icon} onClick={() => onDelete(index)} />
 		</div>
 	);
 };
