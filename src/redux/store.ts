@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { responsesReducer } from './slice/responsesSlice';
+import { singleChooseReducer } from '../entities/single-choose/slice/singleChooseSlice';
+import { multipleChooseReducer } from '../entities/multiple-choose/slice/multipleChooseSlice';
 
 const store = configureStore({
 	reducer: {
-		responses: responsesReducer,
+		singleChoose: singleChooseReducer,
+		multipleChoose: multipleChooseReducer,
 	},
 });
 

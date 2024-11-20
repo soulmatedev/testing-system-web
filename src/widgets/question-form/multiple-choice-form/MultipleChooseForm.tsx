@@ -1,37 +1,42 @@
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import css from './MultipleChooseForm.module.scss';
 import { MultipleChoiceInputResponse } from './input-response/MultipleChoiceInputResponse';
-import { responsesActions } from '../../../redux/slice/responsesSlice';
+import { useMultipleChoose } from '../../../entities/multiple-choose/hooks/useMultipleChoose';
+import { multipleChooseActions } from '../../../entities/multiple-choose/slice/multipleChooseSlice';
 
 export const MultipleChooseForm = () => {
 	const dispatch = useDispatch();
-	const responses = useSelector((state: any) => state.responses.responses);
-
-	const handleAddResponse = () => {
-		dispatch(responsesActions.addResponse());
-	};
-
-	const handleDeleteResponse = (index: number) => {
-		dispatch(responsesActions.removeResponse(index));
-	};
+	const {
+		responses, addResponse,
+	} = useMultipleChoose();
 
 	const handleKeyDown = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {
-			handleAddResponse();
+			addResponse();
 		}
 	};
+
+	const handleDeleteResponse = (id: number) => {
+		dispatch(multipleChooseActions.removeResponse(id));
+	};
+	const handleTextChange = (id: number, text: string) => {
+		dispatch(multipleChooseActions.updateResponseText({ id, text }));
+	};
+
 	return (
 		<div className={css.wrapper}>
-			{responses.map((response: { id: any; }, index: number) => (
+			{responses.map((response) => (
 				<MultipleChoiceInputResponse
-					key={response.id || index}
-					index={index}
+					key={response.id}
+					response={response}
 					onDelete={handleDeleteResponse}
+					onTextChange={handleTextChange}
 				/>
 			))}
 			<div
 				className={css.add_answer}
-				onClick={handleAddResponse}
+				onClick={addResponse}
 				onKeyDown={handleKeyDown}
 				role="button"
 				tabIndex={0}
