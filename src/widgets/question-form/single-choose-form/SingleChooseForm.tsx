@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './SingleChooseForm.module.scss';
 import { SingleChoiceInputResponse } from './input-response/SingleChoiceInputResponse';
@@ -10,6 +10,8 @@ export const SingleChooseForm: React.FC = () => {
 	const {
 		responses, addResponse,
 	} = useSingleChoose();
+
+	const [selectedResponseId, setSelectedResponseId] = useState<number | null>(null);
 
 	const handleKeyDown = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {
@@ -25,6 +27,10 @@ export const SingleChooseForm: React.FC = () => {
 		dispatch(singleChooseActions.updateResponseText({ id, text }));
 	};
 
+	const handleSelectResponse = (id: number) => {
+		setSelectedResponseId(id);
+	};
+
 	return (
 		<div className={css.wrapper}>
 			{responses.map((response) => (
@@ -34,6 +40,8 @@ export const SingleChooseForm: React.FC = () => {
 					response={response}
 					onDelete={handleDeleteResponse}
 					onTextChange={handleTextChange}
+					onSelect={handleSelectResponse}
+					selected={selectedResponseId === response.id}
 				/>
 			))}
 			<div

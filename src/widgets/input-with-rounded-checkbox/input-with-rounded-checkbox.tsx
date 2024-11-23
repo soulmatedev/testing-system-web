@@ -1,8 +1,5 @@
 import React, { ChangeEvent } from 'react';
 import css from './input-with-rounded-checkbox.module.scss';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { ReactComponent as CrossIcon } from '../../shared/images/cross-icon.svg';
 
 interface InputProps {
 	placeholder: string;
@@ -12,6 +9,8 @@ interface InputProps {
 	showDeleteIcon?: boolean;
 	value?: string;
 	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+	checked?: boolean;
+	onCheckboxChange?: () => void;
 }
 
 export const InputWithRoundedCheckbox = (props: InputProps) => {
@@ -23,6 +22,8 @@ export const InputWithRoundedCheckbox = (props: InputProps) => {
 		showDeleteIcon = false,
 		value,
 		onChange,
+		checked,
+		onCheckboxChange,
 	} = props;
 
 	return (
@@ -34,13 +35,12 @@ export const InputWithRoundedCheckbox = (props: InputProps) => {
 				value={value}
 				onChange={onChange}
 			/>
-			{/* {showDeleteIcon && ( */}
-			{/*	<CrossIcon className={css.cross_icon} /> */}
-			{/* )} */}
 			{showCheckbox && (
 				<input
 					type="checkbox"
 					className={css.checkbox}
+					checked={checked}
+					onChange={onCheckboxChange}
 				/>
 			)}
 		</div>
