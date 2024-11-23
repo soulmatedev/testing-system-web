@@ -34,9 +34,9 @@ export const InputWithRoundedCheckbox = (props: InputProps) => {
 				value={value}
 				onChange={onChange}
 			/>
-			{showDeleteIcon && (
-				<CrossIcon className={css.cross_icon} />
-			)}
+			{/* {showDeleteIcon && ( */}
+			{/*	<CrossIcon className={css.cross_icon} /> */}
+			{/* )} */}
 			{showCheckbox && (
 				<input
 					type="checkbox"

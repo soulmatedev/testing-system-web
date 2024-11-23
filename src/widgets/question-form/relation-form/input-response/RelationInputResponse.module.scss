@@ -1,6 +1,26 @@
 .wrapper {
   display: flex;
-  width: 100%;
+  align-items: start;
+  gap: 46px;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 230px;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+    background: #EBEBEB;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #F91F71;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #EBEBEB;
+  }
 }
 
 .cross_icon {
@@ -16,5 +36,5 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 250px;
 }
