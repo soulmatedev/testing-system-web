@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../app/reducers';
-import { testDetailsActions } from '../slices/testDetailsSlice';
+import { ITest, testDetailsActions } from '../slices/testDetailsSlice';
 
 export const useTestDetails = () => {
 	const dispatch = useDispatch();
@@ -14,9 +14,14 @@ export const useTestDetails = () => {
 		dispatch(testDetailsActions.setDescription(description));
 	};
 
+	const addTest = (test: ITest) => {
+		dispatch(testDetailsActions.addTest(test));
+	};
+
 	return {
 		testDetails,
 		updateTitle,
 		updateDescription,
+		addTest,
 	};
 };

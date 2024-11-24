@@ -6,7 +6,7 @@ import { MainButton } from '../../../../shared/ui/button';
 import { QuestionFormRenderer } from '../../../../features/question-form-renderer/QuestionFormRenderer';
 
 export const QuestionForm = () => {
-	const QUESTION_TEXTAREA_HEIGHT = 200;
+	const QUESTION_TEXTAREA_HEIGHT = 120;
 	const QUESTION_TEXTAREA_HEIGHT_WIDTH = 600;
 
 	const [questionType, setQuestionType] = useState<string>('chooseType');

@@ -1,14 +1,19 @@
 import css from './list-item.module.scss';
-import { MainButton } from '../../../../../../shared/ui/button/button';
+import { MainButton } from '../../../../../../shared/ui/button';
 
-export const TestListItem = () => {
+interface TestListItemProps {
+	title: string;
+	description: string;
+}
+
+export const TestListItem = ({ title, description }: TestListItemProps) => {
 	const INSIDE_TEST_BUTTON_HEIGHT = 30;
 	const INSIDE_TEST_BUTTON_WIDTH = 50;
 
 	return (
 		<div className={css.wrapper}>
-			<p>Название</p>
-			<p>Описание</p>
+			<p>{title}</p>
+			<p>{description}</p>
 			<div className={css.button}>
 				<MainButton
 					text=">"

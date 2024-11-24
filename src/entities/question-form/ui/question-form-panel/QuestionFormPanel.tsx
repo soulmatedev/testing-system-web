@@ -11,6 +11,7 @@ interface QuestionFormPanelProps {
 	description: string;
 	onTitleChange: (value: string) => void;
 	onDescriptionChange: (value: string) => void;
+	onCreateTest: () => void;
 }
 
 export const QuestionFormPanel = ({
@@ -18,7 +19,8 @@ export const QuestionFormPanel = ({
 	description,
 	onTitleChange,
 	onDescriptionChange,
-} : QuestionFormPanelProps) => {
+	onCreateTest,
+}: QuestionFormPanelProps) => {
 	const navigate = useNavigate();
 
 	const goBack = () => {
@@ -31,9 +33,6 @@ export const QuestionFormPanel = ({
 		}
 	};
 
-	const createTest = () => {
-		navigate('/');
-	};
 	return (
 		<div className={css.wrapper}>
 			<div className={css.wp}>
@@ -48,7 +47,7 @@ export const QuestionFormPanel = ({
 						<BackArrow className={css.back_arrow} />
 						<p>Вернуться назад</p>
 					</div>
-					<MainButton text="Создать тест" onClick={createTest} />
+					<MainButton text="Создать" onClick={onCreateTest} />
 				</div>
 				<div className={css.block}>
 					<input
