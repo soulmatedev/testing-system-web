@@ -1,5 +1,5 @@
 import css from './list-item.module.scss';
-import { MainButton } from '../../../../../../widgets/button/button';
+import { MainButton } from '../../../../../../shared/ui/button/button';
 
 export const TestListItem = () => {
 	const INSIDE_TEST_BUTTON_HEIGHT = 30;

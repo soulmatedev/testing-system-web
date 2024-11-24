@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import css from './TestListBlock.module.scss';
-import { MainButton } from '../../../../widgets/button/button';
+import { MainButton } from '../../../../shared/ui/button/button';
 import { TestList } from './list';
 
 export const TestListBlock = () => {

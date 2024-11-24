@@ -1,0 +1,62 @@
+.wrapper {
+  display: flex;
+  gap: 24px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.go_back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  p {
+    margin-left: var(--question-form-p-margin);
+    color: var(--second-font-color);
+  }
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: var(--block-bg-color);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  width: 873px;
+}
+
+.name_input {
+  font-size: var(--font-size-l);
+  font-weight: 500;
+  border: none;
+  outline: none;
+  padding-bottom: 4px;
+  transition: border-bottom 0.3s ease;
+
+  ::placeholder {
+    color: var(--black-font-color);
+  }
+}
+
+.name_input:focus {
+  border-bottom: var(--border-bottom);
+}
+
+.description_input {
+  font-size: var(--font-size-m);
+  border: none;
+  outline: none;
+  padding-bottom: 4px;
+  transition: border-bottom 0.3s ease;
+}
+
+.description_input:focus {
+  border-bottom: var(--border-bottom);
+}
