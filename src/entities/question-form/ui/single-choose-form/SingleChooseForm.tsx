@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import css from './SingleChooseForm.module.scss';
 import { SingleChoiceInputResponse } from './input-response/SingleChoiceInputResponse';
 import { useSingleChoose } from '../../model/hooks/useSingleChoose';
-import { singleChooseActions } from '../../model/slices/singleChooseSlice';
 
-export const SingleChooseForm: React.FC = () => {
-	const dispatch = useDispatch();
+export const SingleChooseForm = () => {
 	const {
-		responses, addResponse,
+		responses, addResponse, removeResponse, updateResponseText,
 	} = useSingleChoose();
 
 	const [selectedResponseId, setSelectedResponseId] = useState<number | null>(null);
@@ -17,14 +14,6 @@ export const SingleChooseForm: React.FC = () => {
 		if (event.key === 'Enter') {
 			addResponse();
 		}
-	};
-
-	const handleDeleteResponse = (id: number) => {
-		dispatch(singleChooseActions.removeResponse(id));
-	};
-
-	const handleTextChange = (id: number, text: string) => {
-		dispatch(singleChooseActions.updateResponseText({ id, text }));
 	};
 
 	const handleSelectResponse = (id: number) => {
@@ -38,8 +27,8 @@ export const SingleChooseForm: React.FC = () => {
 					key={response.id}
 					index={response.id}
 					response={response}
-					onDelete={handleDeleteResponse}
-					onTextChange={handleTextChange}
+					onDelete={removeResponse}
+					onTextChange={updateResponseText}
 					onSelect={handleSelectResponse}
 					selected={selectedResponseId === response.id}
 				/>

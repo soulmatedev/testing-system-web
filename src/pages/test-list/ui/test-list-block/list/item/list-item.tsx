@@ -12,8 +12,8 @@ export const TestListItem = ({ title, description }: TestListItemProps) => {
 
 	return (
 		<div className={css.wrapper}>
-			<p>{title}</p>
-			<p>{description}</p>
+			<p className={css.name}>{title}</p>
+			<p className={css.description}>{description}</p>
 			<div className={css.button}>
 				<MainButton
 					text=">"
