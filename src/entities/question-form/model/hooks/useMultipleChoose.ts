@@ -17,10 +17,18 @@ export const useMultipleChoose = () => {
 		dispatch(multipleChooseActions.updateResponseText({ id, text }));
 	};
 
+	const clearResponses = () => {
+		dispatch(multipleChooseActions.clearResponses());
+	};
+
+	const getResponses = () => responses;
+
 	return {
 		responses,
 		addResponse,
 		removeResponse,
 		updateResponseText,
+		clearResponses,
+		getResponses,
 	};
 };

@@ -33,6 +33,9 @@ export const multipleChooseSlice = createSlice({
 				response.text = action.payload.text;
 			}
 		},
+		clearResponses(state) {
+			state.responses = [];
+		},
 	},
 });
 

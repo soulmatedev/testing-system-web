@@ -12,6 +12,7 @@ export const TestList = () => {
 			<div className={css.wrapper}>
 				{tests.map((test: ITest) => (
 					<TestListItem
+						id={test.id}
 						key={test.id}
 						title={test.title}
 						description={test.description}

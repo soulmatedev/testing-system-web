@@ -3,7 +3,11 @@ import css from './SingleChooseForm.module.scss';
 import { SingleChoiceInputResponse } from './input-response/SingleChoiceInputResponse';
 import { useSingleChoose } from '../../model/hooks/useSingleChoose';
 
-export const SingleChooseForm = () => {
+interface SingleChooseFormProps {
+	questionId: number | null;
+}
+
+export const SingleChooseForm = ({ questionId }: SingleChooseFormProps) => {
 	const {
 		responses, addResponse, removeResponse, updateResponseText,
 	} = useSingleChoose();

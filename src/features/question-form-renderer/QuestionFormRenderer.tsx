@@ -4,16 +4,17 @@ import { RelationForm } from '../../entities/question-form/ui/relation-form';
 
 interface QuestionFormRendererProps {
 	questionType: string;
+	questionId: number | null;
 }
 
-export const QuestionFormRenderer = ({ questionType }: QuestionFormRendererProps) => {
+export const QuestionFormRenderer = ({ questionType, questionId }: QuestionFormRendererProps) => {
 	switch (questionType) {
 	case 'singleChoice':
-		return <SingleChooseForm />;
+		return <SingleChooseForm questionId={questionId} />;
 	case 'multipleChoice':
-		return <MultipleChooseForm />;
+		return <MultipleChooseForm questionId={questionId} />;
 	case 'relation':
-		return <RelationForm />;
+		return <RelationForm questionId={questionId} />;
 	default:
 		return null;
 	}

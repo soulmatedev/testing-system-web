@@ -5,7 +5,11 @@ import { MultipleChoiceInputResponse } from './input-response/MultipleChoiceInpu
 import { useMultipleChoose } from '../../model/hooks/useMultipleChoose';
 import { multipleChooseActions } from '../../model/slices/multipleChooseSlice';
 
-export const MultipleChooseForm = () => {
+interface MultipleChooseFormProps {
+	questionId: number | null;
+}
+
+export const MultipleChooseForm = ({ questionId }: MultipleChooseFormProps) => {
 	const dispatch = useDispatch();
 	const {
 		responses, addResponse,

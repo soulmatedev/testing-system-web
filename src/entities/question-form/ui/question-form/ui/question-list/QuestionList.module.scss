@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  gap: var(--question-form-gap);
+  background-color: var(--block-bg-color);
+  padding: var(--relation-form-padding);
+  border-radius: var(--default-border-radius);
+  margin-bottom: 12px;
+  width: var(--relation-choose-form-width);
+}
+
+p {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.answers_list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  gap: 8px;
+  font-size: 16px;
+}

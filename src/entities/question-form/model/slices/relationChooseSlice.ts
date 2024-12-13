@@ -7,10 +7,12 @@ export interface IResponse {
 }
 
 interface IRelationChooseScheme {
+	questionText: string;
 	responses: IResponse[];
 }
 
 const initialState: IRelationChooseScheme = {
+	questionText: '',
 	responses: [{ id: 1, headerText: '', description: '' }],
 };
 
@@ -34,6 +36,9 @@ export const relationChooseSlice = createSlice({
 				response.headerText = action.payload.headerText;
 				response.description = action.payload.description;
 			}
+		},
+		clearResponses(state) {
+			state.responses = [];
 		},
 	},
 });

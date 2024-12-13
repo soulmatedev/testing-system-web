@@ -1,0 +1,95 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.questions_wrapper {
+  height: auto;
+  width: var(--single-choose-form-width);
+  background-color: var(--block-bg-color);
+  padding: var(--passing-test-padding);
+  border-radius: var(--default-border-radius);
+  margin-bottom: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  .question_count_block {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .question_count {
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+
+.buttons_wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  .navigation {
+    display: flex;
+    justify-content: end;
+    gap: 8px;
+  }
+}
+
+.question_text {
+  margin-bottom: 18px;
+}
+
+.questions {
+  li {
+    list-style-type: none
+  };
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  .questions_list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.checkbox_label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: var(--rounded-checkbox-width);
+  height: var(--rounded-checkbox-height);
+  border-radius: var(--rounded-checkbox-border-radius);
+  border: var(--default-border);
+  background-color: var(--block-bg-color);
+  appearance: none;
+  cursor: pointer;
+  background-size: var(--rounded-checkbox-background-size);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: var(--input-gap);
+}
+
+.checkbox:checked {
+  background-image: url('../../../../shared/assets/images/check-mark.svg');
+}

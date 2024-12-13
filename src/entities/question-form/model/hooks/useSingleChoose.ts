@@ -3,7 +3,6 @@ import { singleChooseActions, singleChooseSlice } from '../slices/singleChooseSl
 
 export const useSingleChoose = () => {
 	const dispatch = useDispatch();
-
 	const responses = useSelector(singleChooseSlice.selectors.getResponses);
 
 	const addResponse = () => {
@@ -18,10 +17,18 @@ export const useSingleChoose = () => {
 		dispatch(singleChooseActions.updateResponseText({ id, text }));
 	};
 
+	const clearResponses = () => {
+		dispatch(singleChooseActions.clearResponses());
+	};
+
+	const getResponses = () => responses;
+
 	return {
 		responses,
 		addResponse,
 		removeResponse,
 		updateResponseText,
+		getResponses,
+		clearResponses,
 	};
 };

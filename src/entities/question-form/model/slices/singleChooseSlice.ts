@@ -34,6 +34,9 @@ export const singleChooseSlice = createSlice({
 				response.text = action.payload.text;
 			}
 		},
+		clearResponses(state) {
+			state.responses = [];
+		},
 	},
 });
 

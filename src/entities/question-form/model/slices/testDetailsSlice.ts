@@ -4,6 +4,7 @@ export interface ITest {
 	id: number,
 	title: string;
 	description: string;
+	questions: any[];
 }
 
 interface ITestDetailsState {
@@ -21,6 +22,9 @@ const initialState: ITestDetailsState = {
 export const testDetailsSlice = createSlice({
 	name: 'testDetails',
 	initialState,
+	selectors: {
+		getTests: (state: ITestDetailsState) => state.tests,
+	},
 	reducers: {
 		setTitle(state, action: PayloadAction<string>) {
 			state.title = action.payload;
@@ -30,6 +34,13 @@ export const testDetailsSlice = createSlice({
 		},
 		addTest(state, action: PayloadAction<ITest>) {
 			state.tests.push(action.payload);
+		},
+		resetTestDetails(state) {
+			state.title = '';
+			state.description = '';
+		},
+		clearTests(state) {
+			state.tests = [];
 		},
 	},
 });
