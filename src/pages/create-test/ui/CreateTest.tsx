@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import css from './CreateTest.module.scss';
 import { QuestionFormPanel } from '../../../entities/question-form/ui/question-form-panel';
 import { useTestDetails } from '../../../entities/question-form/model/hooks/useTestDetails';
@@ -13,10 +14,7 @@ export const CreateTest = () => {
 		updateTitle,
 		updateDescription,
 		addTest,
-		resetTestDetails,
-		resetQuestions,
 	} = useTestDetails();
-	const navigate = useNavigate();
 	const questions = useSelector((state: RootState) => state.questionsSlice.questions);
 
 	const createTest = () => {
@@ -26,9 +24,6 @@ export const CreateTest = () => {
 			description: testDetails.description,
 			questions,
 		});
-		resetTestDetails();
-		resetQuestions();
-		navigate('/');
 	};
 
 	const handleNewQuestionCreated = (newQuestion: any) => {

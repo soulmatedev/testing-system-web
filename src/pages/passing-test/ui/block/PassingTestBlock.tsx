@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { selectTestById } from '../../../../entities/question-form/model/selectors/testDetailsSelectors';
 import css from './PassingTestBlock.module.scss';
 import { MainButton } from '../../../../shared/ui/button';
@@ -43,6 +44,7 @@ export const PassingTestBlock = () => {
 		setIsModalOpen(false);
 		clearTests();
 		navigate('/');
+		toast.success('Тест завершен успешно');
 	};
 
 	const handleCancelFinish = () => {
@@ -51,13 +53,11 @@ export const PassingTestBlock = () => {
 
 	const handleAnswerSelect = (questionId: number, answerId: number) => {
 		if (currentQuestion.type === 'singleChoose') {
-			// Если тип вопроса singleChoose, сбрасываем предыдущий выбор
 			setSelectedAnswers((prev) => ({
 				...prev,
 				[questionId]: answerId,
 			}));
 		} else {
-			// Для других типов вопросов (например, multipleChoose)
 			setSelectedAnswers((prev) => ({
 				...prev,
 				[questionId]: answerId,

@@ -29,7 +29,7 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
 						text="Да"
 					/>
 					<MainButton
-						onClick={onConfirm}
+						onClick={onCancel}
 						width={70}
 						height={34}
 						text="Нет"
