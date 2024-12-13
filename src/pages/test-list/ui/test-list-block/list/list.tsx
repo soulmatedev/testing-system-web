@@ -9,16 +9,20 @@ export const TestList = () => {
 
 	return (
 		<div className={css.wrapper}>
-			<div className={css.wrapper}>
-				{tests.map((test: ITest) => (
-					<TestListItem
-						id={test.id}
-						key={test.id}
-						title={test.title}
-						description={test.description}
-					/>
-				))}
-			</div>
+			{tests.length === 0 ? (
+				<p className={css.not_found}>Тестов нет</p>
+			) : (
+				<div className={css.wrapper}>
+					{tests.map((test: ITest) => (
+						<TestListItem
+							id={test.id}
+							key={test.id}
+							title={test.title}
+							description={test.description}
+						/>
+					))}
+				</div>
+			)}
 		</div>
 	);
 };
