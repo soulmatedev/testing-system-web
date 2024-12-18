@@ -24,6 +24,7 @@
 
   // * Button
   --main-button-bg-color: #F91F71;
+  --main-button-disabled-bg-color: #f797bb;
   --main-button-bg-hover-color: #db3070;
   --main-button-border-radius: 8px;
   --main-button-padding: 10px 15px 10px 15px;
@@ -75,4 +76,7 @@
 
   // * PassingTest
   --passing-test-padding: 20px 24px 20px 24px;
+
+  //AuthorizationPage
+  --authorization-block-padding: 20px;
 }

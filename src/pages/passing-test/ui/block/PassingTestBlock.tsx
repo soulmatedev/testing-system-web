@@ -43,7 +43,7 @@ export const PassingTestBlock = () => {
 	const handleConfirmFinish = () => {
 		setIsModalOpen(false);
 		clearTests();
-		navigate('/');
+		navigate('/test-list');
 		toast.success('Тест завершен успешно');
 	};
 

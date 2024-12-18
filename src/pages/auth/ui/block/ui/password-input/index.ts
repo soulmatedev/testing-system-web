@@ -1,0 +1,1 @@
+export { AuthorizationPasswordInput } from './AuthorizationPasswordInput';

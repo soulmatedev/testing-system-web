@@ -50,7 +50,7 @@ export const useTestDetails = () => {
 		toast.success('Тест успешно создан!');
 		resetTestDetails();
 		resetQuestions();
-		navigate('/');
+		navigate('/test-list');
 	};
 
 	return {

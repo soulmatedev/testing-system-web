@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.block {
+  display: flex;
+  gap: var(--question-form-gap);
+  background-color: var(--block-bg-color);
+  padding: var(--question-form-padding);
+  border-radius: var(--default-border-radius);
+  margin: var(--question-form-margin);
+}

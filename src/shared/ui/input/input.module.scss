@@ -1,0 +1,13 @@
+.input {
+  border-radius: .6rem;
+  outline: none;
+  border: .1rem solid rgb(216, 225, 239);
+  padding: 0 0.6rem;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 2.4rem;
+
+  &::placeholder {
+    color: #a0abbe;
+  }
+}
