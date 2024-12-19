@@ -1,6 +1,6 @@
 import css from '../../../AuthorizationPage.module.scss';
-import { Input } from '../../../../../../shared/ui/input';
-import { useAuth } from '../../../../../../entities/user/auth/model/hooks/useAuth';
+import { useAuth } from '../../../../../../../entities/user/auth/model/hooks/useAuth';
+import { Input } from '../../../../../../../shared/ui/input';
 
 export const AuthorizationPasswordInput = () => {
 	const { updatePassword } = useAuth();

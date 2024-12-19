@@ -1,0 +1,1 @@
+export { RegistrationEmailInput } from './RegistrationEmailInput';

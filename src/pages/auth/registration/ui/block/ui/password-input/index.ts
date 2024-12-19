@@ -1,0 +1,1 @@
+export { RegistrationPasswordInput } from './RegistrationPasswordInput';

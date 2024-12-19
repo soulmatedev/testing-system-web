@@ -1,8 +1,8 @@
-import css from '../../../AuthorizationPage.module.scss';
-import { Input } from '../../../../../../shared/ui/input';
-import { useAuth } from '../../../../../../entities/user/auth/model/hooks/useAuth';
+import css from './RegistrationLoginInput.module.scss';
+import { Input } from '../../../../../../../shared/ui/input';
+import { useAuth } from '../../../../../../../entities/user/auth/model/hooks/useAuth';
 
-export const AuthorizationLoginInput = () => {
+export const RegistrationLoginInput = () => {
 	const { updateEmail } = useAuth();
 	return (
 		<div className={css.login}>
