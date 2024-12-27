@@ -25,6 +25,10 @@ export const AuthorizationBlock = () => {
 		password,
 	};
 
+	const navigateToRegistration = () => {
+		navigate('/registration');
+	};
+
 	const validateForm = () => {
 		const emailRegex = /^[\w.-]+@[\d.A-Za-z-]+\.[A-Za-z]{2,6}$/;
 		if (!emailRegex.test(email)) {
@@ -75,6 +79,14 @@ export const AuthorizationBlock = () => {
 			<AuthorizationEmailInput />
 			<AuthorizationPasswordInput />
 			<AuthButton onSignIn={onSignIn} />
+			{/* eslint-disable-next-line max-len */}
+			{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
+			<p
+				className={css.question}
+				onClick={navigateToRegistration}
+			>
+				Не зарегистрированы ?
+			</p>
 		</div>
 	);
 };
