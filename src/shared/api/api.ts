@@ -15,13 +15,13 @@ export const providesList = <R extends { id: string | number }[], T extends stri
 		: [tagType]);
 
 const setBaseUrl = () => {
-	const serverEnvironment = process.env.ENVIRONMENT_SERVER;
+	const serverEnvironment = process.env.REACT_APP_ENVIRONMENT_SERVER;
 
 	switch (serverEnvironment) {
 	case SERVER_ENVIRONMENT_DEV:
 		return BASE_API_URL_DEV;
 	default:
-		return '';
+		throw new Error(`Неизвестная среда: ${serverEnvironment}`);
 	}
 };
 const paramsSerializer = (params: any) => {

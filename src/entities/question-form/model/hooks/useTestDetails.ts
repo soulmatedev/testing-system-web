@@ -35,19 +35,19 @@ export const useTestDetails = () => {
 	const addTest = (test: ITest) => {
 		if (questions.length === 0 || !test.title || !test.description) {
 			if (questions.length === 0) {
-				toast.error('Невозможно создать тест без вопросов!');
+				toast.error('Невозможно создать тест без вопросов');
 			}
 			if (!test.title) {
-				toast.error('Название теста обязательно!');
+				toast.error('Название теста обязательно');
 			}
 			if (!test.description) {
-				toast.error('Описание теста обязательно!');
+				toast.error('Описание теста обязательно');
 			}
 			return;
 		}
 
 		dispatch(testDetailsActions.addTest(test));
-		toast.success('Тест успешно создан!');
+		toast.success('Тест успешно создан');
 		resetTestDetails();
 		resetQuestions();
 		navigate('/test-list');

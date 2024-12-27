@@ -9,6 +9,10 @@ export const useAuth = () => {
 		dispatch(authActions.setEmail(email));
 	};
 
+	const updateLogin = (email: string) => {
+		dispatch(authActions.setLogin(email));
+	};
+
 	const updatePassword = (password: string) => {
 		dispatch(authActions.setPassword(password));
 	};
@@ -19,6 +23,7 @@ export const useAuth = () => {
 
 	return {
 		updateEmail,
+		updateLogin,
 		updatePassword,
 		resetData,
 	};

@@ -1,11 +1,10 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from '../../../../shared/api/api';
 import {
-	URI_SIGN_IN,
+	URI_SIGN_IN, URI_SIGN_UP,
 } from './consts';
 import {
-	IAccountResponse,
-	ISignInRequest,
+	ISignInRequest, ISignInResponse, ISignUpRequest,
 } from './types';
 
 export const authAPI = createApi({
@@ -13,9 +12,16 @@ export const authAPI = createApi({
 	baseQuery,
 	refetchOnReconnect: true,
 	endpoints: builder => ({
-		signIn: builder.mutation<IAccountResponse, ISignInRequest>({
+		signIn: builder.mutation<ISignInResponse, ISignInRequest>({
 			query: (data) => ({
 				url: URI_SIGN_IN,
+				method: 'POST',
+				body: { ...data },
+			}),
+		}),
+		signUp: builder.mutation<void, ISignUpRequest>({
+			query: (data) => ({
+				url: URI_SIGN_UP,
 				method: 'POST',
 				body: { ...data },
 			}),

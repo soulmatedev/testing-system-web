@@ -47,7 +47,7 @@ export const QuestionFormPanel = ({
 						<BackArrow className={css.back_arrow} />
 						<p>Вернуться назад</p>
 					</div>
-					<MainButton text="Создать" onClick={onCreateTest} />
+					<MainButton text="Сохранить тест" onClick={onCreateTest} />
 				</div>
 				<div className={css.block}>
 					<input

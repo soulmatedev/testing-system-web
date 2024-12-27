@@ -3,11 +3,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface IAuthState {
 	email: string;
 	password: string;
+	login: string;
 }
 
 const initialState: IAuthState = {
 	email: '',
 	password: '',
+	login: '',
 };
 
 export const authSlice = createSlice({
@@ -16,6 +18,9 @@ export const authSlice = createSlice({
 	reducers: {
 		setEmail(state, action: PayloadAction<string>) {
 			state.email = action.payload;
+		},
+		setLogin(state, action: PayloadAction<string>) {
+			state.login = action.payload;
 		},
 		setPassword(state, action: PayloadAction<string>) {
 			state.password = action.payload;
