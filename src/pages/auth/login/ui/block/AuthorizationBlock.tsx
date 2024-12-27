@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -9,9 +9,12 @@ import { AuthButton } from './ui/auth-button';
 import { authAPI } from '../../../../../entities/user/auth/api/api';
 import { ISignInRequest } from '../../../../../entities/user/auth/api/types';
 import { selectEmail, selectPassword } from '../../../../../entities/user/auth/model/selectors/authSelectors';
+import { authActions } from '../../../../../entities/user/auth/model/slices/authSlice';
 
 export const AuthorizationBlock = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
 	const [signIn] = authAPI.useSignInMutation();
 
 	const email = useSelector(selectEmail);
@@ -23,7 +26,7 @@ export const AuthorizationBlock = () => {
 	};
 
 	const validateForm = () => {
-		const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+		const emailRegex = /^[\w.-]+@[\d.A-Za-z-]+\.[A-Za-z]{2,6}$/;
 		if (!emailRegex.test(email)) {
 			toast.error('Введите корректный адрес электронной почты.');
 			return false;
@@ -45,6 +48,7 @@ export const AuthorizationBlock = () => {
 				localStorage.setItem('token', access_token);
 				navigate('/test-list');
 				toast.success('Авторизация прошла успешно');
+				dispatch(authActions.clearData());
 			} else {
 				console.error('Токен не найден в ответе от сервера.');
 			}
