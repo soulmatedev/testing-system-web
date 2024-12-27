@@ -27,6 +27,7 @@ export const authSlice = createSlice({
 		},
 		clearData(state) {
 			state.email = '';
+			state.login = '';
 			state.password = '';
 		},
 	},

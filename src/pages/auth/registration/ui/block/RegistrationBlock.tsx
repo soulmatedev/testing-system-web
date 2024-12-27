@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import css from '../RegistrationPage.module.scss';
@@ -13,9 +13,12 @@ import {
 	selectPassword,
 } from '../../../../../entities/user/auth/model/selectors/authSelectors';
 import { ISignUpRequest } from '../../../../../entities/user/auth/api/types';
+import { authActions } from '../../../../../entities/user/auth/model/slices/authSlice';
 
 export const RegistrationBlock = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
 	const [signUp] = authAPI.useSignUpMutation();
 
 	const email = useSelector(selectEmail);
@@ -44,6 +47,7 @@ export const RegistrationBlock = () => {
 			await signUp(registrationData).unwrap();
 			toast.success('Регистрация прошла успешно');
 			navigate('/');
+			dispatch(authActions.clearData());
 		} catch (err) {
 			toast.error('Произошла ошибка при регистрации. Попробуйте позже.');
 		}
