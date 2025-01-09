@@ -11,15 +11,19 @@ export const TestListBlock = () => {
 	};
 
 	return (
-		<div className={css.block}>
-			<div className={css.create_bar}>
+		<div className={css.wrapper}>
+			<div className={css.header}>
 				<p>Список тестов</p>
-				<MainButton
-					text="Создать тест"
-					onClick={onCreateTestClick}
-				/>
 			</div>
-			<TestList />
+			<div className={css.block}>
+				<div className={css.create_bar}>
+					{/* <MainButton */}
+					{/*	text="Создать тест" */}
+					{/*	onClick={onCreateTestClick} */}
+					{/* /> */}
+				</div>
+				<TestList />
+			</div>
 		</div>
 	);
 };

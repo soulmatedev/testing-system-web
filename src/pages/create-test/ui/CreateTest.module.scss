@@ -1,9 +1,12 @@
 .wrapper {
   display: flex;
-  align-items: center;
-  justify-content: start;
-  flex-direction: column;
-  margin-top: 10px;
+  align-items: start;
+  justify-content: center;
+}
+
+.header {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .list {

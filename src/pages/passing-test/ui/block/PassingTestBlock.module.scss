@@ -90,6 +90,10 @@
   margin-right: var(--input-gap);
 }
 
+.multipleChooseCheckbox {
+  border-radius: var(--square-checkbox-input-border-radius);
+}
+
 .checkbox:checked {
   background-image: url('../../../../shared/assets/images/check-mark.svg');
 }

@@ -21,6 +21,8 @@ export const PassingTestBlock = () => {
 		return <div>Тест не найден</div>;
 	}
 
+	console.log(test);
+
 	const { title, description, questions } = test;
 	const currentQuestion = questions[currentQuestionIndex];
 
@@ -65,6 +67,9 @@ export const PassingTestBlock = () => {
 		}
 	};
 
+	const getCheckboxClassName = (type: string) => (
+		type === 'multipleChoise' ? css.multipleChooseCheckbox : css.singleChooseCheckbox);
+
 	return (
 		<div className={css.wrapper}>
 			<div className={css.header}>
@@ -90,11 +95,11 @@ export const PassingTestBlock = () => {
 							<li key={answer.id} className={css.answer_item}>
 								<div className={css.checkbox_label}>
 									<input
-										type={currentQuestion.type === 'singleChoose' ? 'radio' : 'checkbox'}
+										type={currentQuestion.type === 'singleChoise' ? 'radio' : 'checkbox'}
 										name={`question_${currentQuestion.id}`}
 										checked={selectedAnswers[currentQuestion.id] === answer.id}
 										onChange={() => handleAnswerSelect(currentQuestion.id, answer.id)}
-										className={css.checkbox}
+										className={`${css.checkbox} ${getCheckboxClassName(currentQuestion.type)}`}
 									/>
 									{answer.text}
 								</div>
@@ -105,10 +110,7 @@ export const PassingTestBlock = () => {
 			</div>
 			<div className={css.buttons_wrapper}>
 				<div className={css.quit}>
-					<MainButton
-						onClick={handleFinishTest}
-						text="Завершить тест"
-					/>
+					<MainButton onClick={handleFinishTest} text="Завершить тест" />
 				</div>
 				<div className={css.navigation}>
 					<MainButton

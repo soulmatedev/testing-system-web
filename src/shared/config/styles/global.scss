@@ -1,5 +1,6 @@
 :root {
   --default-bg-color: #EEF2F8;
+  --white-bg-color: #FFFFFF;
   --default-border: 1px solid #D8E1EF;
   --default-border-radius: 12px;
   --disabled-button: #ccc;
@@ -41,6 +42,12 @@
   --rounded-checkbox-width: 18px;
   --rounded-checkbox-border-radius: 50%;
   --rounded-checkbox-background-size: 75%;
+
+  // * Navbar
+  --navbar-height: 80px;
+  --navbar-padding: 0 3rem 0 3rem;
+  --navbar-border-radius: 0 0 16px 16px;
+  --navbar-navlink-active-color: #F91F71;
 
 
   // * CreateBar

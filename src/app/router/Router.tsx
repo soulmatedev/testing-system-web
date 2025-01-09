@@ -14,7 +14,7 @@ const Router = () => (
 			<Route path="/registration" element={<RegistrationPage />} />
 
 			<Route path="/test-list" element={<TestListPage />} />
-			<Route path="/create-test" element={<CreateTest />} />
+			<Route path="/question-constructor" element={<CreateTest />} />
 			<Route path="/test/:id" element={<PassingTestPage />} />
 			{/* <Route path="/authorization" element={<AuthorizationPage />} /> */}
 			{/* <Route path="/registration" element={<RegistrationPage />} /> */}

@@ -72,6 +72,7 @@ body {
   user-select: none;
   min-height: 100vh;
   background-color: var(--default-bg-color);
+  overflow: hidden;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -92,7 +93,6 @@ body {
 #root {
   width: 100%;
   min-height: 100vh;
-  display: flex;
 }
 
 .App {

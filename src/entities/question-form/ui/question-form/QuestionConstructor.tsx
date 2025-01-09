@@ -13,7 +13,7 @@ interface QuestionFormProps {
 	onNewQuestionCreated: (newQuestion: any) => void;
 }
 
-export const QuestionForm = ({ onNewQuestionCreated } : QuestionFormProps) => {
+export const QuestionConstructor = ({ onNewQuestionCreated } : QuestionFormProps) => {
 	const QUESTION_TEXTAREA_HEIGHT = 120;
 	const QUESTION_TEXTAREA_HEIGHT_WIDTH = 600;
 

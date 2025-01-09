@@ -26,5 +26,11 @@ export const authAPI = createApi({
 				body: { ...data },
 			}),
 		}),
+		getCurrentUser: builder.query<{ role: string }, void>({
+			query: () => ({
+				url: '/api/user',
+				method: 'GET',
+			}),
+		}),
 	}),
 });

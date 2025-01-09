@@ -1,3 +1,15 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin-bottom: 20px;
+  p {
+    font-size: 24px;
+  }
+}
+
 .block {
   min-width: var(--block-min-width);
   background-color: var(--block-bg-color);
