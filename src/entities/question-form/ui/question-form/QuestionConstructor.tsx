@@ -8,6 +8,9 @@ import { QuestionFormRenderer } from '../../../../features/question-form-rendere
 import { questionsActions } from '../../model/slices/questionsSlice';
 import { RootState } from '../../../../app/reducers';
 import { IUseQuestionTypeProps, QuestionType, useQuestionType } from './hooks/useQuestionType';
+import {
+	CompetenciesTypeDropdown,
+} from '../../../competencies-type/ui/question-type-dropdown';
 
 interface QuestionFormProps {
 	onNewQuestionCreated: (newQuestion: any) => void;
@@ -65,10 +68,10 @@ export const QuestionConstructor = ({ onNewQuestionCreated } : QuestionFormProps
 					<div className={css.right_side}>
 						<div className={css.dropdowns}>
 							<QuestionTypeDropdown onChange={handleQuestionTypeChange} />
-							<QuestionTypeDropdown onChange={handleQuestionTypeChange} />
+							<CompetenciesTypeDropdown onChange={handleQuestionTypeChange} />
 						</div>
 						<MainButton
-							text="Новый вопрос"
+							text="Сохранить"
 							disabled={questionType === 'chooseType'}
 							onClick={createNewQuestion}
 						/>
