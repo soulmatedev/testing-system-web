@@ -9,18 +9,6 @@
   margin-bottom: 10px;
 }
 
-.go_back {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-
-  p {
-    margin-left: var(--question-form-p-margin);
-    color: var(--second-font-color);
-  }
-}
-
 .block {
   display: flex;
   flex-direction: column;

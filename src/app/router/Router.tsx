@@ -2,10 +2,11 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styles from './Router.module.scss';
 import { TestListPage } from '../../pages/test-list';
-import { CreateTest } from '../../pages/create-test';
+import { QuestionConstructorPage } from '../../pages/question-constructor';
 import { PassingTestPage } from '../../pages/passing-test';
 import { AuthorizationPage } from '../../pages/auth/login';
 import { RegistrationPage } from '../../pages/auth/registration';
+import { TestConstructorPage } from '../../pages/test-constructor';
 
 const Router = () => (
 	<div className={styles.router}>
@@ -14,7 +15,8 @@ const Router = () => (
 			<Route path="/registration" element={<RegistrationPage />} />
 
 			<Route path="/test-list" element={<TestListPage />} />
-			<Route path="/question-constructor" element={<CreateTest />} />
+			<Route path="/question-constructor" element={<QuestionConstructorPage />} />
+			<Route path="/test-constructor" element={<TestConstructorPage />} />
 			<Route path="/test/:id" element={<PassingTestPage />} />
 			{/* <Route path="/authorization" element={<AuthorizationPage />} /> */}
 			{/* <Route path="/registration" element={<RegistrationPage />} /> */}

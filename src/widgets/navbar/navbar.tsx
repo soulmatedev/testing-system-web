@@ -23,7 +23,7 @@ export const Navbar = () => {
 					to="/test-constructor"
 					className={`${css.navbar_link} ${navigate.pathname === '/test-constructor' ? css.active : ''}`}
 				>
-					Конструктор тестов
+					Конструктор теста
 				</NavLink>
 			</div>
 			<div className={css.profile}>Профиль</div>

@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import css from './CreateTest.module.scss';
-import { QuestionFormPanel } from '../../../entities/question-form/ui/question-form-panel';
+import css from './TestContructorPage.module.scss';
 import { QuestionConstructor } from '../../../entities/question-form/ui/question-form';
 import { QuestionList } from '../../../entities/question-form/ui/question-form/ui/question-list';
 import { useTest } from '../../../entities/tests/model/hooks/useTest';
@@ -11,8 +10,9 @@ import {
 	selectTitle,
 } from '../../../entities/tests/model/selectors/testSelectors';
 import { testAPI } from '../../../entities/tests/api/api';
+import { QuestionFormPanel } from '../../../entities/question-form/ui/question-form-panel';
 
-export const CreateTest = () => {
+export const TestConstructorPage = () => {
 	const {
 		updateTitle,
 		updateDescription,
@@ -59,13 +59,14 @@ export const CreateTest = () => {
 				{/*	onDescriptionChange={updateDescription} */}
 				{/*	onCreateTest={onCreateTest} */}
 				{/* /> */}
-				<p className={css.header}>Конструктор вопросов</p>
-				<QuestionConstructor onNewQuestionCreated={handleNewQuestionCreated} />
-				<div className={css.list}>
-					{questions.map((question) => (
-						<QuestionList key={question.id} question={question} />
-					))}
-				</div>
+				<p className={css.header}>Конструктор теста</p>
+				<QuestionFormPanel
+					description={description}
+					onCreateTest={onCreateTest}
+					onDescriptionChange={updateDescription}
+					onTitleChange={updateTitle}
+					title={title}
+				/>
 			</div>
 		</div>
 	);

@@ -1,14 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import css from './TestListBlock.module.scss';
-import { MainButton } from '../../../../shared/ui/button';
 import { TestList } from './list';
 
 export const TestListBlock = () => {
 	const navigate = useNavigate();
-
-	const onCreateTestClick = () => {
-		navigate('/create-test');
-	};
 
 	return (
 		<div className={css.wrapper}>

@@ -14,7 +14,7 @@ interface QuestionFormProps {
 }
 
 export const QuestionConstructor = ({ onNewQuestionCreated } : QuestionFormProps) => {
-	const QUESTION_TEXTAREA_HEIGHT = 120;
+	const QUESTION_TEXTAREA_HEIGHT = 160;
 	const QUESTION_TEXTAREA_HEIGHT_WIDTH = 600;
 
 	const dispatch = useDispatch();
@@ -63,7 +63,10 @@ export const QuestionConstructor = ({ onNewQuestionCreated } : QuestionFormProps
 						value={questionText}
 					/>
 					<div className={css.right_side}>
-						<QuestionTypeDropdown onChange={handleQuestionTypeChange} />
+						<div className={css.dropdowns}>
+							<QuestionTypeDropdown onChange={handleQuestionTypeChange} />
+							<QuestionTypeDropdown onChange={handleQuestionTypeChange} />
+						</div>
 						<MainButton
 							text="Новый вопрос"
 							disabled={questionType === 'chooseType'}

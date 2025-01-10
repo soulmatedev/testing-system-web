@@ -23,6 +23,12 @@
   flex-direction: column;
 }
 
+.dropdowns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .go_back_wrapper {
   display: flex;
   justify-content: start;
