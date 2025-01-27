@@ -1,0 +1,1 @@
+export { SingleChoiceInputResponse } from './SingleChoiceInputResponse';

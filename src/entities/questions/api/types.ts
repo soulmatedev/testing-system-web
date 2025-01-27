@@ -8,10 +8,20 @@ export interface IOptionInput {
 	isCorrect: boolean,
 }
 
+export interface IQuestion {
+	id: number,
+	text: string,
+	type: string,
+	competency: string,
+	options: IOptionInput[],
+	pairs: IPairInput[],
+}
+
 export interface ICreateQuestionRequest {
 	id: number,
 	text: string,
 	type: string,
+	competency: string,
 	options: IOptionInput[],
 	pairs: IPairInput[],
 }

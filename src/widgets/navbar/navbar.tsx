@@ -5,7 +5,7 @@ export const Navbar = () => {
 	const navigate = useLocation();
 	return (
 		<div className={css.navbar}>
-			<NavLink className={css.navbar_link} to="/">Логотип</NavLink>
+			<NavLink className={css.navbar_link} to="/test-list">Логотип</NavLink>
 			<div className={css.items}>
 				<NavLink
 					to="/test-list"
@@ -17,13 +17,13 @@ export const Navbar = () => {
 					to="/question-constructor"
 					className={`${css.navbar_link} ${navigate.pathname === '/question-constructor' ? css.active : ''}`}
 				>
-					Конструктор вопросов
+					Библиотека вопросов
 				</NavLink>
 				<NavLink
 					to="/test-constructor"
 					className={`${css.navbar_link} ${navigate.pathname === '/test-constructor' ? css.active : ''}`}
 				>
-					Конструктор теста
+					Конструктор тестов
 				</NavLink>
 			</div>
 			<div className={css.profile}>Профиль</div>

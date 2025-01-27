@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface IResponse {
 	id: number;
 	text: string;
+	weight: number,
 }
 
 interface IMultipleChooseScheme {
@@ -10,7 +11,7 @@ interface IMultipleChooseScheme {
 }
 
 const initialState: IMultipleChooseScheme = {
-	responses: [{ id: 1, text: '' }],
+	responses: [{ id: 1, text: '', weight: 0 }],
 };
 
 export const multipleChooseSlice = createSlice({
@@ -22,15 +23,16 @@ export const multipleChooseSlice = createSlice({
 	reducers: {
 		addResponse(state) {
 			const newId = state.responses.length ? state.responses[state.responses.length - 1].id + 1 : 1;
-			state.responses.push({ id: newId, text: '' });
+			state.responses.push({ id: newId, text: '', weight: 0 });
 		},
 		removeResponse(state, action: PayloadAction<number>) {
 			state.responses = state.responses.filter((response) => response.id !== action.payload);
 		},
-		updateResponseText(state, action: PayloadAction<{ id: number; text: string }>) {
+		updateResponseText(state, action: PayloadAction<IResponse>) {
 			const response = state.responses.find((response) => response.id === action.payload.id);
 			if (response) {
 				response.text = action.payload.text;
+				response.weight = action.payload.weight;
 			}
 		},
 		clearResponses(state) {

@@ -31,7 +31,6 @@ export const InputWithRoundedCheckbox = (props: InputProps) => {
 			<input
 				className={css.inputField}
 				placeholder={placeholder}
-				style={{ height }}
 				value={value}
 				onChange={onChange}
 			/>

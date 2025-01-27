@@ -1,6 +1,4 @@
 import css from './RelationTransparentCard.module.scss';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { ReactComponent as PlusIcon } from '../../../../../shared/assets/images/plus-icon.svg';
 
 interface RelationTransparentCardProps {

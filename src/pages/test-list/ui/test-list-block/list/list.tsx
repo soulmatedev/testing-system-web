@@ -3,9 +3,6 @@ import css from './list.module.scss';
 import { TestListItem } from './item';
 import { RootState } from '../../../../../app/reducers';
 import { ITest } from '../../../../../entities/question-form/model/slices/testDetailsSlice';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { ReactComponent as ListIcon } from '../../../../../shared/assets/images/list.svg';
 
 export const TestList = () => {
 	const tests = useSelector((state: RootState) => state.testDetails.tests);
@@ -14,7 +11,6 @@ export const TestList = () => {
 		<div className={css.wrapper}>
 			{tests.length === 0 ? (
 				<div className={css.not_found_block}>
-					<ListIcon />
 					<p className={css.not_found}>Здесь пока ничего нет, но это отличный повод начать!</p>
 				</div>
 			) : (

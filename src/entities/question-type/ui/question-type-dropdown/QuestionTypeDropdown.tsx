@@ -11,10 +11,10 @@ interface QuestionTypeDropdownProps {
 
 const questionTypes: QuestionType[] = [
 	{ value: 'chooseType', label: 'Тип вопроса' },
-	{ value: 'singleChoice', label: 'Одиночный выбор' },
-	{ value: 'multipleChoice', label: 'Множественный выбор' },
-	{ value: 'relation', label: 'Соотношение' },
-	{ value: 'freeQuestion', label: 'Свободный ответ' },
+	{ value: 'single', label: 'Одиночный выбор' },
+	{ value: 'multiple', label: 'Множественный выбор' },
+	{ value: 'matching', label: 'Соотношение' },
+	{ value: 'open', label: 'Свободный ответ' },
 ];
 
 export const QuestionTypeDropdown = ({ onChange }: QuestionTypeDropdownProps) => (

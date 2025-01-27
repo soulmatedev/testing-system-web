@@ -1,6 +1,6 @@
 import css from './СompetenciesTypeDropdown.module.scss';
 
-interface QuestionType {
+interface ICompetencyType {
 	value: string;
 	label: string;
 }
@@ -9,7 +9,7 @@ interface QuestionTypeDropdownProps {
 	onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const questionTypes: QuestionType[] = [
+const questionCompetence: ICompetencyType[] = [
 	{ value: 'competency', label: 'Компетенция' },
 	{ value: 'leadership', label: 'Лидерство' },
 	{ value: 'strategicThinking', label: 'Стратегическое мышление' },
@@ -19,7 +19,7 @@ const questionTypes: QuestionType[] = [
 
 export const CompetenciesTypeDropdown = ({ onChange }: QuestionTypeDropdownProps) => (
 	<select className={css.questionType} onChange={onChange}>
-		{questionTypes.map((type) => (
+		{questionCompetence.map((type) => (
 			<option key={type.value} value={type.value}>
 				{type.label}
 			</option>

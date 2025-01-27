@@ -85,7 +85,7 @@ export const AuthorizationBlock = () => {
 				className={css.question}
 				onClick={navigateToRegistration}
 			>
-				Не зарегистрированы ?
+				Не зарегистрированы?
 			</p>
 		</div>
 	);

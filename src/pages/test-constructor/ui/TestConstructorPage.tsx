@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import css from './TestContructorPage.module.scss';
-import { QuestionConstructor } from '../../../entities/question-form/ui/question-form';
-import { QuestionList } from '../../../entities/question-form/ui/question-form/ui/question-list';
+import { QuestionConstructor } from '../../../entities/question-form/ui/question-constructor-form';
+import { QuestionList } from '../../../entities/question-form/ui/question-constructor-form/ui/question-list';
 import { useTest } from '../../../entities/tests/model/hooks/useTest';
 import {
 	selectDescription,
@@ -45,10 +45,6 @@ export const TestConstructorPage = () => {
 		console.log(newTest);
 	};
 
-	const handleNewQuestionCreated = (newQuestion: any) => {
-		console.log('Новый вопрос:', newQuestion);
-	};
-
 	return (
 		<div className={css.wrapper}>
 			<div className={css.block}>
@@ -59,7 +55,7 @@ export const TestConstructorPage = () => {
 				{/*	onDescriptionChange={updateDescription} */}
 				{/*	onCreateTest={onCreateTest} */}
 				{/* /> */}
-				<p className={css.header}>Конструктор теста</p>
+				<p className={css.header}>Конструктор тестов</p>
 				<QuestionFormPanel
 					description={description}
 					onCreateTest={onCreateTest}

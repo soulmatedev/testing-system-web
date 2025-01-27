@@ -1,24 +1,28 @@
 import React, { ChangeEvent } from 'react';
 import css from './MultipleChoiceInputResponse.module.scss';
-import { SquareCheckboxInput } from '../../../../../shared/ui/square-checkbox-input/square-checkbox-input';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+import { SquareCheckboxInput } from '../../../../../shared/ui/square-checkbox-input';
 import { ReactComponent as CrossIcon } from '../../../../../shared/assets/images/cross-icon.svg';
 import { IResponse } from '../../../model/slices/multipleChooseSlice';
+import { WeightDropdown, WeightValues } from '../../../../../shared/ui/weight-dropdown/weight-dropdown';
 
 interface MultipleChoiceInputResponseProps {
 	response: IResponse;
 	onDelete: (id: number) => void;
-	onTextChange: (id: number, text: string) => void;
+	onAnswerChange: (id: number, text: string, weight: number) => void;
 }
 
 export const MultipleChoiceInputResponse: React.FC<MultipleChoiceInputResponseProps> = ({
 	response,
 	onDelete,
-	onTextChange,
+	onAnswerChange,
 }) => {
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		onTextChange(response.id, e.target.value);
+	const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
+		onAnswerChange(response.id, e.target.value, response.weight);
+	};
+
+	const handleWeightChange = (e: ChangeEvent<HTMLSelectElement>) => {
+		const newWeight = Number(e.target.value);
+		onAnswerChange(response.id, response.text, newWeight);
 	};
 
 	return (
@@ -29,7 +33,14 @@ export const MultipleChoiceInputResponse: React.FC<MultipleChoiceInputResponsePr
 				height={36}
 				showCheckbox
 				value={response.text}
-				onChange={handleChange}
+				onChange={handleAnswerChange}
+			/>
+			<WeightDropdown
+				placeholder="Вес"
+				width={60}
+				height={36}
+				value={response.weight as WeightValues}
+				onChange={handleWeightChange}
 			/>
 			<CrossIcon className={css.cross_icon} onClick={() => onDelete(response.id)} />
 		</div>

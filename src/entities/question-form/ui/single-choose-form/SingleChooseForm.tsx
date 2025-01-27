@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import css from './SingleChooseForm.module.scss';
-import { SingleChoiceInputResponse } from './input-response/SingleChoiceInputResponse';
+import { SingleChoiceInputResponse } from './input-response';
 import { useSingleChoose } from '../../model/hooks/useSingleChoose';
 
 interface SingleChooseFormProps {
@@ -9,7 +9,7 @@ interface SingleChooseFormProps {
 
 export const SingleChooseForm = ({ questionId }: SingleChooseFormProps) => {
 	const {
-		responses, addResponse, removeResponse, updateResponseText,
+		responses, addResponse, removeResponse, updateResponseAnswer,
 	} = useSingleChoose();
 
 	const [selectedResponseId, setSelectedResponseId] = useState<number | null>(null);
@@ -21,7 +21,7 @@ export const SingleChooseForm = ({ questionId }: SingleChooseFormProps) => {
 	};
 
 	const handleSelectResponse = (id: number) => {
-		setSelectedResponseId(id);
+		setSelectedResponseId((prevSelectedId) => (prevSelectedId === id ? null : id));
 	};
 
 	return (
@@ -32,7 +32,7 @@ export const SingleChooseForm = ({ questionId }: SingleChooseFormProps) => {
 					index={response.id}
 					response={response}
 					onDelete={removeResponse}
-					onTextChange={updateResponseText}
+					onAnswerChange={updateResponseAnswer}
 					onSelect={handleSelectResponse}
 					selected={selectedResponseId === response.id}
 				/>

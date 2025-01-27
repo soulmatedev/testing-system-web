@@ -25,6 +25,7 @@ export const QuestionFormPanel = ({
 			<div className={css.wp}>
 				<div className={css.options}>
 					<MainButton text="Сохранить тест" onClick={onCreateTest} />
+					<MainButton text="Добавить вопрос" />
 				</div>
 				<div className={css.block}>
 					<input

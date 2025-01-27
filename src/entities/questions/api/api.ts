@@ -16,7 +16,7 @@ export const questionsAPI = createApi({
 			query: (data) => ({
 				url: URI_QUESTIONS,
 				method: 'POST',
-				body: { ...data },
+				body: data,
 			}),
 		}),
 	}),

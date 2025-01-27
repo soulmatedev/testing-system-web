@@ -54,7 +54,7 @@ export const PassingTestBlock = () => {
 	};
 
 	const handleAnswerSelect = (questionId: number, answerId: number) => {
-		if (currentQuestion.type === 'singleChoose') {
+		if (currentQuestion.type === 'single') {
 			setSelectedAnswers((prev) => ({
 				...prev,
 				[questionId]: answerId,
@@ -68,7 +68,7 @@ export const PassingTestBlock = () => {
 	};
 
 	const getCheckboxClassName = (type: string) => (
-		type === 'multipleChoise' ? css.multipleChooseCheckbox : css.singleChooseCheckbox);
+		type === 'multiple' ? css.multipleChooseCheckbox : css.singleChooseCheckbox);
 
 	return (
 		<div className={css.wrapper}>

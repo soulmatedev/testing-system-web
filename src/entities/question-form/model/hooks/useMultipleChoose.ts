@@ -13,8 +13,8 @@ export const useMultipleChoose = () => {
 		dispatch(multipleChooseActions.removeResponse(id));
 	};
 
-	const updateResponseText = (id: number, text: string) => {
-		dispatch(multipleChooseActions.updateResponseText({ id, text }));
+	const updateResponseText = (id: number, text: string, weight: number) => {
+		dispatch(multipleChooseActions.updateResponseText({ id, text, weight }));
 	};
 
 	const clearResponses = () => {

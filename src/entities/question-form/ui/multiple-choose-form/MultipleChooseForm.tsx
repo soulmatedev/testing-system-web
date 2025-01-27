@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import css from './MultipleChooseForm.module.scss';
 import { MultipleChoiceInputResponse } from './input-response/MultipleChoiceInputResponse';
 import { useMultipleChoose } from '../../model/hooks/useMultipleChoose';
-import { multipleChooseActions } from '../../model/slices/multipleChooseSlice';
 
 interface MultipleChooseFormProps {
 	questionId: number | null;
@@ -12,7 +11,7 @@ interface MultipleChooseFormProps {
 export const MultipleChooseForm = ({ questionId }: MultipleChooseFormProps) => {
 	const dispatch = useDispatch();
 	const {
-		responses, addResponse,
+		responses, addResponse, updateResponseText, removeResponse,
 	} = useMultipleChoose();
 
 	const handleKeyDown = (event: React.KeyboardEvent) => {
@@ -21,21 +20,14 @@ export const MultipleChooseForm = ({ questionId }: MultipleChooseFormProps) => {
 		}
 	};
 
-	const handleDeleteResponse = (id: number) => {
-		dispatch(multipleChooseActions.removeResponse(id));
-	};
-	const handleTextChange = (id: number, text: string) => {
-		dispatch(multipleChooseActions.updateResponseText({ id, text }));
-	};
-
 	return (
 		<div className={css.wrapper}>
 			{responses.map((response) => (
 				<MultipleChoiceInputResponse
 					key={response.id}
 					response={response}
-					onDelete={handleDeleteResponse}
-					onTextChange={handleTextChange}
+					onDelete={removeResponse}
+					onAnswerChange={updateResponseText}
 				/>
 			))}
 			<div

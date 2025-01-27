@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import css from './QuestionContructorPage.module.scss';
-import { QuestionConstructor } from '../../../entities/question-form/ui/question-form';
-import { QuestionList } from '../../../entities/question-form/ui/question-form/ui/question-list';
+import { QuestionConstructor } from '../../../entities/question-form/ui/question-constructor-form';
+import { QuestionList } from '../../../entities/question-form/ui/question-constructor-form/ui/question-list';
 import { useTest } from '../../../entities/tests/model/hooks/useTest';
 import {
 	selectDescription,
@@ -58,7 +58,7 @@ export const QuestionConstructorPage = () => {
 				{/*	onDescriptionChange={updateDescription} */}
 				{/*	onCreateTest={onCreateTest} */}
 				{/* /> */}
-				<p className={css.header}>Конструктор вопросов</p>
+				<p className={css.header}>Библиотека вопросов</p>
 				<QuestionConstructor onNewQuestionCreated={handleNewQuestionCreated} />
 				<div className={css.list}>
 					{questions.map((question) => (

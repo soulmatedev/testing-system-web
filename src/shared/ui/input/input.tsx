@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import css from './input.module.scss';
 import { InputTypes } from './InputTypes';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { ReactComponent as EyeOpen } from './icons/eye-open.svg';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { ReactComponent as EyeClose } from './icons/eye-close.svg';
 
 interface InputProps {

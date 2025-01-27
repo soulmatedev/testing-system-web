@@ -9,11 +9,11 @@ interface QuestionFormRendererProps {
 
 export const QuestionFormRenderer = ({ questionType, questionId }: QuestionFormRendererProps) => {
 	switch (questionType) {
-	case 'singleChoice':
+	case 'single':
 		return <SingleChooseForm questionId={questionId} />;
-	case 'multipleChoice':
+	case 'multiple':
 		return <MultipleChooseForm questionId={questionId} />;
-	case 'relation':
+	case 'matching':
 		return <RelationForm questionId={questionId} />;
 	default:
 		return null;

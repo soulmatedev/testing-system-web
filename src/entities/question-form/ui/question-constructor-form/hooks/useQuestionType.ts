@@ -2,8 +2,8 @@ import { useSingleChoose } from '../../../model/hooks/useSingleChoose';
 import { useMultipleChoose } from '../../../model/hooks/useMultipleChoose';
 
 export const questionTypeHooks = {
-	singleChoice: useSingleChoose,
-	multipleChoice: useMultipleChoose,
+	single: useSingleChoose,
+	multiple: useMultipleChoose,
 };
 
 export type QuestionType = keyof typeof questionTypeHooks | 'chooseType';
@@ -26,9 +26,9 @@ export const useQuestionType = ({ questionType }: IUseQuestionTypeProps) => {
 	const noop = useNoop();
 
 	switch (questionType) {
-	case 'singleChoice':
+	case 'single':
 		return singleChoice;
-	case 'multipleChoice':
+	case 'multiple':
 		return multipleChoice;
 	default:
 		return noop;

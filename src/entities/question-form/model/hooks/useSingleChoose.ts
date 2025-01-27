@@ -13,8 +13,8 @@ export const useSingleChoose = () => {
 		dispatch(singleChooseActions.removeResponse(id));
 	};
 
-	const updateResponseText = (id: number, text: string) => {
-		dispatch(singleChooseActions.updateResponseText({ id, text }));
+	const updateResponseAnswer = (id: number, text: string, weight: number) => {
+		dispatch(singleChooseActions.updateResponseText({ id, text, weight }));
 	};
 
 	const clearResponses = () => {
@@ -27,7 +27,7 @@ export const useSingleChoose = () => {
 		responses,
 		addResponse,
 		removeResponse,
-		updateResponseText,
+		updateResponseAnswer,
 		getResponses,
 		clearResponses,
 	};
