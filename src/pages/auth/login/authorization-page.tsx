@@ -1,8 +1,8 @@
 import css from './authorization-page.module.scss';
-import { AuthorizationBlock } from './block';
+import { AuthorizationForm } from '../../../features/auth/login/ui/form';
 
 export const AuthorizationPage = () => (
 	<div className={css.wrapper}>
-		<AuthorizationBlock />
+		<AuthorizationForm />
 	</div>
 );

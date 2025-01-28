@@ -1,29 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import css from './authorization-block.module.scss';
-import { AuthorizationEmailInput } from './ui/login-input';
-import { AuthorizationPasswordInput } from './ui/password-input';
-import { AuthButton } from './ui/auth-button';
-import { authAPI } from '../../../../../entities/user/auth/api/api';
-import { ISignInRequest } from '../../../../../entities/user/auth/api/types';
-import { selectEmail, selectPassword } from '../../../../../entities/user/auth/model/authSelectors';
-import { authActions } from '../../../../../entities/user/auth/model/authSlice';
+import {authActions} from "../../../../entities/user/auth/model/authSlice";
+import {toast} from "react-toastify";
+import {authAPI} from "../../../../entities/user/auth/api/api";
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {selectEmail, selectPassword} from "../../../../entities/user/auth/model/authSelectors";
+import {ISignInRequest} from "../../../../entities/user/auth/api/types";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
-export const AuthorizationBlock = () => {
+export const useLogin = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
-	const [signIn] = authAPI.useSignInMutation();
 
 	const email = useSelector(selectEmail);
 	const password = useSelector(selectPassword);
 
-	const authorizationData: ISignInRequest = {
-		email,
-		password,
-	};
+	const [signIn] = authAPI.useSignInMutation();
 
 	const navigateToRegistration = () => {
 		navigate('/registration');
@@ -36,6 +27,11 @@ export const AuthorizationBlock = () => {
 			return false;
 		}
 		return true;
+	};
+
+	const authorizationData: ISignInRequest = {
+		email,
+		password,
 	};
 
 	const onSignIn = async () => {
@@ -73,20 +69,20 @@ export const AuthorizationBlock = () => {
 		}
 	};
 
-	return (
-		<div className={css.block}>
-			<p className={css.header}>Войти</p>
-			<AuthorizationEmailInput />
-			<AuthorizationPasswordInput />
-			<AuthButton onSignIn={onSignIn} />
-			{/* eslint-disable-next-line max-len */}
-			{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
-			<p
-				className={css.question}
-				onClick={navigateToRegistration}
-			>
-				Не зарегистрированы?
-			</p>
-		</div>
-	);
+	const handleChangeEmail = (email: string) => {
+		dispatch(authActions.setEmail(email));
+	};
+
+	const handleChangePassword = (password: string) => {
+		dispatch(authActions.setLogin(password));
+	};
+
+	return {
+		email,
+		password,
+		onSignIn,
+		handleChangeEmail,
+		handleChangePassword,
+		navigateToRegistration,
+	};
 };
