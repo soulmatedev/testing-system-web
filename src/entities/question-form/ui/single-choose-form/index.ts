@@ -1,1 +1,0 @@
-export { SingleChooseForm } from './SingleChooseForm';

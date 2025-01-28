@@ -1,1 +1,1 @@
-export { QuestionConstructorPage } from './QuestionConstructorPage';
+export { QuestionContructorPage } from './question-contructor-page';

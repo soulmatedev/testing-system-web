@@ -1,1 +1,1 @@
-export { PassingTestPage } from './PassingTestPage';
+export { PassingTestPage } from './passing-test-page';

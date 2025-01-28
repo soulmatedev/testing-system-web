@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IOption } from '../../../tests/api/types';
-
-export interface IQuestion {
-	id: number;
-	text: string;
-	type: string;
-	options: IOption[];
-}
+import { IQuestion } from '../../api/types';
 
 interface IQuestionsState {
 	questions: IQuestion[];

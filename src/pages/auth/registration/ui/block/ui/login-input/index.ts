@@ -1,1 +1,1 @@
-export { RegistrationLoginInput } from './RegistrationLoginInput';
+export { RegistrationLoginInput } from './registration-login-input';

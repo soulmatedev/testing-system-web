@@ -2,9 +2,14 @@ import { useSelector } from 'react-redux';
 import css from './list.module.scss';
 import { TestListItem } from './item';
 import { RootState } from '../../../../../app/reducers';
-import { ITest } from '../../../../../entities/question-form/model/slices/testDetailsSlice';
+// eslint-disable-next-line import/extensions,@typescript-eslint/ban-ts-comment
+// @ts-ignore
+// eslint-disable-next-line import/extensions
+import { ITest } from '../../../../../entities/question-types/model/slices/testDetailsSlice';
 
 export const TestList = () => {
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	const tests = useSelector((state: RootState) => state.testDetails.tests);
 
 	return (

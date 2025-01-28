@@ -3,6 +3,7 @@ import { reducers } from './reducers';
 import { authAPI } from '../entities/user/auth/api/api';
 import { testAPI } from '../entities/tests/api/api';
 import { questionsAPI } from '../entities/questions/api/api';
+import { competenciesAPI } from '../entities/competencies/api/api';
 
 export const store = configureStore({
 	reducer: reducers,
@@ -12,6 +13,7 @@ export const store = configureStore({
 		authAPI.middleware,
 		testAPI.middleware,
 		questionsAPI.middleware,
+		competenciesAPI.middleware,
 	),
 });
 

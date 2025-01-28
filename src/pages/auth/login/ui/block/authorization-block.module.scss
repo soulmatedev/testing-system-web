@@ -1,0 +1,33 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--question-form-gap);
+  background-color: var(--block-bg-color);
+  padding: var(--authorization-block-padding);
+  border-radius: var(--default-border-radius);
+  margin: var(--question-form-margin);
+}
+
+.question {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: #a0abbe;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #a0abbe;
+}
+
+.header {
+  font-size: 24px;
+}

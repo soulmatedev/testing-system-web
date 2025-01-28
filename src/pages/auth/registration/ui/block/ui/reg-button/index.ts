@@ -1,1 +1,1 @@
-export { RegButton } from './RegButton';
+export { RegistrationButton } from './registration-button';

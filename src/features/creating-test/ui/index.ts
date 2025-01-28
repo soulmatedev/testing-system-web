@@ -1,1 +1,1 @@
-export { TestTitleDescriptionBlock } from './TestTitleDescriptionBlock';
+export { TestTitleDescriptionBlock } from './test-title-description-block';

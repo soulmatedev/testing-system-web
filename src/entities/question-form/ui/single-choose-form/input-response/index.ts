@@ -1,1 +1,0 @@
-export { SingleChoiceInputResponse } from './SingleChoiceInputResponse';

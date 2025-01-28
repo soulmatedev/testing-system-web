@@ -1,1 +1,0 @@
-export { CompetenciesTypeDropdown } from './СompetenciesTypeDropdown';

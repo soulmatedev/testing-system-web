@@ -1,1 +1,1 @@
-export { TestListPage } from './TestListPage';
+export { TestListPage } from './test-list-page';

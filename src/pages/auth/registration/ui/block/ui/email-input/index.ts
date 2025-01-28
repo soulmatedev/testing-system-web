@@ -1,1 +1,1 @@
-export { RegistrationEmailInput } from './RegistrationEmailInput';
+export { RegistrationEmailInput } from './registration-email-input';

@@ -3,9 +3,11 @@ export interface IPairInput {
 	description: boolean,
 }
 
-export interface IOptionInput {
+export interface IAnswer {
+	id: number,
 	text: string,
 	isCorrect: boolean,
+	weight: number,
 }
 
 export interface IQuestion {
@@ -13,7 +15,7 @@ export interface IQuestion {
 	text: string,
 	type: string,
 	competency: string,
-	options: IOptionInput[],
+	answers: IAnswer[],
 	pairs: IPairInput[],
 }
 
@@ -22,6 +24,6 @@ export interface ICreateQuestionRequest {
 	text: string,
 	type: string,
 	competency: string,
-	options: IOptionInput[],
+	answers: IAnswer[],
 	pairs: IPairInput[],
 }

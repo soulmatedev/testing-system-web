@@ -1,1 +1,1 @@
-export { AuthorizationBlock } from './AuthorizationBlock';
+export { AuthorizationBlock } from './authorization-block';

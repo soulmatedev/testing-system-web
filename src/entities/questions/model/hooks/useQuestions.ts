@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { questionsActions } from '../slices/questionsSlice';
 import { AppDispatch } from '../../../../app/store';
-import { IQuestion } from '../../../tests/api/types';
+import { IQuestion } from '../../api/types';
 
 export const useQuestions = () => {
 	const dispatch: AppDispatch = useDispatch();
@@ -24,7 +24,9 @@ export const useQuestions = () => {
 
 	const updateQuestionText = (questionId: number, text: string) => {
 		dispatch(questionsActions.updateQuestion({
-			options: [],
+			answers: [],
+			competency: '',
+			pairs: [],
 			type: '',
 			id: questionId,
 			text,

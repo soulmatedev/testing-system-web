@@ -1,1 +1,1 @@
-export { AuthorizationEmailInput } from './AuthorizationEmailInput';
+export { AuthorizationEmailInput } from './authorization-email-input';

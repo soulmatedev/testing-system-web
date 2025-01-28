@@ -1,1 +1,1 @@
-export { RegistrationBlock } from './RegistrationBlock';
+export { RegistrationBlock } from './registration-block';
