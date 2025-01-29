@@ -14,8 +14,8 @@ export const Navbar = () => {
 					Список тестов
 				</NavLink>
 				<NavLink
-					to="/question-constructor"
-					className={`${css.navbar_link} ${navigate.pathname === '/question-constructor' ? css.active : ''}`}
+					to="/library-questions"
+					className={`${css.navbar_link} ${navigate.pathname === '/library-questions' ? css.active : ''}`}
 				>
 					Библиотека вопросов
 				</NavLink>

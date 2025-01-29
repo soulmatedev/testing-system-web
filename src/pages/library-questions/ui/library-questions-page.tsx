@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import css from './question-contructor-page.module.scss';
+import css from './library-questions-page.module.scss';
 import { useTest } from '../../../entities/tests/model/hooks/useTest';
 import {
 	selectDescription,
@@ -11,7 +11,7 @@ import { testAPI } from '../../../entities/tests/api/api';
 import { QuestionConstructor } from '../../../features/question-constructor-form';
 import { QuestionList } from '../../../features/question-constructor-form/ui/question-list';
 
-export const QuestionContructorPage = () => {
+export const LibraryQuestionsPage = () => {
 	const {
 		updateTitle,
 		updateDescription,

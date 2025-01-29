@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import styles from './Router.module.scss';
 import { TestListPage } from '../../pages/test-list';
-import { QuestionContructorPage } from '../../pages/question-constructor';
+import { LibraryQuestionsPage } from '../../pages/library-questions';
 import { PassingTestPage } from '../../pages/passing-test';
 import { AuthorizationPage } from '../../pages/auth/login';
 import { RegistrationPage } from '../../pages/auth/registration';
@@ -19,7 +19,7 @@ const Router = () => {
 				<Route path="/" element={<AuthorizationPage />} />
 				<Route path="/registration" element={<RegistrationPage />} />
 				<Route path="/test-list" element={<TestListPage />} />
-				<Route path="/question-constructor" element={<QuestionContructorPage />} />
+				<Route path="/library-questions" element={<LibraryQuestionsPage />} />
 				<Route path="/test-constructor" element={<TestConstructorPage />} />
 				<Route path="/test/:id" element={<PassingTestPage />} />
 			</Routes>

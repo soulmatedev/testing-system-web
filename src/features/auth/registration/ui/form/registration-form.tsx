@@ -13,7 +13,7 @@ export const RegistrationForm = () => {
 		onSignUp,
 		handleChangeEmail,
 		handleChangeLogin,
-		handleChangePassword
+		handleChangePassword,
 	} = useRegistration();
 
 	return (

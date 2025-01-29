@@ -1,10 +1,10 @@
-import {authActions} from "../../../../entities/user/auth/model/authSlice";
-import {toast} from "react-toastify";
-import {authAPI} from "../../../../entities/user/auth/api/api";
-import {useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {selectEmail, selectLogin, selectPassword} from "../../../../entities/user/auth/model/authSelectors";
-import {ISignUpRequest} from "../../../../entities/user/auth/api/types";
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { authAPI } from '../../../../entities/user/auth/api/api';
+import { authActions } from '../../../../entities/user/auth/model/authSlice';
+import { selectEmail, selectLogin, selectPassword } from '../../../../entities/user/auth/model/authSelectors';
+import { ISignUpRequest } from '../../../../entities/user/auth/api/types';
 
 export const useRegistration = () => {
 	const dispatch = useDispatch();
@@ -52,7 +52,7 @@ export const useRegistration = () => {
 	};
 
 	const handleChangePassword = (password: string) => {
-		dispatch(authActions.setLogin(password));
+		dispatch(authActions.setPassword(password));
 	};
 
 	return {

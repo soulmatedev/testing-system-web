@@ -1,11 +1,11 @@
-import {authActions} from "../../../../entities/user/auth/model/authSlice";
-import {toast} from "react-toastify";
-import {authAPI} from "../../../../entities/user/auth/api/api";
-import {useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {selectEmail, selectPassword} from "../../../../entities/user/auth/model/authSelectors";
-import {ISignInRequest} from "../../../../entities/user/auth/api/types";
-import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { authActions } from '../../../../entities/user/auth/model/authSlice';
+import { authAPI } from '../../../../entities/user/auth/api/api';
+import { selectEmail, selectPassword } from '../../../../entities/user/auth/model/authSelectors';
+import { ISignInRequest } from '../../../../entities/user/auth/api/types';
 
 export const useLogin = () => {
 	const navigate = useNavigate();
@@ -41,7 +41,7 @@ export const useLogin = () => {
 			const res = await signIn(authorizationData)
 				.unwrap();
 
-			// eslint-disable-next-line camelcase
+			// eslint-disable-next-line camelcase,@typescript-eslint/naming-convention
 			const { access_token } = res;
 			// eslint-disable-next-line camelcase
 			if (access_token) {
@@ -74,7 +74,7 @@ export const useLogin = () => {
 	};
 
 	const handleChangePassword = (password: string) => {
-		dispatch(authActions.setLogin(password));
+		dispatch(authActions.setPassword(password));
 	};
 
 	return {
