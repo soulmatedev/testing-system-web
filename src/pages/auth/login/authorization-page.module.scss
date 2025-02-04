@@ -10,20 +10,21 @@
   flex-direction: column;
   gap: var(--question-form-gap);
   background-color: var(--block-bg-color);
-  padding: var(--authorization-block-padding);
+  padding: var(--form-padding);
   border-radius: var(--default-border-radius);
   margin: var(--question-form-margin);
 }
 
 .label {
-  font-size: 16px;
-  margin-bottom: 8px;
-  color: #a0abbe;
+  font-size: var(--font-size-lm);
+  margin-bottom: var(--middle-space);
+  color: var(--light-gray-font-color);
 }
 
 .header {
-  font-size: 24px;
+  font-size: var(--font-size-xl);
 }
+
 
 .inputWrapper {
   position: relative;
@@ -37,5 +38,5 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--font-size-lm);
 }

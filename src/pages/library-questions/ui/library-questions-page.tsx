@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import css from './library-questions-page.module.scss';
-import { useTest } from '../../../entities/tests/model/hooks/useTest';
 import {
 	selectDescription,
 	selectQuestions,
@@ -12,11 +11,6 @@ import { QuestionConstructor } from '../../../features/question-constructor-form
 import { QuestionList } from '../../../features/question-constructor-form/ui/question-list';
 
 export const LibraryQuestionsPage = () => {
-	const {
-		updateTitle,
-		updateDescription,
-	} = useTest();
-
 	const questions = useSelector(selectQuestions);
 	const title = useSelector(selectTitle);
 	const description = useSelector(selectDescription);
@@ -44,15 +38,11 @@ export const LibraryQuestionsPage = () => {
 		console.log(newTest);
 	};
 
-	const handleNewQuestionCreated = (newQuestion: any) => {
-		console.log('Новый вопрос:', newQuestion);
-	};
-
 	return (
 		<div className={css.wrapper}>
 			<div className={css.block}>
 				<p className={css.header}>Библиотека вопросов</p>
-				<QuestionConstructor onNewQuestionCreated={handleNewQuestionCreated} />
+				<QuestionConstructor />
 				<div className={css.list}>
 					{questions.map((question) => (
 						<QuestionList key={question.id} question={question} />

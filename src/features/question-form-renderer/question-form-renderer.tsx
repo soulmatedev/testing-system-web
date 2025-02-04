@@ -1,20 +1,25 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { SingleChooseForm } from '../../entities/question-types/single';
 import { MultipleChooseForm } from '../../entities/question-types/multiple';
 import { RelationForm } from '../../entities/question-types/relation';
+import { questionsSelectors } from '../../entities/questions/model/slice';
 
-interface QuestionFormRendererProps {
-	questionType: string;
-	questionId: number | null;
-}
+export const QuestionFormRenderer = () => {
+	const [activeQuestionId, _] = useState<number | null>(null);
+	const { type } = useSelector(questionsSelectors.getCurrentQuestion);
 
-export const QuestionFormRenderer = ({ questionType, questionId }: QuestionFormRendererProps) => {
-	switch (questionType) {
+	if (type === 'chooseType') {
+		return null;
+	}
+
+	switch (type) {
 	case 'single':
-		return <SingleChooseForm questionId={questionId} />;
+		return <SingleChooseForm questionId={activeQuestionId} />;
 	case 'multiple':
-		return <MultipleChooseForm questionId={questionId} />;
+		return <MultipleChooseForm questionId={activeQuestionId} />;
 	case 'matching':
-		return <RelationForm questionId={questionId} />;
+		return <RelationForm questionId={activeQuestionId} />;
 	default:
 		return null;
 	}

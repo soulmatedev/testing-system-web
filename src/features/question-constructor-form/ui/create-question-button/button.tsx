@@ -1,25 +1,15 @@
-import { QuestionType } from '../../hooks/useQuestionType';
-import { IQuestion } from '../../../../entities/questions/api/types';
+import { useSelector } from 'react-redux';
 import { useCreateQuestion } from '../../hooks';
 import { MainButton } from '../../../../shared/ui/button';
+import { questionsSelectors } from '../../../../entities/questions/model/slice';
 
-interface ICreateQuestionButtonProps {
-	questionType: QuestionType,
-	questionText: string,
-	onNewQuestionCreated: (newQuestion: IQuestion) => void,
-}
-
-export const CreateQuestionButton = (props: ICreateQuestionButtonProps) => {
-	const {
-		questionType,
-		questionText,
-		onNewQuestionCreated,
-	} = props;
+export const CreateQuestionButton = () => {
+	const { text, type } = useSelector(questionsSelectors.getCurrentQuestion);
 
 	const { createQuestion } = useCreateQuestion();
 
 	const onCreateQuestion = async () => {
-		if (questionText && questionType !== 'chooseType') {
+		if (text && type !== 'chooseType') {
 			await createQuestion();
 		}
 	};
@@ -27,7 +17,7 @@ export const CreateQuestionButton = (props: ICreateQuestionButtonProps) => {
 	return (
 		<MainButton
 			text="Сохранить"
-			disabled={questionType === 'chooseType' || !questionText}
+			disabled={type === 'chooseType' || !text}
 			onClick={onCreateQuestion}
 		/>
 	);

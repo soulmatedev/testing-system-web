@@ -23,13 +23,11 @@ export const reducers = combineReducers({
 
 	[competenciesAPI.reducerPath]: competenciesAPI.reducer,
 
-	// testDetails: testDetailsReducer,
 	singleChooseSlice: singleChooseReducer,
 	[answersAPI.reducerPath]: answersAPI.reducer,
 
 	multipleChooseSlice: multipleChooseReducer,
 	relationChooseSlice: relationChooseReducer,
-	// questionsSlice: questionsReducer,
 });
 
 export type RootState = ReturnType<typeof reducers>;

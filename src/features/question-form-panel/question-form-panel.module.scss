@@ -1,28 +1,30 @@
 .wrapper {
   display: flex;
-  gap: 24px;
+  gap: var(--gap-l);
 }
 
 .options {
   display: flex;
   justify-content: space-between;
+
   margin-bottom: 10px;
 }
 
 .block {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--gap-m);
   background-color: var(--block-bg-color);
   border: none;
+
   border-radius: 8px;
-  padding: 10px 15px;
-  width: 873px;
+  padding: var(--block-padding);
+  width: var(--block-max-width);
 }
 
 .name_input {
   font-size: var(--font-size-l);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   border: none;
   outline: none;
   padding-bottom: 4px;

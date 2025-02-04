@@ -24,8 +24,8 @@
   }
 
   .question_count {
-    font-size: 20px;
-    font-weight: 500;
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-medium);
   }
 }
 
@@ -36,7 +36,7 @@
   .navigation {
     display: flex;
     justify-content: end;
-    gap: 8px;
+    gap: var(--gap-ms);
   }
 }
 
@@ -48,26 +48,28 @@
   li {
     list-style-type: none
   };
+
   ul {
     margin: 0;
     padding: 0;
   }
+
   .questions_list {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--gap-s);
   }
 }
 
 .title {
   margin: 0 0 8px 0;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .description {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: var(--font-size-lm);
+  font-weight: var(--font-weight-regular);
 }
 
 .checkbox_label {

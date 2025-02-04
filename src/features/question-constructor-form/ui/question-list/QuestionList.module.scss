@@ -4,21 +4,23 @@
   background-color: var(--block-bg-color);
   padding: var(--relation-form-padding);
   border-radius: var(--default-border-radius);
-  margin-bottom: 12px;
   width: var(--relation-choose-form-width);
+
+  margin-bottom: 12px;
 }
 
 p {
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lm);
 }
 
 .answers_list {
   display: flex;
   flex-direction: column;
   list-style-type: none;
+  font-size: var(--font-size-lm);
+
   padding: 0;
   margin: 10px 0 0 0;
   gap: 8px;
-  font-size: 16px;
 }

@@ -7,7 +7,6 @@ interface RegistrationPasswordInputProps {
 	onChange: (value: string) => void;
 }
 
-
 export const RegistrationPasswordInput = (props: RegistrationPasswordInputProps) => {
 	const { value, onChange } = props;
 

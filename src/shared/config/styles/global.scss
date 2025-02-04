@@ -5,10 +5,22 @@
   --default-border-radius: 12px;
   --disabled-button: #ccc;
 
+  // * Router
+  --router-width: 100vw;
+  --router-height: 100vh;
+  --height-with-navbar: 80vh;
+
   // * Fonts
+  --font-size-xxl: 28px;
+  --font-size-xl: 24px;
   --font-size-l: 20px;
+  --font-size-lm: 16px;
   --font-size-m: 14px;
   --font-size-s: 12px;
+
+  --font-weight-thin: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
 
   --white-font-color: #FFFFFF;
   --black-font-color: #272727;
@@ -16,8 +28,21 @@
 
   --second-font-color: #F91F71;
 
+  // * Margin
+  --middle-space: 8px;
+
+  // * Gap
+  --gap-l: 24px;
+  --gap-m: 16px;
+  --gap-ms: 8px;
+  --gap-s: 4px;
+
+  // * Form
+  --form-padding: 20px;
+
   // * Block
   --block-min-width: 700px;
+  --block-max-width: 800px;
 
   --block-bg-color: #FFFFFF;
   --block-border-radius: 12px;
@@ -83,7 +108,4 @@
 
   // * PassingTest
   --passing-test-padding: 20px 24px 20px 24px;
-
-  //AuthorizationPage
-  --authorization-block-padding: 20px;
 }

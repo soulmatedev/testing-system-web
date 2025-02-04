@@ -3,13 +3,13 @@
   flex-direction: column;
   gap: var(--question-form-gap);
   background-color: var(--block-bg-color);
-  padding: var(--authorization-block-padding);
+  padding: var(--form-padding);
   border-radius: var(--default-border-radius);
   margin: var(--question-form-margin);
 }
 
 .label {
-  font-size: 16px;
-  margin-bottom: 8px;
-  color: #a0abbe;
+  font-size: var(--font-size-m);
+  margin-bottom: var(--middle-space);
+  color: var(--light-gray-font-color);
 }
