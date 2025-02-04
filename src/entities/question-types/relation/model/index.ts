@@ -1,1 +1,1 @@
-export { relationChooseSlice } from './relationChooseSlice';
+export { relationChooseSlice } from './slice';

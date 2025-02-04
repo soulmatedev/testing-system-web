@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 import css from './multiple-choice-input.module.scss';
 import { SquareCheckboxInput } from '../../../../../shared/ui/square-checkbox-input';
 import { ReactComponent as CrossIcon } from '../../../../../shared/assets/images/cross-icon.svg';
-import { IResponse } from '../../model/multipleChooseSlice';
+import { IResponse } from '../../model/slice';
 import { WeightDropdown, WeightValues } from '../../../../../shared/ui/weight-dropdown/weight-dropdown';
 
 interface MultipleChoiceInputProps {

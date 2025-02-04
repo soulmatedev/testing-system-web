@@ -5,7 +5,7 @@ import { RelationCard } from '../card';
 import {
 	relationChooseActions,
 	relationChooseSelectors,
-} from '../../model/relationChooseSlice';
+} from '../../model/slice';
 import { RelationTransparentCard } from '../relation-transparent-card';
 
 export const RelationInput = () => {

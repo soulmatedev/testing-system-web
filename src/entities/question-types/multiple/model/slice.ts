@@ -15,7 +15,7 @@ const initialState: IMultipleChooseScheme = {
 };
 
 export const multipleChooseSlice = createSlice({
-	name: 'multipleChoose',
+	name: 'multipleChooseSlice',
 	initialState,
 	selectors: {
 		getResponses: (state: IMultipleChooseScheme) => state.responses,

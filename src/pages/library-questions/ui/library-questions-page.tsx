@@ -51,13 +51,6 @@ export const LibraryQuestionsPage = () => {
 	return (
 		<div className={css.wrapper}>
 			<div className={css.block}>
-				{/* <QuestionFormPanel */}
-				{/*	title={title} */}
-				{/*	description={description} */}
-				{/*	onTitleChange={updateTitle} */}
-				{/*	onDescriptionChange={updateDescription} */}
-				{/*	onCreateTest={onCreateTest} */}
-				{/* /> */}
 				<p className={css.header}>Библиотека вопросов</p>
 				<QuestionConstructor onNewQuestionCreated={handleNewQuestionCreated} />
 				<div className={css.list}>

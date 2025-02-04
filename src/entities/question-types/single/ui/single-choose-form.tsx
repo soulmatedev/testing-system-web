@@ -9,37 +9,49 @@ interface SingleChooseFormProps {
 
 export const SingleChooseForm = ({ questionId }: SingleChooseFormProps) => {
 	const {
-		responses, addResponse, removeResponse, updateResponseAnswer,
+		answers, addAnswer, removeAnswer, updateResponseAnswer, updateAnswerCorrectness,
 	} = useSingleChoose();
 
 	const [selectedResponseId, setSelectedResponseId] = useState<number | null>(null);
 
 	const handleKeyDown = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {
-			addResponse();
+			addAnswer();
 		}
 	};
 
 	const handleSelectResponse = (id: number) => {
-		setSelectedResponseId((prevSelectedId) => (prevSelectedId === id ? null : id));
+		if (selectedResponseId === id) {
+			updateAnswerCorrectness(id, false);
+			setSelectedResponseId(null);
+		} else {
+			setSelectedResponseId(id);
+			answers.forEach((answer) => {
+				if (answer.id === id) {
+					updateAnswerCorrectness(id, true);
+				} else {
+					updateAnswerCorrectness(answer.id, false);
+				}
+			});
+		}
 	};
 
 	return (
 		<div className={css.wrapper}>
-			{responses.map((response) => (
+			{answers.map((answer) => (
 				<SingleChoiceInput
-					key={response.id}
-					index={response.id}
-					response={response}
-					onDelete={removeResponse}
+					key={answer.id}
+					index={answer.id}
+					answer={answer}
+					onDelete={removeAnswer}
 					onAnswerChange={updateResponseAnswer}
 					onSelect={handleSelectResponse}
-					selected={selectedResponseId === response.id}
+					selected={selectedResponseId === answer.id}
 				/>
 			))}
 			<div
 				className={css.add_answer}
-				onClick={addResponse}
+				onClick={addAnswer}
 				onKeyDown={handleKeyDown}
 				role="button"
 				tabIndex={0}

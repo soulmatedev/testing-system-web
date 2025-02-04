@@ -1,13 +1,8 @@
+import { IAnswer } from '../../answers/api/types';
+
 export interface IPairInput {
 	title: string,
 	description: boolean,
-}
-
-export interface IAnswer {
-	id: number,
-	text: string,
-	isCorrect: boolean,
-	weight: number,
 }
 
 export interface IQuestion {
@@ -20,7 +15,6 @@ export interface IQuestion {
 }
 
 export interface ICreateQuestionRequest {
-	id: number,
 	text: string,
 	type: string,
 	competency: string,

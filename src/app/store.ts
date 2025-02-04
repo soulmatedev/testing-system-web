@@ -4,8 +4,9 @@ import { authAPI } from '../entities/user/auth/api/api';
 import { testAPI } from '../entities/tests/api/api';
 import { questionsAPI } from '../entities/questions/api/api';
 import { competenciesAPI } from '../entities/competencies/api/api';
+import { answersAPI } from '../entities/answers/api/api';
 
-export const store = configureStore({
+const setupStore = () => configureStore({
 	reducer: reducers,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({
 		serializableCheck: false,
@@ -14,8 +15,13 @@ export const store = configureStore({
 		testAPI.middleware,
 		questionsAPI.middleware,
 		competenciesAPI.middleware,
+		answersAPI.middleware,
 	),
 });
 
+const store = setupStore();
+
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']
+
 export default store;
-export type AppDispatch = typeof store.dispatch;

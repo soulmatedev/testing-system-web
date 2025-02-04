@@ -1,35 +1,46 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { singleChooseActions, singleChooseSlice } from './singleChooseSlice';
-import { IAnswer } from '../../../questions/api/types';
+import { singleChooseActions, singleChooseSlice } from './slice';
+import { IAnswer, ICreateAnswer } from '../../../answers/api/types';
 
 export const useSingleChoose = () => {
 	const dispatch = useDispatch();
-	const responses = useSelector(singleChooseSlice.selectors.getResponses);
+	const answers = useSelector(singleChooseSlice.selectors.getAnswers);
 
-	const addResponse = () => {
-		dispatch(singleChooseActions.addResponse());
+	const addAnswer = () => {
+		const newAnswer: IAnswer = {
+			id: Date.now(),
+			text: '',
+			isCorrect: false,
+			weight: 0,
+		};
+		dispatch(singleChooseActions.addAnswer(newAnswer));
 	};
 
-	const removeResponse = (id: number) => {
-		dispatch(singleChooseActions.removeResponse(id));
+	const removeAnswer = (id: number) => {
+		dispatch(singleChooseActions.removeAnswer(id));
 	};
 
 	const updateResponseAnswer = (answer: IAnswer) => {
-		dispatch(singleChooseActions.updateResponseText(answer));
+		dispatch(singleChooseActions.updateAnswer(answer));
 	};
 
-	const clearResponses = () => {
-		dispatch(singleChooseActions.clearResponses());
+	const updateAnswerCorrectness = (id: number, isCorrect: boolean) => {
+		dispatch(singleChooseActions.updateAnswerCorrectness({ id, isCorrect }));
 	};
 
-	const getResponses = () => responses;
+	const clearAnswers = () => {
+		dispatch(singleChooseActions.clearAnswers());
+	};
+
+	const getAnswers = () => answers;
 
 	return {
-		responses,
-		addResponse,
-		removeResponse,
+		answers,
+		addAnswer,
+		removeAnswer,
 		updateResponseAnswer,
-		getResponses,
-		clearResponses,
+		updateAnswerCorrectness,
+		getAnswers,
+		clearAnswers,
 	};
 };

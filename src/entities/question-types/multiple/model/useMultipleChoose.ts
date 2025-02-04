@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { multipleChooseActions, multipleChooseSlice } from './multipleChooseSlice';
+import { multipleChooseActions, multipleChooseSlice } from './slice';
 
 export const useMultipleChoose = () => {
 	const dispatch = useDispatch();

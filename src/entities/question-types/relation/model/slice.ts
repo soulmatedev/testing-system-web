@@ -17,7 +17,7 @@ const initialState: IRelationChooseScheme = {
 };
 
 export const relationChooseSlice = createSlice({
-	name: 'relationChoose',
+	name: 'relationChooseSlice',
 	initialState,
 	selectors: {
 		getResponses: (state: IRelationChooseScheme) => state.responses,

@@ -4,19 +4,19 @@ import { InputWithRoundedCheckbox } from '../../../../../shared/ui/input-with-ro
 import { ReactComponent as CrossIcon } from '../../../../../shared/assets/images/cross-icon.svg';
 import { WeightDropdown } from '../../../../../shared/ui/weight-dropdown';
 import { WeightValues } from '../../../../../shared/ui/weight-dropdown/weight-dropdown';
-import { IAnswer } from '../../../../questions/api/types';
+import { IAnswer } from '../../../../answers/api/types';
 
 interface SingleChoiceInputResponseProps {
-	response: IAnswer;
-	index: number;
-	onDelete: (id: number) => void;
-	onAnswerChange: (answer: IAnswer) => void;
-	onSelect: (id: number) => void;
-	selected: boolean;
+	answer: IAnswer,
+	index: number,
+	onDelete: (id: number) => void,
+	onAnswerChange: (answer: IAnswer) => void,
+	onSelect: (id: number) => void,
+	selected: boolean,
 }
 
 export const SingleChoiceInput = ({
-	response,
+	answer,
 	index,
 	onDelete,
 	onAnswerChange,
@@ -25,7 +25,7 @@ export const SingleChoiceInput = ({
 }: SingleChoiceInputResponseProps) => {
 	const updateResponseText = (e: ChangeEvent<HTMLInputElement>) => {
 		onAnswerChange({
-			...response,
+			...answer,
 			text: e.target.value,
 		});
 	};
@@ -33,13 +33,13 @@ export const SingleChoiceInput = ({
 	const updateResponseWeight = (e: ChangeEvent<HTMLSelectElement>) => {
 		const newWeight = Number(e.target.value);
 		onAnswerChange({
-			...response,
+			...answer,
 			weight: newWeight,
 		});
 	};
 
 	const handleCheckboxChange = () => {
-		onSelect(response.id);
+		onSelect(answer.id);
 	};
 
 	return (
@@ -49,7 +49,7 @@ export const SingleChoiceInput = ({
 				width={600}
 				height={36}
 				showCheckbox
-				value={response.text}
+				value={answer.text}
 				onChange={updateResponseText}
 				checked={selected}
 				onCheckboxChange={handleCheckboxChange}
@@ -58,10 +58,10 @@ export const SingleChoiceInput = ({
 				placeholder="Вес"
 				width={65}
 				height={36}
-				value={response.weight as WeightValues}
+				value={answer.weight as WeightValues}
 				onChange={updateResponseWeight}
 			/>
-			<CrossIcon className={css.cross_icon} onClick={() => onDelete(response.id)} />
+			<CrossIcon className={css.cross_icon} onClick={() => onDelete(answer.id)} />
 		</div>
 	);
 };

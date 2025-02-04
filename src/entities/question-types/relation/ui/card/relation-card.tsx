@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import css from './relation-card.module.scss';
 import { InputWithRoundedCheckbox } from '../../../../../shared/ui/input-with-rounded-checkbox';
 import { TextArea } from '../../../../../shared/ui/textarea';
-import { IResponse, relationChooseActions } from '../../model/relationChooseSlice';
+import { IResponse, relationChooseActions } from '../../model/slice';
 
 interface RelationCardProps {
 	response: IResponse;

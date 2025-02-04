@@ -9,5 +9,3 @@ export interface ICompetencyRequest {
 	name: string,
 	description: string,
 }
-
-

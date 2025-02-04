@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { questionsActions } from '../slices/questionsSlice';
-import { AppDispatch } from '../../../../app/store';
-import { IQuestion } from '../../api/types';
+import { questionsActions } from './slice';
+import { AppDispatch } from '../../../app/store';
+import { IQuestion } from '../api/types';
 
 export const useQuestions = () => {
 	const dispatch: AppDispatch = useDispatch();

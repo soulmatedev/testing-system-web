@@ -1,2 +1,2 @@
 export { useMultipleChoose } from './useMultipleChoose';
-export { multipleChooseSlice } from './multipleChooseSlice';
+export { multipleChooseSlice } from './slice';

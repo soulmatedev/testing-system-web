@@ -7,7 +7,6 @@ interface ICreateQuestionButtonProps {
 	questionType: QuestionType,
 	questionText: string,
 	onNewQuestionCreated: (newQuestion: IQuestion) => void,
-	question?: IQuestion,
 }
 
 export const CreateQuestionButton = (props: ICreateQuestionButtonProps) => {
@@ -15,27 +14,13 @@ export const CreateQuestionButton = (props: ICreateQuestionButtonProps) => {
 		questionType,
 		questionText,
 		onNewQuestionCreated,
-		question,
 	} = props;
-
-	const { answers = [], pairs = [] } = question || {};
 
 	const { createQuestion } = useCreateQuestion();
 
 	const onCreateQuestion = async () => {
 		if (questionText && questionType !== 'chooseType') {
-			const createdQuestion = await createQuestion(
-				{
-					id: Date.now(),
-					text: questionText,
-					type: questionType,
-					competency: '',
-					answers,
-					pairs,
-				},
-			);
-
-			console.log(createdQuestion);
+			await createQuestion();
 		}
 	};
 
