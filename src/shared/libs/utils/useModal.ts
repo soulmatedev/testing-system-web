@@ -19,7 +19,7 @@ export const useModal = (
 		document.addEventListener('keydown', handleEscapeKey);
 
 		return () => document.removeEventListener('keydown', handleEscapeKey);
-	});
+	}, [isActive, modalInModalActive]);
 
 	useEffect(() => {
 		if (isActive || modalInModalActive) {

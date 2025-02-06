@@ -14,7 +14,7 @@ interface IModalProps {
 	modalInModalActive?: boolean;
 }
 
-export const portal = document.getElementById('portal');
+const portal = document.getElementById('portal');
 
 /** Компонент - модальное окно */
 export const Modal = (props: IModalProps) => {
@@ -32,6 +32,10 @@ export const Modal = (props: IModalProps) => {
 	} = useModal(closeFunc, active, modalInModalActive);
 
 	const onClose = () => closeFunc(false);
+
+	if (!portal) {
+		return null;
+	}
 
 	return (
 		ReactDOM.createPortal(
@@ -61,7 +65,7 @@ export const Modal = (props: IModalProps) => {
 					</div>
 				</div>
 			</CSSTransition>,
-			portal as Element,
+			portal,
 		)
 	);
 };

@@ -10,9 +10,9 @@ export const useOutSideClick = (onOutsideClick: () => void, modalInModalActive?:
 			}
 		};
 
-		document.addEventListener('click', handleClickOutside);
+		document.addEventListener('mousedown', handleClickOutside);
 
-		return () => document.removeEventListener('click', handleClickOutside);
+		return () => document.removeEventListener('mousedown', handleClickOutside);
 	}, [onOutsideClick, modalInModalActive]);
 
 	return ref;

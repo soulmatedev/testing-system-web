@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  margin-bottom: var(--header-space);
+}
+
+.not_found {
+  text-align: center;
+  font-size: var(--font-size-m);
+  color: var(--light-gray-font-color);
+  font-weight: var(--font-weight-thin);
+}

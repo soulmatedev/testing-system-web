@@ -4,6 +4,7 @@
   --default-border: 1px solid #D8E1EF;
   --default-border-radius: 12px;
   --disabled-button: #ccc;
+  --light-bg-color: #FFEFF5;
 
   // * Router
   --router-width: 100vw;
@@ -29,7 +30,9 @@
   --second-font-color: #F91F71;
 
   // * Margin
-  --middle-space: 8px;
+  --medium-space: 8px;
+  --large-space: 12px;
+  --header-space: 20px;
 
   // * Gap
   --gap-l: 24px;
@@ -50,7 +53,7 @@
 
   // * Button
   --main-button-bg-color: #F91F71;
-  --main-button-disabled-bg-color: #f797bb;
+  --main-button-disabled-bg-color: #FFEFF5;
   --main-button-bg-hover-color: #db3070;
   --main-button-border-radius: 8px;
   --main-button-padding: 10px 15px 10px 15px;
@@ -108,4 +111,8 @@
 
   // * PassingTest
   --passing-test-padding: 20px 24px 20px 24px;
+
+  // * CompetencyModal
+  --competency-modal-width: 350px;
+  --competency-modal-height: 400px;
 }
