@@ -25,7 +25,7 @@ export const useQuestions = () => {
 	const updateQuestionText = (questionId: number, text: string) => {
 		dispatch(questionsActions.updateQuestion({
 			answers: [],
-			competency: '',
+			competencies: '',
 			pairs: [],
 			type: '',
 			id: questionId,

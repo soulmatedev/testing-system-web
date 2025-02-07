@@ -1,0 +1,16 @@
+.checkbox {
+  width: var(--rounded-checkbox-width);
+  height: var(--rounded-checkbox-height);
+  border-radius: var(--square-checkbox-input-border-radius);
+  border: var(--default-border);
+  background-color: var(--block-bg-color);
+  appearance: none;
+  cursor: pointer;
+  background-size: var(--rounded-checkbox-background-size);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.checkbox:checked {
+  background-image: url('../../assets/images/check-mark.svg');
+}

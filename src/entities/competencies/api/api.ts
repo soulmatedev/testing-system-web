@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from '../../../shared/api/api';
-import { ICompetency, ICompetencyRequest } from './types';
+import { ICompetencyRequest, ICompetencyResponse } from './types';
 import { URI_CREATE_COMPETENCY, URI_GET_COMPETENCIES } from './consts';
 
 export const competenciesAPI = createApi({
@@ -16,7 +16,7 @@ export const competenciesAPI = createApi({
 				body: { ...data },
 			}),
 		}),
-		getCompetencies: builder.query<ICompetency, void>({
+		getCompetencies: builder.query<ICompetencyResponse, void>({
 			query: () => ({
 				url: URI_GET_COMPETENCIES,
 				method: 'GET',

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import css from './passing-test-block.module.scss';
-import { MainButton } from '../../../../shared/ui/button';
+import { MainButton } from '../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../modal';
 // import { selectTestById } from '../../../../entities/test/model/testDetailsSelectors';
 const selectTestById = (id: number) => (state: any) => state.tests?.[id];

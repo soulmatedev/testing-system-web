@@ -9,3 +9,7 @@ export interface ICompetencyRequest {
 	name: string,
 	description: string,
 }
+
+export interface ICompetencyResponse {
+	competencies: ICompetency[],
+}

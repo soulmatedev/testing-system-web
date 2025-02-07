@@ -19,7 +19,7 @@ export const useCreateQuestion = () => {
 			const res = await create({
 				text,
 				type,
-				competency: '',
+				competencies: '',
 				answers,
 				pairs: [],
 			}).unwrap();

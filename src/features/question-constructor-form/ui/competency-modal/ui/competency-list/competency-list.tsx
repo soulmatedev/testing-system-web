@@ -1,26 +1,61 @@
+import { useState } from 'react';
 import css from './competency-list.module.scss';
 import { ReactComponent as EditIcon } from '../../../../../../shared/assets/images/edit.svg';
 import { ReactComponent as CrossIcon } from '../../../../../../shared/assets/images/cross-icon.svg';
+import { ReactComponent as UpArrow } from '../../../../../../shared/assets/images/up-arrow.svg';
+import { ReactComponent as DownArrow } from '../../../../../../shared/assets/images/down-arrow.svg';
+import { SquareCheckbox } from '../../../../../../shared/ui/square-checkbox';
+import { competenciesAPI } from '../../../../../../entities/competencies/api/api';
+import { ICompetency } from '../../../../../../entities/competencies/api/types';
 
 export const CompetencyList = () => {
-	const competencies: string[] = [];
+	const { data } = competenciesAPI.useGetCompetenciesQuery();
+	const competencies = data?.competencies || [];
+
+	const [expandedId, setExpandedId] = useState<number | null>(null);
+
+	const toggleDescription = (id: number) => {
+		setExpandedId(expandedId === id ? null : id);
+	};
+
+	if (!competencies.length) {
+		return <p className={css.not_found}>Список компетенций пуст</p>;
+	}
 
 	return (
 		<div className={css.list}>
-			{competencies.length > 0 ? (
-				competencies.map((competency, index) => (
-					// eslint-disable-next-line react/no-array-index-key
-					<div key={index} className={css.item}>
-						<p>{competency}</p>
-						<div className={css.options}>
-							<EditIcon />
-							<CrossIcon />
+			{competencies.map(({ id, name, description }: ICompetency) => (
+				<div key={id} className={css.item}>
+					<div className={css.header}>
+						<div className={css.name}>
+							<SquareCheckbox />
+							<p className={css.title}>{name}</p>
+						</div>
+						<div className={css.options_wrapper}>
+							<div className={css.options}>
+								<EditIcon className={css.icon} />
+								<CrossIcon className={css.icon} />
+							</div>
 						</div>
 					</div>
-				))
-			) : (
-				<p className={css.not_found}>Список компетенций пуст</p>
-			)}
+					<div className={css.body}>
+						{expandedId === id ? (
+							<DownArrow
+								className={`${css.arrow} ${css.expanded}`}
+								onClick={() => toggleDescription(id)}
+							/>
+						) : (
+							<UpArrow
+								className={`${css.arrow} ${css.collapsed}`}
+								onClick={() => toggleDescription(id)}
+							/>
+						)}
+						<div className={`${css.description} ${expandedId === id ? css.full : ''}`}>
+							{description}
+						</div>
+					</div>
+				</div>
+			))}
 		</div>
 	);
 };

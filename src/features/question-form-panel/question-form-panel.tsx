@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import css from './question-form-panel.module.scss';
-import { MainButton } from '../../shared/ui/button';
+import { MainButton } from '../../shared/ui/main-button';
 
 interface QuestionFormPanelProps {
 	title: string;

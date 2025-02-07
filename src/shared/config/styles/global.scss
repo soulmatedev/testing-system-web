@@ -5,6 +5,7 @@
   --default-border-radius: 12px;
   --disabled-button: #ccc;
   --light-bg-color: #FFEFF5;
+  --light-gray-bg-color: #CCC;
 
   // * Router
   --router-width: 100vw;
@@ -33,10 +34,12 @@
   --medium-space: 8px;
   --large-space: 12px;
   --header-space: 20px;
+  --header-space-xl: 28px;
 
   // * Gap
   --gap-l: 24px;
   --gap-m: 16px;
+  --gap-ml: 12px;
   --gap-ms: 8px;
   --gap-s: 4px;
 
@@ -77,6 +80,9 @@
   --navbar-border-radius: 0 0 16px 16px;
   --navbar-navlink-active-color: #F91F71;
 
+  // * Icon
+  --icon-hover-color: var(--second-font-color);
+
 
   // * CreateBar
   --margin-bottom: 12px;
@@ -113,6 +119,16 @@
   --passing-test-padding: 20px 24px 20px 24px;
 
   // * CompetencyModal
-  --competency-modal-width: 350px;
-  --competency-modal-height: 400px;
+  --competency-modal-width: 400px;
+  --competency-modal-height: 450px;
+  --competency-modal-padding: 15px 0 15px 0;
+  --competency-list-min-height: 380px;
+
+  --item-border-bottom: 1px solid var(--default-bg-color);
+  --arrow-size: 20px;
+  --arrow-margin: -2px 0 0 0;
+  --description-max-width: 360px;
+  --description-line-height: 1.2;
+  --icon-transition-duration: 0.3s;
+  --arrow-transition-duration: 0.3s;
 }

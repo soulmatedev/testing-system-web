@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import css from './list-item.module.scss';
-import { MainButton } from '../../../../../../shared/ui/button';
+import { MainButton } from '../../../../../../shared/ui/main-button';
 
 interface TestListItemProps {
 	id: number,

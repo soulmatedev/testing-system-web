@@ -5,40 +5,22 @@
   height: var(--competency-modal-height);
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+  margin-top: var(--large-space);
+}
+
 .title {
   color: var(--black-font-color);
   font-size: var(--font-size-xl);
-  margin-bottom: var(--header-space);
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  font-size: var(--font-size-m);
-  padding: var(--block-padding);
-
-  p {
-    color: var(--black-font-color);
-    font-weight: var(--font-weight-regular);
-  }
-
-  &:hover {
-    background: var(--light-bg-color);
-  }
 }
 
 .selected {
   background: var(--light-bg-color);
   color: var(--second-font-color);
-}
-
-.options {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--gap-ms);
 }
 
 

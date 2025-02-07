@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './confirmation-modal.module.scss';
-import { MainButton } from '../../../../shared/ui/button';
+import { MainButton } from '../../../../shared/ui/main-button';
 
 interface ConfirmationModalProps {
 	isOpen: boolean;

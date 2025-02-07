@@ -1,0 +1,20 @@
+.second_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: var(--font-weight-thin);
+
+  cursor: pointer;
+
+  font-size: var(--font-size-m);
+  color: var(--second-font-color);
+  border-radius: var(--main-button-border-radius);
+  padding: var(--main-button-padding);
+}
+
+.disabled {
+  background-color: var(--main-button-disabled-bg-color);
+  cursor: not-allowed;
+
+  pointer-events: none;
+}

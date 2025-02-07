@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useCreateQuestion } from '../../hooks';
-import { MainButton } from '../../../../shared/ui/button';
+import { MainButton } from '../../../../shared/ui/main-button';
 import { questionsSelectors } from '../../../../entities/questions/model/slice';
 
 export const CreateQuestionButton = () => {
