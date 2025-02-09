@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
 
+  font-weight: var(--font-weight-thin);
   font-size: var(--font-size-m);
   background-color: var(--white-font-color);
   border-radius: var(--main-button-border-radius);
@@ -13,7 +14,7 @@
 
   resize: none;
 
-  ::placeholder {
-    color: var(--black-font-color);
+  &::placeholder {
+    color: #a0abbe;
   }
 }

@@ -46,6 +46,9 @@
   // * Form
   --form-padding: 20px;
 
+  // * Input
+  --input-default-padding: 0 12px 0 12px;
+
   // * Block
   --block-min-width: 700px;
   --block-max-width: 800px;
@@ -131,4 +134,8 @@
   --description-line-height: 1.2;
   --icon-transition-duration: 0.3s;
   --arrow-transition-duration: 0.3s;
+
+  // * CreateCompetencyModal
+  --create-competency-modal-width: 400px;
+  --create-competency-modal-height: 450px;
 }
