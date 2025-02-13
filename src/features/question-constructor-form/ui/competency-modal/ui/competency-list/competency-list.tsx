@@ -1,34 +1,41 @@
 import { useState } from 'react';
 import css from './competency-list.module.scss';
-import { competenciesAPI } from '../../../../../../entities/competencies/api/api';
+import { competencyAPI } from '../../../../../../entities/competencies/api/api';
 import { ConfirmationModal } from '../../../../../../pages/passing-test/ui/modal';
 import { useDeleteCompetency } from './libs/useDeleteCompetency';
 import { CompetencyItem } from './ui/competency-item';
+import { ICompetency } from '../../../../../../entities/competencies/api/types';
 
-export const CompetencyList = () => {
-	const { data } = competenciesAPI.useGetCompetenciesQuery();
+interface ICompetencyListProps {
+	openEditModal: (competency: ICompetency) => void,
+}
+
+export const CompetencyList = (props: ICompetencyListProps) => {
+	const { openEditModal } = props;
+	const { data } = competencyAPI.useGetCompetenciesQuery();
 	const competencies = data?.competencies || [];
 
 	const { onDeleteCompetency } = useDeleteCompetency();
 
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
 	const [competencyToDelete, setCompetencyToDelete] = useState<number | null>(null);
 
 	const handleDeleteClick = (id: number) => {
 		setCompetencyToDelete(id);
-		setIsModalOpen(true);
+		setIsDeleteModalOpen(true);
 	};
 
 	const confirmDelete = async () => {
 		if (competencyToDelete !== null) {
 			await onDeleteCompetency(competencyToDelete);
 		}
-		setIsModalOpen(false);
+		setIsDeleteModalOpen(false);
 		setCompetencyToDelete(null);
 	};
 
 	const cancelDelete = () => {
-		setIsModalOpen(false);
+		setIsDeleteModalOpen(false);
 		setCompetencyToDelete(null);
 	};
 
@@ -43,11 +50,12 @@ export const CompetencyList = () => {
 					key={competency.id}
 					competency={competency}
 					onDelete={handleDeleteClick}
+					onEdit={openEditModal}
 				/>
 			))}
 
 			<ConfirmationModal
-				isOpen={isModalOpen}
+				isOpen={isDeleteModalOpen}
 				onConfirm={confirmDelete}
 				onCancel={cancelDelete}
 				message="Вы уверены, что хотите удалить эту компетенцию?"

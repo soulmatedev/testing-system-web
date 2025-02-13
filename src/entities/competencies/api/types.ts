@@ -22,3 +22,13 @@ export interface ICreateCompetencyRequest {
 export interface ICompetencyResponse {
 	competencies: ICompetency[],
 }
+
+export interface IUpdateCompetencyRequest {
+	id: number,
+	name: string,
+	description: string,
+}
+
+export interface IUpdateCompetencyResponse {
+	competency: ICompetency,
+}

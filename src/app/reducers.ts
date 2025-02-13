@@ -8,7 +8,7 @@ import { testAPI } from '../entities/tests/api/api';
 import { testReducer } from '../entities/tests/model/slices/testSlice';
 import { questionsAPI } from '../entities/questions/api/api';
 import { questionsReducer } from '../entities/questions/model/slice';
-import { competenciesAPI } from '../entities/competencies/api/api';
+import { competencyAPI } from '../entities/competencies/api/api';
 import { answersAPI } from '../entities/answers/api/api';
 
 export const reducers = combineReducers({
@@ -21,7 +21,7 @@ export const reducers = combineReducers({
 	questionsSlice: questionsReducer,
 	[questionsAPI.reducerPath]: questionsAPI.reducer,
 
-	[competenciesAPI.reducerPath]: competenciesAPI.reducer,
+	[competencyAPI.reducerPath]: competencyAPI.reducer,
 
 	singleChooseSlice: singleChooseReducer,
 	[answersAPI.reducerPath]: answersAPI.reducer,

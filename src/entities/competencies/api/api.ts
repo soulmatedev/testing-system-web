@@ -1,13 +1,20 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from '../../../shared/api/api';
-import { ICompetencyResponse, ICreateCompetencyRequest, ICreateCompetencyResponse } from './types';
-import { URI_CREATE_COMPETENCY, URI_DELETE_COMPETENCY, URI_GET_COMPETENCIES } from './consts';
+import {
+	ICompetencyResponse,
+	ICreateCompetencyRequest,
+	ICreateCompetencyResponse,
+	IUpdateCompetencyRequest, IUpdateCompetencyResponse,
+} from './types';
+import {
+	URI_CREATE_COMPETENCY, URI_DELETE_COMPETENCY, URI_GET_COMPETENCIES, URI_UPDATE_COMPETENCY,
+} from './consts';
 
-export const competenciesAPI = createApi({
-	reducerPath: 'competenciesAPI',
+export const competencyAPI = createApi({
+	reducerPath: 'competencyAPI',
 	baseQuery,
 	refetchOnReconnect: true,
-	tagTypes: ['competencies'],
+	tagTypes: ['competency'],
 	endpoints: builder => ({
 		createCompetency: builder.mutation<ICreateCompetencyResponse, ICreateCompetencyRequest>({
 			query: (data) => ({
@@ -21,14 +28,24 @@ export const competenciesAPI = createApi({
 				url: URI_GET_COMPETENCIES,
 				method: 'GET',
 			}),
-			providesTags: ['competencies'],
+			providesTags: ['competency'],
 		}),
 		delete: builder.mutation<void, { id: number }>({
 			query: ({ id }) => ({
 				url: `${URI_DELETE_COMPETENCY}/${id}`,
 				method: 'DELETE',
 			}),
-			invalidatesTags: ['competencies'],
+			invalidatesTags: ['competency'],
+		}),
+		update: builder.mutation<IUpdateCompetencyResponse, IUpdateCompetencyRequest>({
+			query: ({
+				id, name, description,
+			}) => ({
+				url: `${URI_UPDATE_COMPETENCY}/${id}`,
+				method: 'PUT',
+				body: { name, description },
+			}),
+			invalidatesTags: ['competency'],
 		}),
 	}),
 });

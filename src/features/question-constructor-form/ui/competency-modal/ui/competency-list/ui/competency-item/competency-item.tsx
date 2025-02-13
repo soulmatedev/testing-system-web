@@ -8,11 +8,13 @@ import { ICompetency } from '../../../../../../../../entities/competencies/api/t
 import { SquareCheckbox } from '../../../../../../../../shared/ui/square-checkbox';
 
 interface CompetencyItemProps {
-	competency: ICompetency;
-	onDelete: (id: number) => void;
+	competency: ICompetency,
+	onDelete: (id: number) => void,
+	onEdit: (competency: ICompetency) => void
 }
 
-export const CompetencyItem = ({ competency, onDelete }: CompetencyItemProps) => {
+export const CompetencyItem = (props: CompetencyItemProps) => {
+	const { competency, onDelete, onEdit } = props;
 	const { id, name, description } = competency;
 	const [isExpanded, setIsExpanded] = useState(false);
 
@@ -29,7 +31,7 @@ export const CompetencyItem = ({ competency, onDelete }: CompetencyItemProps) =>
 				</div>
 				<div className={css.options_wrapper}>
 					<div className={css.options}>
-						<EditIcon className={css.icon} />
+						<EditIcon className={css.icon} onClick={() => onEdit(competency)} />
 						<CrossIcon className={css.icon} onClick={() => onDelete(id)} />
 					</div>
 				</div>
