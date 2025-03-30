@@ -42,7 +42,9 @@ export const MultipleChoiceInput: React.FC<MultipleChoiceInputProps> = ({
 				value={response.weight as WeightValues}
 				onChange={handleWeightChange}
 			/>
-			<CrossIcon className={css.cross_icon} onClick={() => onDelete(response.id)} />
+			<div className={css.delete}>
+				<CrossIcon className={css.cross_icon} onClick={() => onDelete(response.id)} />
+			</div>
 		</div>
 	);
 };

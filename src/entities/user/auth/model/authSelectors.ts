@@ -1,6 +1,6 @@
-import { RootState } from '../../../../app/reducers';
-
 // export const authState = (state: RootState) => state.auth;
+
+import { RootState } from '../../../../app/reducers';
 
 export const selectEmail = (state: RootState) => state.auth.email;
 

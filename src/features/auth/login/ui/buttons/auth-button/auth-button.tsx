@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { MainButton } from '../../../../../../shared/ui/main-button';
 import { selectIsFormValid } from '../../../../../../entities/user/auth/model/authSelectors';
+import { MainButton } from '../../../../../../shared/ui/main-button';
 
 interface AuthButtonProps {
 	onSignIn: () => void,

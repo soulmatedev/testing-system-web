@@ -1,0 +1,23 @@
+.add_answer {
+  position: relative;
+  color: var(--light-gray-font-color);
+  font-size: var(--font-size-s);
+  cursor: pointer;
+  margin: var(--single-choose-form-margin);
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 107px;
+    height: 1px;
+    background-color: var(--light-gray-font-color);
+    transform: scaleX(0);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}

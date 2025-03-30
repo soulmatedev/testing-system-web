@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { reducers } from './reducers';
-import { authAPI } from '../entities/user/auth/api/api';
 import { testAPI } from '../entities/tests/api/api';
-import { questionsAPI } from '../entities/questions/api/api';
+import { questionAPI } from '../entities/questions/api/api';
 import { competencyAPI } from '../entities/competencies/api/api';
-import { answersAPI } from '../entities/answers/api/api';
+import { answerAPI } from '../entities/answers/api/api';
+import { authAPI } from '../entities/user/auth/api/api';
 
 const setupStore = () => configureStore({
 	reducer: reducers,
@@ -13,9 +13,9 @@ const setupStore = () => configureStore({
 	}).concat(
 		authAPI.middleware,
 		testAPI.middleware,
-		questionsAPI.middleware,
+		questionAPI.middleware,
 		competencyAPI.middleware,
-		answersAPI.middleware,
+		answerAPI.middleware,
 	),
 });
 

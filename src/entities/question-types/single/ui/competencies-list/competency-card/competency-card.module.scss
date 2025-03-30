@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--second-font-color);
+  background: var(--light-bg-color);
+  width: 105px;
+  border-radius: var(--competency-card-radius);
+  padding: var(--competency-card-padding);
+
+  svg {
+    margin-top: 0;
+    width: 8px;
+    height: 8px;
+    cursor: pointer;
+  }
+}
+
+.icon {
+  color: var(--second-font-color);
+}
+
+.name {
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-medium);
+}
+
+

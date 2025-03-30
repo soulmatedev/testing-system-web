@@ -9,7 +9,6 @@ export interface IQuestion {
 	id: number,
 	text: string,
 	type: string,
-	competencies: string,
 	answers: IAnswer[],
 	pairs: IPairInput[],
 }
@@ -17,7 +16,6 @@ export interface IQuestion {
 export interface ICreateQuestionRequest {
 	text: string,
 	type: string,
-	competencies: string,
 	answers: IAnswer[],
 	pairs: IPairInput[],
 }

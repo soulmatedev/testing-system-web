@@ -7,33 +7,10 @@
   background-color: var(--block-bg-color);
   padding: var(--question-form-padding);
   border-radius: var(--default-border-radius);
+  gap: var(--large-space);
 }
 
 .minus_icon {
   cursor: pointer;
   margin: var(--input-response-margin);
-}
-
-.add_answer {
-  position: relative;
-  color: var(--light-gray-font-color);
-  font-size: var(--font-size-s);
-  cursor: pointer;
-  margin-left: var(--single-choose-form-margin-left);
-  text-decoration: none;
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 107px;
-    height: 1px;
-    background-color: var(--light-gray-font-color);
-    transform: scaleX(0);
-  }
-
-  &:hover::after {
-    transform: scaleX(1);
-  }
 }

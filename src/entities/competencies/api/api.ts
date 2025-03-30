@@ -1,13 +1,19 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from '../../../shared/api/api';
 import {
+	IBindCompetencyToAnswer,
 	ICompetencyResponse,
 	ICreateCompetencyRequest,
 	ICreateCompetencyResponse,
 	IUpdateCompetencyRequest, IUpdateCompetencyResponse,
 } from './types';
 import {
-	URI_CREATE_COMPETENCY, URI_DELETE_COMPETENCY, URI_GET_COMPETENCIES, URI_UPDATE_COMPETENCY,
+	URI_BIND_COMPETENCY_TO_ANSWER,
+	URI_CREATE_COMPETENCY,
+	URI_DELETE_COMPETENCY,
+	URI_GET_COMPETENCIES,
+	URI_GET_COMPETENCIES_BY_ANSWER,
+	URI_UPDATE_COMPETENCY,
 } from './consts';
 
 export const competencyAPI = createApi({
@@ -44,6 +50,35 @@ export const competencyAPI = createApi({
 				url: `${URI_UPDATE_COMPETENCY}/${id}`,
 				method: 'PUT',
 				body: { name, description },
+			}),
+			invalidatesTags: ['competency'],
+		}),
+		getCompetenciesByAnswer: builder.query<ICompetencyResponse, { id: number }>({
+			query: ({
+				id,
+			}) => ({
+				url: `${URI_GET_COMPETENCIES_BY_ANSWER}/${id}`,
+				method: 'GET',
+			}),
+			providesTags: ['competency'],
+		}),
+		bindCompetencyToAnswer: builder.mutation<void, IBindCompetencyToAnswer>({
+			query: ({
+				competencyID,
+				answerID,
+			}) => ({
+				url: URI_BIND_COMPETENCY_TO_ANSWER(competencyID, answerID),
+				method: 'POST',
+			}),
+			invalidatesTags: ['competency'],
+		}),
+		unbindCompetencyFromAnswer: builder.mutation<void, IBindCompetencyToAnswer>({
+			query: ({
+				competencyID,
+				answerID,
+			}) => ({
+				url: URI_BIND_COMPETENCY_TO_ANSWER(competencyID, answerID),
+				method: 'DELETE',
 			}),
 			invalidatesTags: ['competency'],
 		}),

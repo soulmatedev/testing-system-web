@@ -2,10 +2,10 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { authActions } from '../../../../entities/user/auth/model/authSlice';
-import { authAPI } from '../../../../entities/user/auth/api/api';
 import { selectEmail, selectPassword } from '../../../../entities/user/auth/model/authSelectors';
+import { authAPI } from '../../../../entities/user/auth/api/api';
 import { ISignInRequest } from '../../../../entities/user/auth/api/types';
+import { authActions } from '../../../../entities/user/auth/model/authSlice';
 
 export const useLogin = () => {
 	const navigate = useNavigate();

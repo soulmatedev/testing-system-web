@@ -67,6 +67,7 @@
   // * SquareCheckboxInput
   --input-border-radius: 8px;
   --input-padding: 10px 15px 10px 15px;
+  --input-margin: 8px 0 0 0;
   --input-gap: 10px;
   --input-width: 100%;
   --square-checkbox-input-border-radius: 4px;
@@ -106,7 +107,8 @@
   --question-type-border-radius: 8px;
 
   // * SingleChooseForm
-  --single-choose-form-margin-left: 6px;
+  --single-choose-form-margin: 0 0 2px 6px;
+  --single-choose-form-padding: 0 0 8px 0;
 
   // * MultipleChooseForm
   --single-choose-form-width: 800px;
@@ -138,4 +140,8 @@
   // * CreateCompetencyModal
   --create-competency-modal-width: 400px;
   --create-competency-modal-height: 450px;
+
+  // * CompetencyCard
+  --competency-card-padding: 3px 12px;
+  --competency-card-radius: 8px;
 }

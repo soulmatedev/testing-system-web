@@ -1,19 +1,16 @@
 import { useSelector } from 'react-redux';
 import { useCreateQuestion } from '../../hooks';
 import { MainButton } from '../../../../shared/ui/main-button';
-import { questionsSelectors } from '../../../../entities/questions/model/slice';
+import { getCurrentQuestion } from '../../../../entities/questions/model/slice';
 
 export const CreateQuestionButton = () => {
-	const { text, type } = useSelector(questionsSelectors.getCurrentQuestion);
+	const { text, type } = useSelector(getCurrentQuestion);
 
-	const { createQuestion } = useCreateQuestion();
+	const { createOrUpdateQuestion } = useCreateQuestion();
 
 	const onCreateQuestion = async () => {
-		if (text && type !== 'chooseType') {
-			await createQuestion();
-		}
+		await createOrUpdateQuestion(text);
 	};
-
 	return (
 		<MainButton
 			text="Сохранить"

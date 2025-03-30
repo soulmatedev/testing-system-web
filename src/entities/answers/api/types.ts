@@ -5,15 +5,12 @@ export interface IAnswer {
 	weight: number,
 }
 
-export interface ICreateAnswer {
+export interface IAnswerRequest {
 	text: string,
 	isCorrect: boolean,
 	weight: number,
 }
 
-export interface IAnswerRequest {
-	id: number,
-	text: string,
-	isCorrect: boolean,
-	weight: number,
+export interface IAnswerResponse {
+	answer: IAnswer,
 }

@@ -32,3 +32,13 @@ export interface IUpdateCompetencyRequest {
 export interface IUpdateCompetencyResponse {
 	competency: ICompetency,
 }
+
+export interface IBindCompetencyToAnswer {
+	competencyID: number,
+	answerID: number
+}
+
+export interface IUnbindCompetencyToAnswer {
+	competencyID: number,
+	answerID: number
+}

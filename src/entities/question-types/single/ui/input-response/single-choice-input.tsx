@@ -46,7 +46,6 @@ export const SingleChoiceInput = ({
 		<div className={css.wrapper}>
 			<InputWithRoundedCheckbox
 				placeholder="Ответ"
-				width={600}
 				height={36}
 				showCheckbox
 				value={answer.text}
@@ -61,7 +60,9 @@ export const SingleChoiceInput = ({
 				value={answer.weight as WeightValues}
 				onChange={updateResponseWeight}
 			/>
-			<CrossIcon className={css.cross_icon} onClick={() => onDelete(answer.id)} />
+			<div className={css.delete}>
+				<CrossIcon className={css.cross_icon} onClick={() => onDelete(answer.id)} />
+			</div>
 		</div>
 	);
 };

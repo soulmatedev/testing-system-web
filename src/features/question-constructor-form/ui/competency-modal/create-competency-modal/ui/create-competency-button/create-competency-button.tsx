@@ -17,7 +17,7 @@ export const CreateCompetencyButton = (props: ICreateCompetencyButtonProps) => {
 			await createCompetency(name, description);
 			onSuccess();
 		} catch (e) {
-			toast.error('Произошло что-то невероятное');
+			toast.error('Ошибка при создании компетенции');
 			throw e;
 		}
 	};

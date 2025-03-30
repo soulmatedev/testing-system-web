@@ -6,9 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Navbar } from './widgets/navbar';
 import css from './shared/config/styles/main.scss';
 
-/*
-Корневой компонент сервиса
-*/
 const App = () => {
 	const location = useLocation();
 

@@ -4,7 +4,12 @@
   gap: 12px;
 }
 
+.delete {
+  display: flex;
+  align-items: center;
+}
+
 .cross_icon {
   cursor: pointer;
-  margin: var(--input-response-margin);
+  margin-top: 0;
 }

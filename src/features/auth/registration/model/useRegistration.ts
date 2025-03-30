@@ -1,10 +1,10 @@
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { authAPI } from '../../../../entities/user/auth/api/api';
-import { authActions } from '../../../../entities/user/auth/model/authSlice';
 import { selectEmail, selectLogin, selectPassword } from '../../../../entities/user/auth/model/authSelectors';
+import { authAPI } from '../../../../entities/user/auth/api/api';
 import { ISignUpRequest } from '../../../../entities/user/auth/api/types';
+import { authActions } from '../../../../entities/user/auth/model/authSlice';
 
 export const useRegistration = () => {
 	const dispatch = useDispatch();

@@ -4,9 +4,9 @@ import styles from './Router.module.scss';
 import { TestListPage } from '../../pages/test-list';
 import { LibraryQuestionsPage } from '../../pages/library-questions';
 import { PassingTestPage } from '../../pages/passing-test';
+import { TestConstructorPage } from '../../pages/test-constructor';
 import { AuthorizationPage } from '../../pages/auth/login';
 import { RegistrationPage } from '../../pages/auth/registration';
-import { TestConstructorPage } from '../../pages/test-constructor';
 
 const Router = () => {
 	const location = useLocation();

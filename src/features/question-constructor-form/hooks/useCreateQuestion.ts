@@ -1,37 +1,48 @@
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
-import { questionsAPI } from '../../../entities/questions/api/api';
+import { questionAPI } from '../../../entities/questions/api/api';
 import { useSingleChoose } from '../../../entities/question-types/single';
-import { questionsSelectors } from '../../../entities/questions/model/slice';
+import { getCurrentQuestion, questionsActions } from '../../../entities/questions/model/slice';
+import { IQuestion } from '../../../entities/questions/api/types';
+import { useAppDispatch } from '../../../shared/libs/utils/redux';
 
 export const useCreateQuestion = () => {
-	const [create] = questionsAPI.useCreateQuestionMutation();
+	const dispatch = useAppDispatch();
+
+	const [create] = questionAPI.useCreateMutation();
+	const [update] = questionAPI.useUpdateMutation();
+
 	const { answers, clearAnswers } = useSingleChoose();
+	const { id, type } = useSelector(getCurrentQuestion);
 
-	const { text, type } = useSelector(questionsSelectors.getCurrentQuestion);
-
-	const createQuestion = async () => {
-		if (!text || type === 'chooseType') {
-			toast.error('Пожалуйста, укажите текст вопроса и выберите тип вопроса.');
+	const createOrUpdateQuestion = async (newText: string): Promise<IQuestion | undefined> => {
+		if (!newText) {
+			toast.error('Пожалуйста, укажите текст вопроса');
 			return;
 		}
-		try {
-			const res = await create({
-				text,
-				type,
-				competencies: '',
-				answers,
-				pairs: [],
-			}).unwrap();
 
-			toast.success('Вопрос создан успешно');
-			return res;
-			clearAnswers();
+		const questionData = {
+			text: newText,
+			type,
+			answers,
+			pairs: [],
+		};
+
+		try {
+			if (id) {
+				await update({ id, ...questionData }).unwrap();
+				toast.success('Вопрос обновлен успешно');
+				clearAnswers();
+			} else {
+				const res = await create(questionData).unwrap();
+				dispatch(questionsActions.setCurrentQuestionId(res.id));
+			}
 		} catch (error) {
-			toast.error('Ошибка при создании вопроса');
+			toast.error('Ошибка при сохранении вопроса');
+			console.error(error);
 			throw error;
 		}
 	};
 
-	return { createQuestion };
+	return { createOrUpdateQuestion };
 };

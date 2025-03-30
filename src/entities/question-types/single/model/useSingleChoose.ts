@@ -1,19 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { singleChooseActions, singleChooseSlice } from './slice';
-import { IAnswer, ICreateAnswer } from '../../../answers/api/types';
+import { IAnswer } from '../../../answers/api/types';
+import { useCreateAnswer } from '../ui/libs/useCreateAnswer';
 
 export const useSingleChoose = () => {
 	const dispatch = useDispatch();
 	const answers = useSelector(singleChooseSlice.selectors.getAnswers);
+	const { createAnswer } = useCreateAnswer();
 
-	const addAnswer = () => {
-		const newAnswer: IAnswer = {
-			id: Date.now(),
-			text: '',
-			isCorrect: false,
-			weight: 0,
-		};
-		dispatch(singleChooseActions.addAnswer(newAnswer));
+	const addAnswer = async () => {
+		try {
+			const newAnswer = await createAnswer('', false, 0);
+			if (newAnswer) {
+				dispatch(singleChooseActions.addAnswer(newAnswer));
+			}
+		} catch {
+			toast.error('Возникла ошибка при создании ответа...');
+		}
 	};
 
 	const removeAnswer = (id: number) => {

@@ -1,1 +1,3 @@
-export const URI_QUESTIONS = 'question/create';
+export const URI_QUESTION = 'question';
+
+export const URI_QUESTION_CREATE = `${URI_QUESTION}/create`;

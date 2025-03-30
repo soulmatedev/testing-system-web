@@ -2,23 +2,15 @@ import React, { useState } from 'react';
 import css from './single-choose-form.module.scss';
 import { SingleChoiceInput } from './input-response';
 import { useSingleChoose } from '../model';
+import { CompetenciesList } from './competencies-list';
+import { CreateAnswerButton } from './create-answer-button';
 
-interface SingleChooseFormProps {
-	questionId: number | null;
-}
-
-export const SingleChooseForm = ({ questionId }: SingleChooseFormProps) => {
+export const SingleChooseForm = () => {
 	const {
 		answers, addAnswer, removeAnswer, updateResponseAnswer, updateAnswerCorrectness,
 	} = useSingleChoose();
 
 	const [selectedResponseId, setSelectedResponseId] = useState<number | null>(null);
-
-	const handleKeyDown = (event: React.KeyboardEvent) => {
-		if (event.key === 'Enter') {
-			addAnswer();
-		}
-	};
 
 	const handleSelectResponse = (id: number) => {
 		if (selectedResponseId === id) {
@@ -39,25 +31,21 @@ export const SingleChooseForm = ({ questionId }: SingleChooseFormProps) => {
 	return (
 		<div className={css.wrapper}>
 			{answers.map((answer) => (
-				<SingleChoiceInput
-					key={answer.id}
-					index={answer.id}
-					answer={answer}
-					onDelete={removeAnswer}
-					onAnswerChange={updateResponseAnswer}
-					onSelect={handleSelectResponse}
-					selected={selectedResponseId === answer.id}
-				/>
+				<div className={css.item} key={answer.id}>
+					<CompetenciesList answerID={answer.id} />
+
+					<SingleChoiceInput
+						key={answer.id}
+						index={answer.id}
+						answer={answer}
+						onDelete={removeAnswer}
+						onAnswerChange={updateResponseAnswer}
+						onSelect={handleSelectResponse}
+						selected={selectedResponseId === answer.id}
+					/>
+				</div>
 			))}
-			<div
-				className={css.add_answer}
-				onClick={addAnswer}
-				onKeyDown={handleKeyDown}
-				role="button"
-				tabIndex={0}
-			>
-				Добавить вариант
-			</div>
+			<CreateAnswerButton onCreateAnswer={addAnswer} />
 		</div>
 	);
 };

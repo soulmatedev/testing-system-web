@@ -1,21 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IQuestion } from '../api/types';
 import { IQuestionsState } from './types';
+import { RootState } from '../../../app/reducers';
 
 const initialState: IQuestionsState = {
 	questions: [],
 	currentQuestion: {
+		id: 0,
 		text: '',
-		type: 'chooseType',
+		type: '',
+		answers: [],
+		pairs: [],
 	},
 };
 
 const questionsSlice = createSlice({
 	name: 'questionsSlice',
 	initialState,
-	selectors: {
-		getCurrentQuestion: (state) => state.currentQuestion,
-	},
 	reducers: {
 		setQuestions: (state, action: PayloadAction<IQuestion[]>) => {
 			state.questions = action.payload;
@@ -38,9 +39,12 @@ const questionsSlice = createSlice({
 		setCurrentQuestionType: (state, action: PayloadAction<string>) => {
 			state.currentQuestion.type = action.payload;
 		},
+		setCurrentQuestionId(state, action: PayloadAction<number>) {
+			state.currentQuestion.id = action.payload;
+		},
 		clearCurrentQuestion: (state) => {
 			state.currentQuestion.text = '';
-			state.currentQuestion.type = 'chooseType';
+			state.currentQuestion.type = '';
 		},
 	},
 });
@@ -50,3 +54,5 @@ export const {
 	reducer: questionsReducer,
 	selectors: questionsSelectors,
 } = questionsSlice;
+
+export const getCurrentQuestion = (state: RootState) => state.questionsSlice.currentQuestion;
