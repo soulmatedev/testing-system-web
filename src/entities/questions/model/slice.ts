@@ -8,7 +8,7 @@ const initialState: IQuestionsState = {
 	currentQuestion: {
 		id: 0,
 		text: '',
-		type: '',
+		type: 'chooseType',
 		answers: [],
 		pairs: [],
 	},
@@ -17,6 +17,9 @@ const initialState: IQuestionsState = {
 const questionsSlice = createSlice({
 	name: 'questionsSlice',
 	initialState,
+	selectors: {
+		getCurrentQuestionId: (state: { currentQuestion: IQuestion }) => state.currentQuestion.id,
+	},
 	reducers: {
 		setQuestions: (state, action: PayloadAction<IQuestion[]>) => {
 			state.questions = action.payload;

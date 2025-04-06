@@ -37,8 +37,3 @@ export interface IBindCompetencyToAnswer {
 	competencyID: number,
 	answerID: number
 }
-
-export interface IUnbindCompetencyToAnswer {
-	competencyID: number,
-	answerID: number
-}

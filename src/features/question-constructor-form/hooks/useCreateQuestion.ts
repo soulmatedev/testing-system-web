@@ -13,16 +13,15 @@ export const useCreateQuestion = () => {
 	const [update] = questionAPI.useUpdateMutation();
 
 	const { answers, clearAnswers } = useSingleChoose();
-	const { id, type } = useSelector(getCurrentQuestion);
+	const { id, text } = useSelector(getCurrentQuestion);
 
-	const createOrUpdateQuestion = async (newText: string): Promise<IQuestion | undefined> => {
-		if (!newText) {
-			toast.error('Пожалуйста, укажите текст вопроса');
+	const createOrUpdateQuestion = async (type: string): Promise<IQuestion | undefined> => {
+		if (!type || type === 'chooseType') {
 			return;
 		}
 
 		const questionData = {
-			text: newText,
+			text,
 			type,
 			answers,
 			pairs: [],
@@ -32,11 +31,11 @@ export const useCreateQuestion = () => {
 			if (id) {
 				await update({ id, ...questionData }).unwrap();
 				toast.success('Вопрос обновлен успешно');
-				clearAnswers();
 			} else {
 				const res = await create(questionData).unwrap();
 				dispatch(questionsActions.setCurrentQuestionId(res.id));
 			}
+			clearAnswers();
 		} catch (error) {
 			toast.error('Ошибка при сохранении вопроса');
 			console.error(error);

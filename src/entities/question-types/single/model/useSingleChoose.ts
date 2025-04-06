@@ -1,17 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { singleChooseActions, singleChooseSlice } from './slice';
+import { singleChooseActions } from './slice';
 import { IAnswer } from '../../../answers/api/types';
 import { useCreateAnswer } from '../ui/libs/useCreateAnswer';
+import { questionsSelectors } from '../../../questions/model/slice';
+import { answerAPI } from '../../../answers/api/api';
 
 export const useSingleChoose = () => {
 	const dispatch = useDispatch();
-	const answers = useSelector(singleChooseSlice.selectors.getAnswers);
+
+	const questionId = useSelector(questionsSelectors.getCurrentQuestionId);
+	const { data: answers = [] } = answerAPI.useGetAnswersByQuestionIdQuery(questionId, {
+		skip: !questionId,
+	});
+
 	const { createAnswer } = useCreateAnswer();
 
 	const addAnswer = async () => {
 		try {
-			const newAnswer = await createAnswer('', false, 0);
+			const newAnswer = await createAnswer(
+				'',
+				false,
+				0,
+			);
 			if (newAnswer) {
 				dispatch(singleChooseActions.addAnswer(newAnswer));
 			}

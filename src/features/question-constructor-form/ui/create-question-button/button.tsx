@@ -11,6 +11,7 @@ export const CreateQuestionButton = () => {
 	const onCreateQuestion = async () => {
 		await createOrUpdateQuestion(text);
 	};
+
 	return (
 		<MainButton
 			text="Сохранить"

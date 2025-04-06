@@ -12,7 +12,8 @@ export const CreateAnswerButton = (props: ICreateAnswerButtonProps) => {
 	const handleButtonKeyDown = handleKeyDown({
 		keyCode: 'Enter',
 		isActive: true,
-		action: onCreateAnswer,
+		// eslint-disable-next-line @typescript-eslint/no-empty-function
+		action: () => {},
 	});
 
 	return (
