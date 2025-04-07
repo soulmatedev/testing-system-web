@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import css from './single-choice-input.module.scss';
 import { InputWithRoundedCheckbox } from '../../../../../shared/ui/input-with-rounded-checkbox';
 import { ReactComponent as CrossIcon } from '../../../../../shared/assets/images/cross-icon.svg';
@@ -23,7 +23,11 @@ export const SingleChoiceInput = ({
 	onSelect,
 	selected,
 }: SingleChoiceInputResponseProps) => {
+	const [inputText, setInputText] = useState(answer.text);
+	const [weight, setWeight] = useState(answer.weight);
+
 	const updateResponseText = (e: ChangeEvent<HTMLInputElement>) => {
+		setInputText(e.target.value);
 		onAnswerChange({
 			...answer,
 			text: e.target.value,
@@ -31,10 +35,10 @@ export const SingleChoiceInput = ({
 	};
 
 	const updateResponseWeight = (e: ChangeEvent<HTMLSelectElement>) => {
-		const newWeight = Number(e.target.value);
+		setWeight(Number(e.target.value));
 		onAnswerChange({
 			...answer,
-			weight: newWeight,
+			weight,
 		});
 	};
 
@@ -48,7 +52,7 @@ export const SingleChoiceInput = ({
 				placeholder="Ответ"
 				height={36}
 				showCheckbox
-				value={answer.text}
+				value={inputText}
 				onChange={updateResponseText}
 				checked={selected}
 				onCheckboxChange={handleCheckboxChange}
@@ -57,7 +61,7 @@ export const SingleChoiceInput = ({
 				placeholder="Вес"
 				width={65}
 				height={36}
-				value={answer.weight as WeightValues}
+				value={weight as WeightValues}
 				onChange={updateResponseWeight}
 			/>
 			<div className={css.delete}>

@@ -2,8 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from '../../../shared/api/api';
 import {
 	IAnswer,
-	IAnswerRequest,
-	IAnswerResponse,
+	IAnswerRequest, IAnswerResponse,
 	IBindAnswerToQuestion,
 } from './types';
 import { URI_ANSWER, URI_BIND_ANSWER_TO_QUESTION } from './consts';
@@ -36,12 +35,13 @@ export const answerAPI = createApi({
 			providesTags: ['answer'],
 		}),
 		bind: builder.mutation<void, IBindAnswerToQuestion>({
-			query: ({
-				questionId,
-				answerId,
-			}) => ({
+			query: ({ questionId, answerId }) => ({
 				url: URI_BIND_ANSWER_TO_QUESTION(questionId, answerId),
 				method: 'POST',
+				body: {
+					questionId,
+					answerId,
+				},
 			}),
 			invalidatesTags: ['answer'],
 		}),

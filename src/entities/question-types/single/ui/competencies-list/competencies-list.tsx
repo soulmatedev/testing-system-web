@@ -4,11 +4,11 @@ import { CompetencyCard } from './competency-card';
 import { AddCompetenciesButton } from '../../../../../features/question-constructor-form/ui/add-competencies-button';
 
 interface ICompetenciesListProps {
-	answerID: number,
+	answerId: number,
 }
 
-export const CompetenciesList = ({ answerID }: ICompetenciesListProps) => {
-	const { data } = competencyAPI.useGetCompetenciesByAnswerQuery({ id: answerID });
+export const CompetenciesList = ({ answerId }: ICompetenciesListProps) => {
+	const { data } = competencyAPI.useGetCompetenciesByAnswerQuery({ id: answerId });
 	const competencies = data?.competencies || [];
 
 	if (competencies.length === 0) {

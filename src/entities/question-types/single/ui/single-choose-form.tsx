@@ -32,7 +32,7 @@ export const SingleChooseForm = () => {
 		<div className={css.wrapper}>
 			{answers.map((answer) => (
 				<div className={css.item} key={answer.id}>
-					<CompetenciesList answerID={answer.id} />
+					<CompetenciesList answerId={answer.id} />
 
 					<SingleChoiceInput
 						key={answer.id}

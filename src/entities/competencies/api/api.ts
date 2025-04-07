@@ -65,9 +65,9 @@ export const competencyAPI = createApi({
 		bindCompetencyToAnswer: builder.mutation<void, IBindCompetencyToAnswer>({
 			query: ({
 				competencyID,
-				answerID,
+				answerId,
 			}) => ({
-				url: URI_BIND_COMPETENCY_TO_ANSWER(competencyID, answerID),
+				url: URI_BIND_COMPETENCY_TO_ANSWER(competencyID, answerId),
 				method: 'POST',
 			}),
 			invalidatesTags: ['competency'],
@@ -75,9 +75,9 @@ export const competencyAPI = createApi({
 		unbindCompetencyFromAnswer: builder.mutation<void, IBindCompetencyToAnswer>({
 			query: ({
 				competencyID,
-				answerID,
+				answerId,
 			}) => ({
-				url: URI_BIND_COMPETENCY_TO_ANSWER(competencyID, answerID),
+				url: URI_BIND_COMPETENCY_TO_ANSWER(competencyID, answerId),
 				method: 'DELETE',
 			}),
 			invalidatesTags: ['competency'],

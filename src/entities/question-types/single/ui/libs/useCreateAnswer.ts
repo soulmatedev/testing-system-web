@@ -25,15 +25,16 @@ export const useCreateAnswer = () => {
 				questionId,
 			}).unwrap();
 
+			const answerId = res.answer.id;
+
 			await bind({
 				questionId,
-				answerId: res.answer.id,
-			})
-				.unwrap();
+				answerId,
+			});
 
 			dispatch(answerAPI.util?.invalidateTags(['answer']));
 
-			return res.answer;
+			return res;
 		} catch (e) {
 			console.error('Ошибка', e);
 			toast.error('Возникла ошибка при создании ответа...');

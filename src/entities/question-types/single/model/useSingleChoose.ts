@@ -5,6 +5,7 @@ import { IAnswer } from '../../../answers/api/types';
 import { useCreateAnswer } from '../ui/libs/useCreateAnswer';
 import { questionsSelectors } from '../../../questions/model/slice';
 import { answerAPI } from '../../../answers/api/api';
+import { useDeleteAnswer } from '../ui/libs/useDeleteAnswer';
 
 export const useSingleChoose = () => {
 	const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export const useSingleChoose = () => {
 	});
 
 	const { createAnswer } = useCreateAnswer();
+	const { deleteAnswer } = useDeleteAnswer();
 
 	const addAnswer = async () => {
 		try {
@@ -24,7 +26,7 @@ export const useSingleChoose = () => {
 				0,
 			);
 			if (newAnswer) {
-				dispatch(singleChooseActions.addAnswer(newAnswer));
+				dispatch(singleChooseActions.addAnswer(newAnswer.answer));
 			}
 		} catch {
 			toast.error('Возникла ошибка при создании ответа...');
@@ -32,6 +34,7 @@ export const useSingleChoose = () => {
 	};
 
 	const removeAnswer = (id: number) => {
+		deleteAnswer(id);
 		dispatch(singleChooseActions.removeAnswer(id));
 	};
 

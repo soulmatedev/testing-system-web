@@ -35,5 +35,5 @@ export interface IUpdateCompetencyResponse {
 
 export interface IBindCompetencyToAnswer {
 	competencyID: number,
-	answerID: number
+	answerId: number
 }
