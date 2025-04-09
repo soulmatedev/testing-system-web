@@ -1,3 +1,4 @@
+import React from 'react';
 import css from './question-type-dropdown.module.scss';
 import { questionTypes } from '../../../features/question-constructor-form/model/question-types';
 

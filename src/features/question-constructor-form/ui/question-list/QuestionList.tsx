@@ -1,3 +1,4 @@
+import React from 'react';
 import css from './QuestionList.module.scss';
 import { IQuestion } from '../../../../entities/questions/api/types';
 

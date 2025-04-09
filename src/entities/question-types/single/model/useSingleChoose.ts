@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { singleChooseActions } from './slice';
+import { singleChooseActions, singleChooseSelectors } from './slice';
 import { IAnswer } from '../../../answers/api/types';
 import { useCreateAnswer } from '../ui/libs/useCreateAnswer';
 import { questionsSelectors } from '../../../questions/model/slice';
@@ -11,9 +11,11 @@ import { useUpdateAnswer } from '../ui/libs/useUpdateAnswer';
 export const useSingleChoose = () => {
 	const dispatch = useDispatch();
 
+	const storedAnswers = useSelector(singleChooseSelectors.getAnswers);
+
 	const questionId = useSelector(questionsSelectors.getCurrentQuestionId);
 	const { data: answers = [] } = answerAPI.useGetAnswersByQuestionIdQuery(questionId, {
-		skip: !questionId,
+		skip: questionId === 0 || storedAnswers.length === 0,
 	});
 
 	const { createAnswer } = useCreateAnswer();
@@ -22,14 +24,7 @@ export const useSingleChoose = () => {
 
 	const addAnswer = async () => {
 		try {
-			const newAnswer = await createAnswer(
-				'',
-				false,
-				0,
-			);
-			if (newAnswer) {
-				dispatch(singleChooseActions.addAnswer(newAnswer.answer));
-			}
+			await createAnswer('', false, 0);
 		} catch {
 			toast.error('Возникла ошибка при создании ответа...');
 		}
@@ -56,7 +51,6 @@ export const useSingleChoose = () => {
 	const getAnswers = () => answers;
 
 	return {
-		answers,
 		addAnswer,
 		removeAnswer,
 		updateResponseAnswer,

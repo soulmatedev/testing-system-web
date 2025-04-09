@@ -14,7 +14,7 @@ export const singleChooseSlice = createSlice({
 	},
 	reducers: {
 		addAnswer(state, action: PayloadAction<IAnswer>) {
-			state.answers.push(action.payload);
+			state.answers = [...state.answers, action.payload];
 		},
 		removeAnswer(state, action: PayloadAction<number>) {
 			state.answers = state.answers.filter(answer => answer.id !== action.payload);

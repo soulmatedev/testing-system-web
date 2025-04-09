@@ -1,9 +1,9 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import {
-	URI_QUESTION, URI_QUESTION_CREATE,
+	URI_QUESTION, URI_QUESTION_CREATE, URI_QUESTION_GET_ALL,
 } from './consts';
 import {
-	ICreateQuestionRequest, IQuestion,
+	ICreateQuestionRequest, IGetQuestionsRequest, IGetQuestionsResponse, IQuestion,
 } from './types';
 import { baseQuery } from '../../../shared/api/api';
 
@@ -19,6 +19,14 @@ export const questionAPI = createApi({
 				method: 'POST',
 				body: data,
 			}),
+		}),
+		getAll: builder.query<IGetQuestionsResponse, IGetQuestionsRequest>({
+			query: (data) => ({
+				url: URI_QUESTION_GET_ALL,
+				method: 'GET',
+				params: data,
+			}),
+			providesTags: ['questionAPI'],
 		}),
 		update: builder.mutation<void, IQuestion>({
 			query: ({ id, ...data }) => ({

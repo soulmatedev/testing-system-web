@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../../shared/libs/utils/redux';
 import { getCurrentQuestion, questionsActions } from '../../../../entities/questions/model/slice';

@@ -12,7 +12,9 @@ export const useCreateQuestion = () => {
 	const [create] = questionAPI.useCreateMutation();
 	const [update] = questionAPI.useUpdateMutation();
 
-	const { answers, clearAnswers } = useSingleChoose();
+	const { getAnswers, clearAnswers } = useSingleChoose();
+	const answers = getAnswers();
+
 	const { id, text } = useSelector(getCurrentQuestion);
 
 	const createOrUpdateQuestion = async (type: string): Promise<IQuestion | undefined> => {
@@ -25,7 +27,7 @@ export const useCreateQuestion = () => {
 			type,
 			answers: answers.map((a) => ({
 				...a,
-				questionId: id || 0,
+				questionId: id,
 			})),
 			pairs: [],
 		};
@@ -34,7 +36,6 @@ export const useCreateQuestion = () => {
 			if (id) {
 				await update({ id, ...questionData }).unwrap();
 				toast.success('Вопрос обновлен успешно');
-				console.log(questionData);
 			} else {
 				const res = await create(questionData).unwrap();
 				dispatch(questionsActions.setCurrentQuestionId(res.id));

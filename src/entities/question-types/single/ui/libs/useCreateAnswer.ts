@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../../../shared/libs/utils/redux';
 import { answerAPI } from '../../../../answers/api/api';
 import { questionsSelectors } from '../../../../questions/model/slice';
+import { singleChooseActions } from '../../model/slice';
 
 export const useCreateAnswer = () => {
 	const dispatch = useAppDispatch();
@@ -32,8 +33,8 @@ export const useCreateAnswer = () => {
 				answerId,
 			});
 
+			dispatch(singleChooseActions.addAnswer(res.answer));
 			dispatch(answerAPI.util?.invalidateTags(['answer']));
-
 			return res;
 		} catch (e) {
 			console.error('Ошибка', e);

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useCreateQuestion } from '../../hooks';
 import { MainButton } from '../../../../shared/ui/main-button';

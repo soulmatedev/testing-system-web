@@ -19,3 +19,13 @@ export interface ICreateQuestionRequest {
 	answers: IAnswer[],
 	pairs: IPairInput[],
 }
+
+export interface IGetQuestionsResponse {
+	questions: IQuestion[];
+}
+
+export interface IGetQuestionsRequest {
+	limit: number,
+	page: number,
+	search?: string,
+}

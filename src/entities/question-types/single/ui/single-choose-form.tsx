@@ -7,8 +7,10 @@ import { CreateAnswerButton } from './create-answer-button';
 
 export const SingleChooseForm = () => {
 	const {
-		answers, addAnswer, removeAnswer, updateResponseAnswer, updateAnswerCorrectness,
+		getAnswers, addAnswer, removeAnswer, updateResponseAnswer, updateAnswerCorrectness,
 	} = useSingleChoose();
+
+	const answers = getAnswers();
 
 	const [selectedResponseId, setSelectedResponseId] = useState<number | null>(null);
 
