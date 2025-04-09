@@ -1,3 +1,4 @@
+import React from 'react';
 import { CreateQuestionButton } from './create-question-button';
 import { QuestionFormRenderer } from '../../question-form-renderer';
 import { QuestionTextInput } from './question-text-input';

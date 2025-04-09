@@ -1,10 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import css from './test-list-block.module.scss';
 import { TestList } from './list';
 
 export const TestListBlock = () => {
-	const navigate = useNavigate();
-
+	const a = '';
 	return (
 		<div className={css.wrapper}>
 			<div className={css.header}>

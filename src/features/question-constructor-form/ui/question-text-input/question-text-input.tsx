@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { TextArea } from '../../../../shared/ui/textarea';
 import { getCurrentQuestion, questionsActions } from '../../../../entities/questions/model/slice';

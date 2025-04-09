@@ -1,16 +1,15 @@
-import { useSelector } from 'react-redux';
+import React from 'react';
 import css from './list.module.scss';
 import { TestListItem } from './item';
-import { RootState } from '../../../../../app/reducers';
-// eslint-disable-next-line import/extensions,@typescript-eslint/ban-ts-comment
-// @ts-ignore
-// eslint-disable-next-line import/extensions
-import { ITest } from '../../../../../entities/question-types/model/slices/testDetailsSlice';
+
+interface ITest {
+	id: number;
+	title: string;
+	description: string;
+}
 
 export const TestList = () => {
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-ignore
-	const tests = useSelector((state: RootState) => state.testDetails.tests);
+	const tests: ITest[] = [];
 
 	return (
 		<div className={css.wrapper}>
