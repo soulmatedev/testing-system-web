@@ -8,9 +8,7 @@ export const QuestionConstructor = () => (
 	<>
 		<div className={css.wrapper}>
 			<div className={css.block}>
-				<div className={css.left_side}>
-					<QuestionTextInput />
-				</div>
+				<QuestionTextInput />
 				<div className={css.right_side}>
 					<QuestionTypeDropdownContainer />
 					<CreateQuestionButton />

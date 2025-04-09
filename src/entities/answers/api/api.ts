@@ -27,6 +27,14 @@ export const answerAPI = createApi({
 			}),
 			invalidatesTags: ['answer'],
 		}),
+		updateAnswer: builder.mutation<IAnswer, IAnswer>({
+			query: (answer) => ({
+				url: `/answer/${answer.id}`,
+				method: 'PUT',
+				body: answer,
+			}),
+			invalidatesTags: ['answer'],
+		}),
 		getAnswersByQuestionId: builder.query<IAnswer[], number>({
 			query: (questionId) => ({
 				url: `${URI_ANSWER}/by-question/${questionId}`,

@@ -25,6 +25,7 @@ export const SingleChoiceInput = ({
 }: SingleChoiceInputResponseProps) => {
 	const [inputText, setInputText] = useState(answer.text);
 	const [weight, setWeight] = useState(answer.weight);
+	const [isCorrect, setIsCorrect] = useState(answer.isCorrect);
 
 	const updateResponseText = (e: ChangeEvent<HTMLInputElement>) => {
 		setInputText(e.target.value);
@@ -38,11 +39,20 @@ export const SingleChoiceInput = ({
 		setWeight(Number(e.target.value));
 		onAnswerChange({
 			...answer,
-			weight,
+			weight: Number(e.target.value),
 		});
 	};
 
-	const handleCheckboxChange = () => {
+	const updateResponseIsCorrect = (checked: boolean) => {
+		setIsCorrect(checked);
+		onAnswerChange({
+			...answer,
+			isCorrect: checked,
+		});
+	};
+
+	const handleCheckboxChange = (checked: boolean) => {
+		updateResponseIsCorrect(checked);
 		onSelect(answer.id);
 	};
 
@@ -54,7 +64,7 @@ export const SingleChoiceInput = ({
 				showCheckbox
 				value={inputText}
 				onChange={updateResponseText}
-				checked={selected}
+				checked={isCorrect}
 				onCheckboxChange={handleCheckboxChange}
 			/>
 			<WeightDropdown

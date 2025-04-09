@@ -10,7 +10,7 @@ interface InputProps {
 	value?: string;
 	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 	checked?: boolean;
-	onCheckboxChange?: () => void;
+	onCheckboxChange?: (checked: boolean) => void;
 }
 
 export const InputWithRoundedCheckbox = (props: InputProps) => {
@@ -26,6 +26,12 @@ export const InputWithRoundedCheckbox = (props: InputProps) => {
 		onCheckboxChange,
 	} = props;
 
+	const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+		if (onCheckboxChange) {
+			onCheckboxChange(e.target.checked);
+		}
+	};
+
 	return (
 		<div className={css.wrapper} style={{ width, height }}>
 			<input
@@ -39,7 +45,7 @@ export const InputWithRoundedCheckbox = (props: InputProps) => {
 					type="checkbox"
 					className={css.checkbox}
 					checked={checked}
-					onChange={onCheckboxChange}
+					onChange={handleCheckboxChange}
 				/>
 			)}
 		</div>

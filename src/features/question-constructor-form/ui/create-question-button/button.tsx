@@ -9,7 +9,7 @@ export const CreateQuestionButton = () => {
 	const { createOrUpdateQuestion } = useCreateQuestion();
 
 	const onCreateQuestion = async () => {
-		await createOrUpdateQuestion(text);
+		await createOrUpdateQuestion(type);
 	};
 
 	return (
