@@ -20,15 +20,20 @@ export const singleChooseSlice = createSlice({
 			state.answers = state.answers.filter(answer => answer.id !== action.payload);
 		},
 		updateAnswer(state, action: PayloadAction<Partial<IAnswer>>) {
-			state.answers = state.answers.map(answer => ({
-				...answer,
-				...action.payload,
-			}));
+			const index = state.answers.findIndex(answer => answer.id === action.payload.id);
+			if (index !== -1) {
+				const updatedAnswer: IAnswer = {
+					...state.answers[index],
+					...action.payload,
+				};
+				state.answers[index] = updatedAnswer;
+			}
 		},
 		updateAnswerCorrectness(state, action: PayloadAction<{ id: number; isCorrect: boolean }>) {
-			const answer = state.answers.find(a => a.id === action.payload.id);
+			const { id, isCorrect } = action.payload;
+			const answer = state.answers.find(answer => answer.id === id);
 			if (answer) {
-				answer.isCorrect = action.payload.isCorrect;
+				answer.isCorrect = isCorrect;
 			}
 		},
 		clearAnswers(state) {

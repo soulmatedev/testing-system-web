@@ -15,3 +15,11 @@ export interface ISignUpRequest {
 	login: string;
 	password: string;
 }
+
+export interface IAccountResponse {
+	email: string;
+	password: string;
+	login: string | null;
+	name: string | null;
+	role: number | null;
+}

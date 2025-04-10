@@ -46,8 +46,11 @@ const questionsSlice = createSlice({
 			state.currentQuestion.id = action.payload;
 		},
 		clearCurrentQuestion: (state) => {
+			state.currentQuestion.id = 0;
 			state.currentQuestion.text = '';
 			state.currentQuestion.type = '';
+			state.currentQuestion.answers = [];
+			state.currentQuestion.pairs = [];
 		},
 	},
 });

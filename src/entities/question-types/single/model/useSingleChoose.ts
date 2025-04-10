@@ -3,24 +3,22 @@ import { toast } from 'react-toastify';
 import { singleChooseActions, singleChooseSelectors } from './slice';
 import { IAnswer } from '../../../answers/api/types';
 import { useCreateAnswer } from '../ui/libs/useCreateAnswer';
-import { questionsSelectors } from '../../../questions/model/slice';
-import { answerAPI } from '../../../answers/api/api';
 import { useDeleteAnswer } from '../ui/libs/useDeleteAnswer';
-import { useUpdateAnswer } from '../ui/libs/useUpdateAnswer';
 
 export const useSingleChoose = () => {
 	const dispatch = useDispatch();
 
-	const storedAnswers = useSelector(singleChooseSelectors.getAnswers);
+	const answers = useSelector(singleChooseSelectors.getAnswers);
 
-	const questionId = useSelector(questionsSelectors.getCurrentQuestionId);
-	const { data: answers = [] } = answerAPI.useGetAnswersByQuestionIdQuery(questionId, {
-		skip: questionId === 0 || storedAnswers.length === 0,
-	});
+	//
+	// const questionId = useSelector(questionsSelectors.getCurrentQuestionId);
+	// const { data: answers = [] } = answerAPI.useGetAnswersByQuestionIdQuery(questionId, {
+	// 	skip: questionId === 0 || storedAnswers.length === 0,
+	// });
 
 	const { createAnswer } = useCreateAnswer();
 	const { deleteAnswer } = useDeleteAnswer();
-	const { updateAnswer: updateAnswerRequest } = useUpdateAnswer();
+	// const { updateAnswer: updateAnswerRequest } = useUpdateAnswer();
 
 	const addAnswer = async () => {
 		try {
@@ -36,8 +34,8 @@ export const useSingleChoose = () => {
 	};
 
 	const updateResponseAnswer = (answer: IAnswer) => {
-		dispatch(singleChooseActions.updateAnswer(answer));
-		updateAnswerRequest(answer);
+		const updatedAnswer = { ...answer };
+		dispatch(singleChooseActions.updateAnswer(updatedAnswer));
 	};
 
 	const updateAnswerCorrectness = (id: number, isCorrect: boolean) => {
@@ -51,6 +49,7 @@ export const useSingleChoose = () => {
 	const getAnswers = () => answers;
 
 	return {
+		answers,
 		addAnswer,
 		removeAnswer,
 		updateResponseAnswer,

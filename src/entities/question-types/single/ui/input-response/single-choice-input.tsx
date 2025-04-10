@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import css from './single-choice-input.module.scss';
 import { InputWithRoundedCheckbox } from '../../../../../shared/ui/input-with-rounded-checkbox';
 import { ReactComponent as CrossIcon } from '../../../../../shared/assets/images/cross-icon.svg';
@@ -8,7 +8,6 @@ import { IAnswer } from '../../../../answers/api/types';
 
 interface SingleChoiceInputResponseProps {
 	answer: IAnswer,
-	index: number,
 	onDelete: (id: number) => void,
 	onAnswerChange: (answer: IAnswer) => void,
 	onSelect: (id: number) => void,
@@ -17,7 +16,6 @@ interface SingleChoiceInputResponseProps {
 
 export const SingleChoiceInput = ({
 	answer,
-	index,
 	onDelete,
 	onAnswerChange,
 	onSelect,

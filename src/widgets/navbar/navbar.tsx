@@ -4,6 +4,7 @@ import css from './navbar.module.scss';
 
 export const Navbar = () => {
 	const navigate = useLocation();
+
 	return (
 		<div className={css.navbar}>
 			<NavLink className={css.navbar_link} to="/test-list">Логотип</NavLink>

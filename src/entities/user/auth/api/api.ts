@@ -1,9 +1,11 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from '../../../../shared/api/api';
 import {
+	URI_GET_ACCOUNT,
 	URI_SIGN_IN, URI_SIGN_UP,
 } from './consts';
 import {
+	IAccountResponse,
 	ISignInRequest, ISignInResponse, ISignUpRequest,
 } from './types';
 
@@ -26,9 +28,9 @@ export const authAPI = createApi({
 				body: { ...data },
 			}),
 		}),
-		getCurrentUser: builder.query<{ role: string }, void>({
+		getCurrentUser: builder.query<IAccountResponse, void>({
 			query: () => ({
-				url: '/api/user',
+				url: URI_GET_ACCOUNT,
 				method: 'GET',
 			}),
 		}),

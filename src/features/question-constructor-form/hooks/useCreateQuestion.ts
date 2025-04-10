@@ -12,7 +12,7 @@ export const useCreateQuestion = () => {
 	const [create] = questionAPI.useCreateMutation();
 	const [update] = questionAPI.useUpdateMutation();
 
-	const { getAnswers, clearAnswers } = useSingleChoose();
+	const { getAnswers } = useSingleChoose();
 	const answers = getAnswers();
 
 	const { id, text } = useSelector(getCurrentQuestion);
@@ -36,11 +36,11 @@ export const useCreateQuestion = () => {
 			if (id) {
 				await update({ id, ...questionData }).unwrap();
 				toast.success('Вопрос обновлен успешно');
+				dispatch(questionsActions.clearCurrentQuestion());
 			} else {
 				const res = await create(questionData).unwrap();
 				dispatch(questionsActions.setCurrentQuestionId(res.id));
 			}
-			clearAnswers();
 		} catch (error) {
 			toast.error('Ошибка при сохранении вопроса');
 			console.error(error);

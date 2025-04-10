@@ -20,12 +20,11 @@ export interface ICreateQuestionRequest {
 	pairs: IPairInput[],
 }
 
-export interface IGetQuestionsResponse {
-	questions: IQuestion[];
-}
+export type IGetQuestionsResponse = IQuestion[];
 
 export interface IGetQuestionsRequest {
 	limit: number,
 	page: number,
 	search?: string,
 }
+

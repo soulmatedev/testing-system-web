@@ -7,10 +7,8 @@ import { CreateAnswerButton } from './create-answer-button';
 
 export const SingleChooseForm = () => {
 	const {
-		getAnswers, addAnswer, removeAnswer, updateResponseAnswer, updateAnswerCorrectness,
+		answers, addAnswer, removeAnswer, updateResponseAnswer, updateAnswerCorrectness,
 	} = useSingleChoose();
-
-	const answers = getAnswers();
 
 	const [selectedResponseId, setSelectedResponseId] = useState<number | null>(null);
 
@@ -35,10 +33,7 @@ export const SingleChooseForm = () => {
 			{answers.map((answer) => (
 				<div className={css.item} key={answer.id}>
 					<CompetenciesList answerId={answer.id} />
-
 					<SingleChoiceInput
-						key={answer.id}
-						index={answer.id}
 						answer={answer}
 						onDelete={removeAnswer}
 						onAnswerChange={updateResponseAnswer}
