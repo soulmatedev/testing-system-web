@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Router from './app/router/Router';
 import 'react-toastify/dist/ReactToastify.css';
 import { Navbar } from './widgets/navbar';
-import css from './shared/config/styles/main.scss';
+import css from './shared/config/styles/main.module.scss';
 
 const App = () => {
 	const location = useLocation();
@@ -15,7 +15,7 @@ const App = () => {
 
 	return (
 		<>
-			<div className={css.wrapper}>
+			<div className={css.App}>
 				{!shouldHideNavbar && <Navbar />}
 				<Router />
 			</div>

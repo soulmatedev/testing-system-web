@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './shared/config/styles/main.scss';
+import './shared/config/styles/main.module.scss';
 import './shared/config/styles/global.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';

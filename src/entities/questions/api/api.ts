@@ -36,5 +36,12 @@ export const questionAPI = createApi({
 			}),
 			invalidatesTags: ['questionAPI'],
 		}),
+		delete: builder.mutation<void, { id: number }>({
+			query: ({ id }) => ({
+				url: `${URI_QUESTION}/${id}`,
+				method: 'DELETE',
+			}),
+			invalidatesTags: ['questionAPI'],
+		}),
 	}),
 });

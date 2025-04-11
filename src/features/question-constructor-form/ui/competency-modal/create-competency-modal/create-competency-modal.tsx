@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '../../../../../shared/ui/modal';
 import css from './create-competency-modal.module.scss';
 import { CompetencyNameInput } from './ui/competency-name-input';

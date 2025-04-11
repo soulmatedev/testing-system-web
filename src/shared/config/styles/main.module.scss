@@ -88,6 +88,10 @@ body {
     border-radius: 10px;
     background-color: #fff;
   }
+
+  svg {
+    cursor: pointer;
+  }
 }
 
 #root {
@@ -96,10 +100,8 @@ body {
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  min-height: 100vh;
+  overflow: auto;
+  height: 100vh;
 }
 
 button {

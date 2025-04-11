@@ -1,3 +1,4 @@
+import React from 'react';
 import { TextArea } from '../../../../../../../shared/ui/textarea';
 
 interface ICompetencyDescriptionTextareaProps {
@@ -18,6 +19,7 @@ export const CompetencyDescriptionTextarea = (props: ICompetencyDescriptionTexta
 			onChange={handleChange}
 			placeholder="Название"
 			height={260}
+			width={400}
 		/>
 	);
 };
