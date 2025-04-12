@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import css from './single-choice-input.module.scss';
 import { InputWithRoundedCheckbox } from '../../../../../shared/ui/input-with-rounded-checkbox';
-import { ReactComponent as CrossIcon } from '../../../../../shared/assets/images/cross-icon.svg';
+import { ReactComponent as TrashIcon } from '../../../../../shared/assets/images/trash.svg';
 import { WeightDropdown } from '../../../../../shared/ui/weight-dropdown';
 import { WeightValues } from '../../../../../shared/ui/weight-dropdown/weight-dropdown';
 import { IAnswer } from '../../../../answers/api/types';
@@ -73,7 +73,7 @@ export const SingleChoiceInput = ({
 				onChange={updateResponseWeight}
 			/>
 			<div className={css.delete}>
-				<CrossIcon className={css.cross_icon} onClick={() => onDelete(answer.id)} />
+				<TrashIcon className={css.trash_icon} onClick={() => onDelete(answer.id)} />
 			</div>
 		</div>
 	);

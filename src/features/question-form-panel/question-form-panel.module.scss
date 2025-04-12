@@ -13,7 +13,7 @@
 .block {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-m);
+  gap: var(--gap-l);
   background-color: var(--block-bg-color);
   border: none;
 
@@ -24,7 +24,7 @@
 
 .name_input {
   font-size: var(--font-size-l);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   border: none;
   outline: none;
   padding-bottom: 4px;
@@ -35,18 +35,10 @@
   }
 }
 
-.name_input:focus {
-  border-bottom: var(--border-bottom);
-}
-
 .description_input {
   font-size: var(--font-size-m);
   border: none;
   outline: none;
   padding-bottom: 4px;
   transition: border-bottom 0.3s ease;
-}
-
-.description_input:focus {
-  border-bottom: var(--border-bottom);
 }

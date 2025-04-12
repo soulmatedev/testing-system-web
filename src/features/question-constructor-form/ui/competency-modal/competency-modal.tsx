@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '../../../../shared/ui/modal';
 import css from './competency-modal.module.scss';
 import { CompetencyList } from './ui/competency-list';
@@ -42,7 +42,13 @@ export const CompetencyModal = (props: CompetencyModalProps) => {
 				<div className={css.wrapper}>
 					<div className={css.header}>
 						<p className={css.title}>Компетенции</p>
-						<SecondButton text="Создать" onClick={openCreateCompetencyModal} height={20} width={55} />
+						<SecondButton
+							text="Создать"
+							onClick={openCreateCompetencyModal}
+							height={20}
+							width={55}
+							withBorder={false}
+						/>
 					</div>
 					<CompetencyList openEditModal={openEditCompetencyModal} />
 				</div>

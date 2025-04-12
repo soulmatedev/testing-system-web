@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import css from './test-constructor-page.module.scss';
@@ -9,6 +10,8 @@ import {
 } from '../../../entities/tests/model/selectors/testSelectors';
 import { testAPI } from '../../../entities/tests/api/api';
 import { QuestionFormPanel } from '../../../features/question-form-panel';
+import { MainButton } from '../../../shared/ui/main-button';
+import { SecondButton } from '../../../shared/ui/second-button';
 
 export const TestConstructorPage = () => {
 	const {
@@ -46,21 +49,27 @@ export const TestConstructorPage = () => {
 	return (
 		<div className={css.wrapper}>
 			<div className={css.block}>
-				{/* <QuestionFormPanel */}
-				{/*	title={title} */}
-				{/*	description={description} */}
-				{/*	onTitleChange={updateTitle} */}
-				{/*	onDescriptionChange={updateDescription} */}
-				{/*	onCreateTest={onCreateTest} */}
-				{/* /> */}
-				<p className={css.header}>Конструктор тестов</p>
+				<div className={css.header}>
+					<p className={css.title}>Конструктор тестов</p>
+					<div className={css.options}>
+						<SecondButton
+							text="Добавить вопросы"
+							height={32}
+						/>
+						<MainButton
+							text="Сохранить"
+							onClick={onCreateTest}
+							height={32}
+						/>
+					</div>
+				</div>
 				<QuestionFormPanel
 					description={description}
-					onCreateTest={onCreateTest}
 					onDescriptionChange={updateDescription}
 					onTitleChange={updateTitle}
 					title={title}
 				/>
+				<p className={css.selected_questions}>Выбранных вопросов 12 из 23</p>
 			</div>
 		</div>
 	);

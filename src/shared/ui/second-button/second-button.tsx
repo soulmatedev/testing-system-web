@@ -7,15 +7,25 @@ interface SecondButtonProps {
 	height?: number;
 	disabled?: boolean;
 	onClick?: React.MouseEventHandler<HTMLButtonElement>;
+	withBorder?: boolean;
 }
 
 export const SecondButton = (props: SecondButtonProps) => {
 	const {
-		text, width, height, onClick, disabled = false,
+		text,
+		width,
+		height,
+		onClick,
+		disabled = false,
+		withBorder = true,
 	} = props;
 	return (
 		<button
-			className={`${css.second_button} ${disabled ? css.disabled : ''}`}
+			className={`
+				${css.second_button}
+				${disabled ? css.disabled : ''}
+				${!withBorder ? css.no_border : ''}
+			`}
 			type="button"
 			onClick={onClick}
 			disabled={disabled}
