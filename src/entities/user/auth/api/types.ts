@@ -7,6 +7,9 @@ export interface ISignInRequest {
 export interface ISignInResponse {
 	access_token: string;
 	refresh_token: string;
+	login: string;
+	name: string;
+	role: string;
 }
 
 // Регистрация

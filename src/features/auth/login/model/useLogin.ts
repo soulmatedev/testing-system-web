@@ -42,10 +42,11 @@ export const useLogin = () => {
 				.unwrap();
 
 			// eslint-disable-next-line camelcase,@typescript-eslint/naming-convention
-			const { access_token } = res;
+			const { access_token, login } = res;
 			// eslint-disable-next-line camelcase
 			if (access_token) {
 				localStorage.setItem('token', access_token);
+				localStorage.setItem('login', login);
 				navigate('/test-list');
 				toast.success('Авторизация прошла успешно');
 				dispatch(authActions.clearData());

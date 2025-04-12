@@ -4,6 +4,7 @@ import css from './navbar.module.scss';
 
 export const Navbar = () => {
 	const navigate = useLocation();
+	const login = localStorage.getItem('login');
 
 	return (
 		<div className={css.navbar}>
@@ -28,7 +29,12 @@ export const Navbar = () => {
 					Конструктор тестов
 				</NavLink>
 			</div>
-			<div className={css.profile}>Профиль</div>
+			<div
+				className={css.profile}
+			>
+				<p>{login}</p>
+				<div className={css.avatar} />
+			</div>
 		</div>
 	);
 };

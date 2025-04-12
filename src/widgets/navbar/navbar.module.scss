@@ -39,5 +39,22 @@
 .profile {
   display: flex;
   justify-content: end;
+  align-items: center;
+  gap: var(--gap-m);
   cursor: pointer;
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+  user-select: none;
+
+  border: 2px solid var(--second-font-color);
 }
