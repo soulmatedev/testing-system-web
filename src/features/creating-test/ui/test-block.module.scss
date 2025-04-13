@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  .title {
+    font-size: var(--font-size-xxl);
+    margin-bottom: 20px;
+  }
+
+  .options {
+    display: flex;
+    gap: var(--gap-m);
+  }
+}
+
+.selected_questions {
+  font-size: var(--font-size-m);
+  color: var(--light-gray-font-color);
+  font-weight: var(--font-weight-thin);
+  margin-top: 8px;
+  text-align: right;
+}
+
+.list {
+  margin-top: 10px;
+}

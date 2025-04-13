@@ -8,7 +8,7 @@ export const Navbar = () => {
 
 	return (
 		<div className={css.navbar}>
-			<NavLink className={css.navbar_link} to="/test-list">Логотип</NavLink>
+			<NavLink className={css.navbar_link} to="/test-list" />
 			<div className={css.items}>
 				<NavLink
 					to="/test-list"

@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0 32px 0;
+
+  .title {
+    color: var(--black-font-color);
+    font-size: var(--font-size-xl);
+  }
+
+  .selected_questions {
+    font-size: var(--font-size-m);
+    color: var(--light-gray-font-color);
+    font-weight: var(--font-weight-thin);
+    margin-top: 8px;
+    text-align: right;
+  }
+}
+
+.questions {
+  max-height: 565px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background: #EBEBEB;
+    margin-left: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--second-font-color);
+    border-radius: 8px;
+    margin-left: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: var(--light-bg-color);
+    margin-left: 4px;
+  }
+}

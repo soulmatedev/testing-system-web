@@ -9,6 +9,17 @@
   margin-bottom: 12px;
 }
 
+.selectMode {
+  border: 1px solid var(--border-color, #dcdcdc);
+  width: 550px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.selected {
+  border: 1px solid var(--primary-color, var(--second-font-color));
+}
+
 .questionBlock {
   width: 100%;
   display: flex;

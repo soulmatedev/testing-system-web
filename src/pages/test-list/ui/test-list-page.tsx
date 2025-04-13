@@ -1,3 +1,4 @@
+import React from 'react';
 import css from './test-list-page.module.scss';
 import { TestListBlock } from './test-list-block';
 

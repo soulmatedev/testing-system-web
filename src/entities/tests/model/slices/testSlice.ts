@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ICreateTestRequest } from '../../api/types';
+import { IQuestion } from '../../../questions/api/types';
 
 interface ITestState {
 	name: string;
 	description: string;
-	questions: any[];
+	questions: IQuestion[];
 	tests: ICreateTestRequest[];
 }
 
@@ -25,10 +26,10 @@ const testSlice = createSlice({
 		setDescription(state, action: PayloadAction<string>) {
 			state.description = action.payload;
 		},
-		setQuestions(state, action: PayloadAction<any[]>) {
+		setQuestions(state, action: PayloadAction<IQuestion[]>) {
 			state.questions = action.payload;
 		},
-		addQuestion(state, action: PayloadAction<any>) {
+		addQuestion(state, action: PayloadAction<IQuestion>) {
 			state.questions.push(action.payload);
 		},
 		addTest(state, action: PayloadAction<ICreateTestRequest>) {
