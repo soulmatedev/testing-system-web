@@ -4,14 +4,18 @@ import { Modal } from '../../../../shared/ui/modal';
 import { questionAPI } from '../../../../entities/questions/api/api';
 import { IQuestion } from '../../../../entities/questions/api/types';
 import { QuestionList } from '../../../question-constructor-form/ui/question-list';
+import { useAppDispatch } from '../../../../shared/libs/utils/redux';
 
 interface SelectQuestionsModalProps {
-	active: boolean;
-	closeFunc: (active: boolean) => void;
+	active: boolean,
+	closeFunc: (active: boolean) => void,
+	testId: number,
 }
 
 export const SelectQuestionsModal = (props: SelectQuestionsModalProps) => {
-	const { active, closeFunc } = props;
+	const { active, closeFunc, testId } = props;
+
+	const dispatch = useAppDispatch();
 
 	const { data } = questionAPI.useGetAllQuery({
 		limit: 127,
@@ -19,15 +23,29 @@ export const SelectQuestionsModal = (props: SelectQuestionsModalProps) => {
 		search: '',
 	});
 
+	const [bind] = questionAPI.useBindMutation();
+	const [unbind] = questionAPI.useUnbindMutation();
+
 	const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
-	const toggleSelect = (id: number) => {
-		setSelectedIds((prev) => {
-			if (prev.includes(id)) {
-				return prev.filter((qId) => qId !== id);
+	const toggleSelect = async (id: number) => {
+		if (selectedIds.includes(id)) {
+			try {
+				await unbind({ questionId: id, testId }).unwrap();
+				dispatch(questionAPI.util?.invalidateTags(['questionAPI']));
+				setSelectedIds((prev) => prev.filter((qId) => qId !== id));
+			} catch (e) {
+				console.error('Ошибка при анбинде', e);
 			}
-			return [...prev, id];
-		});
+		} else {
+			try {
+				await bind({ questionId: id, testId }).unwrap();
+				dispatch(questionAPI.util?.invalidateTags(['questionAPI']));
+				setSelectedIds((prev) => [...prev, id]);
+			} catch (e) {
+				console.error('Ошибка при бинде', e);
+			}
+		}
 	};
 
 	return (
@@ -48,15 +66,21 @@ export const SelectQuestionsModal = (props: SelectQuestionsModalProps) => {
 				</p>
 			</div>
 			<div className={css.questions}>
-				{data?.map((question: IQuestion) => (
-					<QuestionList
-						key={question.id}
-						question={question}
-						selectMode
-						selected={selectedIds.includes(question.id)}
-						onSelect={toggleSelect}
-					/>
-				))}
+				{data && data.length > 0 ? (
+					data.map((question: IQuestion) => (
+						<QuestionList
+							key={question.id}
+							question={question}
+							selectMode
+							selected={selectedIds.includes(question.id)}
+							onSelect={toggleSelect}
+						/>
+					))
+				) : (
+					<div className={css.no_questions}>
+						Нет доступных вопросов
+					</div>
+				)}
 			</div>
 		</Modal>
 	);

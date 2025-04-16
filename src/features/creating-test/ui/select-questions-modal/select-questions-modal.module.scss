@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   margin: 24px 0 32px 0;
+  gap: 16px;
 
   .title {
     color: var(--black-font-color);
@@ -38,5 +39,11 @@
     border-radius: 10px;
     background: var(--light-bg-color);
     margin-left: 4px;
+  }
+
+  .no_questions {
+    color: var(--light-gray-font-color);
+    font-weight: var(--font-weight-thin);
+    font-size: var(--font-size-m);
   }
 }

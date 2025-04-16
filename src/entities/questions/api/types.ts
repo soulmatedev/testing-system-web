@@ -28,3 +28,8 @@ export interface IGetQuestionsRequest {
 	search?: string,
 }
 
+export interface IBindQuestionToTest {
+	testId: number,
+	questionId: number,
+}
+

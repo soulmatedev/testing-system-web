@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import css from './test-block.module.scss';
@@ -17,41 +17,56 @@ export const TestBlock = () => {
 	} = useTest();
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [testId, setTestId] = useState<number | null>(null);
+	const testCreated = useRef(false);
 
 	const questions = useSelector(selectQuestions);
 	const title = useSelector(selectTitle);
 	const description = useSelector(selectDescription);
 
 	const [createTest] = testAPI.useCreateTestMutation();
+	const [update] = testAPI.useUpdateMutation();
+
+	useEffect(() => {
+		if (testCreated.current || testId) return;
+
+		testCreated.current = true;
+
+		createTest({
+			name: '',
+			description: '',
+			questions: [],
+		})
+			.unwrap()
+			.then((res) => {
+				setTestId(res.test.id);
+				console.log(res.test.id);
+			})
+			.catch((error) => {
+				console.error('Ошибка создания теста:', error);
+				toast.error('Ошибка создания теста');
+			});
+	}, [testId]);
 
 	const onCreateTest = async () => {
-		if (!title.trim()) {
-			toast.warn('Название теста не может быть пустым');
-			return;
-		}
-
-		const newTest = {
-			name: title,
-			description,
-			questions,
-		};
+		if (!testId) return toast.error('Ошибка: тест не инициализирован');
 
 		try {
-			await createTest(newTest).unwrap();
-			toast.success('Тест успешно создан');
-		} catch (err) {
-			console.error('Ошибка при создании теста:', err);
+			await update({
+				id: testId,
+				name: title,
+				description,
+				questions: questions.map(q => q.id),
+			}).unwrap();
+			toast.success('Тест сохранён');
+		} catch (error) {
+			console.error('Ошибка при сохранении теста:', error);
+			toast.error('Ошибка при сохранении теста');
 		}
-		console.log(newTest);
 	};
 
-	const openSelectQuestionsModal = () => {
-		setIsModalOpen(true);
-	};
-
-	const closeSelectQuestionsModal = () => {
-		setIsModalOpen(false);
-	};
+	const openSelectQuestionsModal = () => setIsModalOpen(true);
+	const closeSelectQuestionsModal = () => setIsModalOpen(false);
 
 	return (
 		<>
@@ -79,7 +94,13 @@ export const TestBlock = () => {
 				/>
 				<div className={css.selected_questions} />
 			</div>
-			<SelectQuestionsModal active={isModalOpen} closeFunc={closeSelectQuestionsModal} />
+			{testId !== null && (
+				<SelectQuestionsModal
+					active={isModalOpen}
+					closeFunc={closeSelectQuestionsModal}
+					testId={testId}
+				/>
+			)}
 		</>
 	);
 };
