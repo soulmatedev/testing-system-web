@@ -5,6 +5,7 @@ import { questionAPI } from '../../../../entities/questions/api/api';
 import { IQuestion } from '../../../../entities/questions/api/types';
 import { QuestionList } from '../../../question-constructor-form/ui/question-list';
 import { useAppDispatch } from '../../../../shared/libs/utils/redux';
+import { testActions } from '../../../../entities/tests/model/slices/testSlice';
 
 interface SelectQuestionsModalProps {
 	active: boolean,
@@ -29,22 +30,29 @@ export const SelectQuestionsModal = (props: SelectQuestionsModalProps) => {
 	const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
 	const toggleSelect = async (id: number) => {
-		if (selectedIds.includes(id)) {
-			try {
+		const isSelected = selectedIds.includes(id);
+
+		try {
+			if (isSelected) {
 				await unbind({ questionId: id, testId }).unwrap();
-				dispatch(questionAPI.util?.invalidateTags(['questionAPI']));
 				setSelectedIds((prev) => prev.filter((qId) => qId !== id));
-			} catch (e) {
-				console.error('Ошибка при анбинде', e);
-			}
-		} else {
-			try {
+			} else {
 				await bind({ questionId: id, testId }).unwrap();
-				dispatch(questionAPI.util?.invalidateTags(['questionAPI']));
 				setSelectedIds((prev) => [...prev, id]);
-			} catch (e) {
-				console.error('Ошибка при бинде', e);
 			}
+
+			dispatch(questionAPI.util.invalidateTags(['questionAPI']));
+
+			if (data) {
+				const updated = isSelected
+					? selectedIds.filter(qId => qId !== id)
+					: [...selectedIds, id];
+
+				const selectedQuestions = data.filter(q => updated.includes(q.id));
+				dispatch(testActions.setQuestions(selectedQuestions));
+			}
+		} catch (e) {
+			console.error(isSelected ? 'Ошибка при анбинде' : 'Ошибка при бинде', e);
 		}
 	};
 

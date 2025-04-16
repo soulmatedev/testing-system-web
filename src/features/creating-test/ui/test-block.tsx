@@ -40,7 +40,6 @@ export const TestBlock = () => {
 			.unwrap()
 			.then((res) => {
 				setTestId(res.test.id);
-				console.log(res.test.id);
 			})
 			.catch((error) => {
 				console.error('Ошибка создания теста:', error);
