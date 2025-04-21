@@ -7,10 +7,11 @@ import { useDeleteQuestion } from '../../hooks/useDeleteQuestion';
 import { handleKeyDown } from '../../../../shared/libs/utils/handleKeyDown';
 
 interface QuestionListProps {
-	question: IQuestion;
-	selectMode?: boolean;
-	selected?: boolean;
-	onSelect?: (id: number) => void;
+	question: IQuestion,
+	selectMode?: boolean,
+	selected?: boolean,
+	onSelect?: (id: number) => void,
+	showDeleteIcon?: boolean,
 }
 
 export const QuestionList = ({
@@ -18,6 +19,7 @@ export const QuestionList = ({
 	selectMode = false,
 	selected = false,
 	onSelect,
+	showDeleteIcon = true,
 }: QuestionListProps) => {
 	const { onDeleteQuestion } = useDeleteQuestion();
 
@@ -51,7 +53,7 @@ export const QuestionList = ({
 						<p className={css.title}>Название</p>
 						<p className={css.question_text}>{question.text}</p>
 					</div>
-					{!selectMode && (
+					{!selectMode && showDeleteIcon && (
 						<DeleteIcon
 							className={css.delete}
 							onClick={() => onDeleteQuestion(question.id)}

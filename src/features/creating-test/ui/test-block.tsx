@@ -9,6 +9,8 @@ import { useTest } from '../../../entities/tests/model/hooks/useTest';
 import { selectDescription, selectQuestions, selectTitle } from '../../../entities/tests/model/selectors/testSelectors';
 import { testAPI } from '../../../entities/tests/api/api';
 import { SelectQuestionsModal } from './select-questions-modal';
+import { IQuestion } from '../../../entities/questions/api/types';
+import { QuestionList } from '../../question-constructor-form/ui/question-list';
 
 export const TestBlock = () => {
 	const {
@@ -68,7 +70,7 @@ export const TestBlock = () => {
 	const closeSelectQuestionsModal = () => setIsModalOpen(false);
 
 	return (
-		<>
+		<div className={css.wrapper_block}>
 			<div className={css.block}>
 				<div className={css.header}>
 					<p className={css.title}>Конструктор тестов</p>
@@ -100,6 +102,15 @@ export const TestBlock = () => {
 					testId={testId}
 				/>
 			)}
-		</>
+			<div className={css.list}>
+				{questions?.map((question: IQuestion) => (
+					<QuestionList
+						key={question.id}
+						question={question}
+						showDeleteIcon={false}
+					/>
+				))}
+			</div>
+		</div>
 	);
 };
