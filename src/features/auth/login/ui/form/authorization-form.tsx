@@ -1,3 +1,4 @@
+import React from 'react';
 import css from './authorization-form.module.scss';
 import { AuthorizationEmailInput } from '../inputs/login-input';
 import { AuthorizationPasswordInput } from '../inputs/password-input';
@@ -20,8 +21,6 @@ export const AuthorizationForm = () => {
 			<AuthorizationEmailInput value={email} onChange={handleChangeEmail} />
 			<AuthorizationPasswordInput value={password} onChange={handleChangePassword} />
 			<AuthButton onSignIn={onSignIn} />
-			{/* eslint-disable-next-line max-len */}
-			{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
 			<p
 				className={css.question}
 				onClick={navigateToRegistration}

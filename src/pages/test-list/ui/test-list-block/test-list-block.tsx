@@ -10,11 +10,9 @@ export const TestListBlock = () => {
 				<p>Список тестов</p>
 			</div>
 			<div className={css.block}>
-				<div className={css.create_bar}>
-					{/* <MainButton */}
-					{/*	text="Создать тест" */}
-					{/*	onClick={onCreateTestClick} */}
-					{/* /> */}
+				<div className={css.headers}>
+					<div>Название</div>
+					<div>Описание</div>
 				</div>
 				<TestList />
 			</div>

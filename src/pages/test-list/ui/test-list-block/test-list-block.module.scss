@@ -9,15 +9,20 @@
     font-size: var(--font-size-xxl);
   }
 }
-
 .block {
   min-width: var(--block-min-width);
   background-color: var(--block-bg-color);
   border-radius: var(--block-border-radius);
 
-  p {
-    font-size: var(--font-size-l);
+  .headers {
+    display: grid;
+    padding: 20px 20px 0 20px;
+    grid-template-columns: 245px 300px;
+    margin-left: 30px;
+    color: var(--light-gray-font-color);
+    font-size: var(--font-size-m);
   }
+
 }
 
 .create_bar {

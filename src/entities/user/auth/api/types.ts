@@ -10,6 +10,7 @@ export interface ISignInResponse {
 	login: string;
 	name: string;
 	role: string;
+	id: string;
 }
 
 // Регистрация

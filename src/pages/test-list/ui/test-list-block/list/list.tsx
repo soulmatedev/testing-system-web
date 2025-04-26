@@ -1,29 +1,27 @@
 import React from 'react';
 import css from './list.module.scss';
 import { TestListItem } from './item';
-
-interface ITest {
-	id: number;
-	title: string;
-	description: string;
-}
+import { testAPI } from '../../../../../entities/tests/api/api';
+import { ITest } from '../../../../../entities/tests/api/types';
 
 export const TestList = () => {
-	const tests: ITest[] = [];
+	const { data } = testAPI.useGetTestsByUserQuery();
+
+	const testArray = data || [];
 
 	return (
 		<div className={css.wrapper}>
-			{tests.length === 0 ? (
+			{testArray.length === 0 ? (
 				<div className={css.not_found_block}>
 					<p className={css.not_found}>Здесь пока ничего нет, но это отличный повод начать!</p>
 				</div>
 			) : (
 				<div className={css.block}>
-					{tests.map((test: ITest) => (
+					{testArray.map((test: ITest) => (
 						<TestListItem
 							id={test.id}
 							key={test.id}
-							title={test.title}
+							title={test.name}
 							description={test.description}
 						/>
 					))}

@@ -1,6 +1,7 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import css from './list-item.module.scss';
-import { MainButton } from '../../../../../../shared/ui/main-button';
+import { ReactComponent as RightIcon } from '../../../../../../shared/assets/images/right-arrow.svg';
 
 interface TestListItemProps {
 	id: number,
@@ -24,12 +25,7 @@ export const TestListItem = (props: TestListItemProps) => {
 			<p className={css.name}>{title}</p>
 			<p className={css.description}>{description}</p>
 			<div className={css.button}>
-				<MainButton
-					text=">"
-					height={INSIDE_TEST_BUTTON_HEIGHT}
-					width={INSIDE_TEST_BUTTON_WIDTH}
-					onClick={handleNavigateToTest}
-				/>
+				<RightIcon />
 			</div>
 		</div>
 	);

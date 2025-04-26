@@ -3,7 +3,7 @@ import {
 	URI_CREATE_TEST, URI_TEST,
 } from './consts';
 import {
-	ICreateTestRequest, ICreateTestResponse, IUpdateTestRequest,
+	ICreateTestRequest, ICreateTestResponse, ITest, IUpdateTestRequest,
 } from './types';
 import { baseQuery } from '../../../shared/api/api';
 
@@ -27,6 +27,13 @@ export const testAPI = createApi({
 				body: { ...data },
 			}),
 			invalidatesTags: ['test'],
+		}),
+		getTestsByUser: builder.query<ITest[], void>({
+			query: () => ({
+				url: `${URI_TEST}/tests`,
+				method: 'GET',
+			}),
+			providesTags: ['test'],
 		}),
 	}),
 });

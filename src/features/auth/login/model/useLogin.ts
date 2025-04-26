@@ -42,9 +42,10 @@ export const useLogin = () => {
 				.unwrap();
 
 			// eslint-disable-next-line camelcase,@typescript-eslint/naming-convention
-			const { access_token, login } = res;
+			const { id, access_token, login } = res;
 			// eslint-disable-next-line camelcase
 			if (access_token) {
+				localStorage.setItem('id', id);
 				localStorage.setItem('token', access_token);
 				localStorage.setItem('login', login);
 				navigate('/test-list');
