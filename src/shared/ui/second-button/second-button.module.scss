@@ -12,6 +12,11 @@
   padding: var(--main-button-padding);
 
   border: 1px solid var(--second-font-color);
+
+  &:hover {
+    color: var(--main-button-bg-hover-color);
+    border: 1px solid var(--main-button-bg-hover-color);
+  }
 }
 
 .no_border {

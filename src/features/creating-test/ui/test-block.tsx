@@ -13,11 +13,6 @@ import { IQuestion } from '../../../entities/questions/api/types';
 import { QuestionList } from '../../question-constructor-form/ui/question-list';
 
 export const TestBlock = () => {
-	const {
-		updateTitle,
-		updateDescription,
-	} = useTest();
-
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [testId, setTestId] = useState<number | null>(null);
 	const testCreated = useRef(false);
@@ -28,6 +23,12 @@ export const TestBlock = () => {
 
 	const [createTest] = testAPI.useCreateTestMutation();
 	const [update] = testAPI.useUpdateMutation();
+
+	const {
+		updateTitle,
+		updateDescription,
+		clearQuestions,
+	} = useTest();
 
 	useEffect(() => {
 		if (testCreated.current || testId) return;
@@ -60,6 +61,10 @@ export const TestBlock = () => {
 				questions: questions.map(q => q.id),
 			}).unwrap();
 			toast.success('Тест сохранён');
+
+			updateTitle('');
+			updateDescription('');
+			clearQuestions();
 		} catch (error) {
 			console.error('Ошибка при сохранении теста:', error);
 			toast.error('Ошибка при сохранении теста');

@@ -30,6 +30,10 @@ export const useTest = () => {
 		dispatch(testActions.setDescription(description));
 	};
 
+	const clearQuestions = () => {
+		dispatch(testActions.setQuestions([]));
+	};
+
 	return {
 		setTests,
 		addTest,
@@ -37,5 +41,6 @@ export const useTest = () => {
 		deleteTest,
 		updateTitle,
 		updateDescription,
+		clearQuestions,
 	};
 };

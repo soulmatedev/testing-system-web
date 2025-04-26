@@ -1,32 +1,28 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import css from './passing-test-block.module.scss';
 import { MainButton } from '../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../modal';
-// import { selectTestById } from '../../../../entities/test/model/testDetailsSelectors';
-const selectTestById = (id: number) => (state: any) => state.tests?.[id];
+import { testAPI } from '../../../../entities/tests/api/api';
 
 export const PassingTestBlock = () => {
 	const { id } = useParams<{ id: string }>();
+
+	const { data } = testAPI.useGetTestsByUserQuery();
+
 	const navigate = useNavigate();
-	const test = useSelector(selectTestById(Number(id)));
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: number | null }>({});
 
-	function useTestDetails() {
-		console.log('');
+	const test = data?.find((test) => String(test.id) === id);
+
+	if (!test || !test.questions || test.questions.length === 0) {
+		return <div>Тест пустой или не найден</div>;
 	}
 
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-ignore
-	const { clearTests } = useTestDetails();
-
-	if (!test) {
-		return <div>Тест не найден</div>;
-	}
+	console.log(test.questions);
 
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
@@ -51,7 +47,6 @@ export const PassingTestBlock = () => {
 
 	const handleConfirmFinish = () => {
 		setIsModalOpen(false);
-		clearTests();
 		navigate('/test-list');
 		toast.success('Тест завершен успешно');
 	};

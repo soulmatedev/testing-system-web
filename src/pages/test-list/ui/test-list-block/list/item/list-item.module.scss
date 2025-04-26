@@ -15,6 +15,7 @@
     font-size: var(--font-size-s);
     overflow: hidden;
     white-space: nowrap;
+    text-align: start;
     text-overflow: ellipsis;
     font-weight: var(--font-weight-regular);
   }
@@ -32,5 +33,9 @@
     text-overflow: ellipsis;
     width: 300px;
   }
+}
+
+.selected {
+  border-color: var(--second-font-color);
 }
 
