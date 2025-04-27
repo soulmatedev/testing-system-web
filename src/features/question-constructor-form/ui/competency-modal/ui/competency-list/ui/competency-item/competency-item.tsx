@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import css from './competency-item.module.scss';
 import { ReactComponent as EditIcon } from '../../../../../../../../shared/assets/images/edit.svg';
 import { ReactComponent as CrossIcon } from '../../../../../../../../shared/assets/images/cross-icon.svg';

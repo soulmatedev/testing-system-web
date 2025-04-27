@@ -1,4 +1,9 @@
-import { fetchBaseQuery } from '@reduxjs/toolkit/query';
+import {
+	BaseQueryFn,
+	FetchArgs,
+	fetchBaseQuery,
+	FetchBaseQueryError,
+} from '@reduxjs/toolkit/query';
 import { v4 as uuid } from 'uuid';
 import { SERVER_ENVIRONMENT_DEV } from '../../api/API';
 
@@ -24,6 +29,7 @@ const setBaseUrl = () => {
 		throw new Error(`Неизвестная среда: ${serverEnvironment}`);
 	}
 };
+
 const paramsSerializer = (params: any) => {
 	const searchParams = new URLSearchParams();
 	Object.keys(params)
@@ -40,7 +46,7 @@ const paramsSerializer = (params: any) => {
 	return searchParams.toString();
 };
 
-export const baseQuery = fetchBaseQuery({
+const rawBaseQuery = fetchBaseQuery({
 	baseUrl: setBaseUrl(),
 	paramsSerializer,
 	credentials: 'include',
@@ -57,3 +63,19 @@ export const baseQuery = fetchBaseQuery({
 		return headers;
 	},
 });
+
+export const baseQuery: BaseQueryFn<
+	string | FetchArgs,
+	unknown,
+	FetchBaseQueryError
+> = async (args, api, extraOptions) => {
+	const result = await rawBaseQuery(args, api, extraOptions);
+
+	if (result.error && result.error.status === 401) {
+		localStorage.removeItem('token');
+		sessionStorage.removeItem('token');
+		window.location.href = 'http://localhost:3000/';
+	}
+
+	return result;
+};

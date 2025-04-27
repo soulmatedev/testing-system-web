@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import css from './competency-list.module.scss';
 import { competencyAPI } from '../../../../../../entities/competencies/api/api';
 import { ConfirmationModal } from '../../../../../../pages/passing-test/ui/modal';

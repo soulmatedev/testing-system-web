@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import css from './test-info-modal.module.scss';
 import { Modal } from '../../../../../shared/ui/modal';
 import { SecondButton } from '../../../../../shared/ui/second-button';
 import { MainButton } from '../../../../../shared/ui/main-button';
+import { ConfirmationModal } from '../../../../passing-test/ui/modal';
+import { useDeleteTest } from '../../../hooks/useDeleteTest';
 
 interface SelectQuestionsModalProps {
 	id: number | null,
@@ -24,43 +26,76 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 
 	const navigate = useNavigate();
 
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+	const [testToDelete, setTestToDelete] = useState<number | null>(null);
+
+	const { onDeleteTest } = useDeleteTest();
+
+	const handleDeleteClick = (id: number) => {
+		setTestToDelete(id);
+		console.log(id);
+		setIsDeleteModalOpen(true);
+	};
+
+	const confirmDelete = async () => {
+		if (testToDelete !== null) {
+			await onDeleteTest(testToDelete);
+		}
+		setIsDeleteModalOpen(false);
+		setTestToDelete(null);
+	};
+
+	const cancelDelete = () => {
+		setIsDeleteModalOpen(false);
+		setTestToDelete(null);
+	};
+
 	const handleNavigateToTest = () => {
 		navigate(`/test/${id}`);
 	};
 
 	return (
-		<Modal
-			active={active}
-			closeFunc={closeFunc}
-		>
-			<div className={css.wrapper}>
-				<div>
-					<p className={css.title}>Название</p>
-					<h1 className={css.name}>{name}</h1>
-				</div>
+		<>
+			<Modal
+				active={active}
+				closeFunc={closeFunc}
+			>
+				<div className={css.wrapper}>
+					<div>
+						<p className={css.title}>Название</p>
+						<h1 className={css.name}>{name}</h1>
+					</div>
 
-				<div>
-					<p className={css.title}>Описание</p>
-					<h1 className={css.description}>{description}</h1>
-				</div>
+					<div>
+						<p className={css.title}>Описание</p>
+						<h1 className={css.description}>{description}</h1>
+					</div>
 
-				<div>
-					<p className={css.title}>Компетенции</p>
-					<div>-</div>
-				</div>
+					<div>
+						<p className={css.title}>Компетенции</p>
+						<div>-</div>
+					</div>
 
-				<div className={css.options}>
-					<SecondButton
-						text="Удалить"
-						height={32}
-					/>
-					<MainButton
-						text="Перейти к тесту"
-						height={32}
-						onClick={handleNavigateToTest}
-					/>
+					<div className={css.options}>
+						<SecondButton
+							text="Удалить"
+							height={32}
+							onClick={() => handleDeleteClick(id!)}
+						/>
+						<MainButton
+							text="Перейти к тесту"
+							height={32}
+							onClick={handleNavigateToTest}
+						/>
+					</div>
 				</div>
-			</div>
-		</Modal>
+			</Modal>
+			<ConfirmationModal
+				isOpen={isDeleteModalOpen}
+				onConfirm={confirmDelete}
+				onCancel={cancelDelete}
+				message="Вы уверены, что хотите удалить этот тест?"
+			/>
+		</>
 	);
 };
