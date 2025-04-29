@@ -10,15 +10,8 @@ export const useSingleChoose = () => {
 
 	const answers = useSelector(singleChooseSelectors.getAnswers);
 
-	//
-	// const questionId = useSelector(questionsSelectors.getCurrentQuestionId);
-	// const { data: answers = [] } = answerAPI.useGetAnswersByQuestionIdQuery(questionId, {
-	// 	skip: questionId === 0 || storedAnswers.length === 0,
-	// });
-
 	const { createAnswer } = useCreateAnswer();
 	const { deleteAnswer } = useDeleteAnswer();
-	// const { updateAnswer: updateAnswerRequest } = useUpdateAnswer();
 
 	const addAnswer = async () => {
 		try {

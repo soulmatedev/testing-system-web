@@ -22,8 +22,6 @@ export const PassingTestBlock = () => {
 		return <div>Тест пустой или не найден</div>;
 	}
 
-	console.log(test.questions);
-
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
 	const { title, description, questions } = test;

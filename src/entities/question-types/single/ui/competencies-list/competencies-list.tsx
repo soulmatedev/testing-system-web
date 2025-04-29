@@ -1,3 +1,4 @@
+import React from 'react';
 import { competencyAPI } from '../../../../competencies/api/api';
 import css from './competencies-list.module.scss';
 import { CompetencyCard } from './competency-card';

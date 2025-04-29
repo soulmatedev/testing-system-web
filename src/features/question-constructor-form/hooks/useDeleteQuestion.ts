@@ -12,9 +12,8 @@ export const useDeleteQuestion = () => {
 			await deleteQuestion({ id: questionId })
 				.unwrap();
 			dispatch(questionAPI.util?.invalidateTags(['questionAPI']));
-			toast.success('Вопрос удален успешно');
 		} catch (error) {
-			toast.error('Возникла ошибка при удалении компетенции');
+			toast.error('Возникла ошибка при удалении вопроса');
 		}
 	};
 

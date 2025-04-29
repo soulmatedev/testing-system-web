@@ -33,7 +33,6 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 
 	const handleDeleteClick = (id: number) => {
 		setTestToDelete(id);
-		console.log(id);
 		setIsDeleteModalOpen(true);
 	};
 

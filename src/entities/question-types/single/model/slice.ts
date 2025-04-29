@@ -4,6 +4,8 @@ import { ISingleChooseScheme } from './types';
 
 const initialState: ISingleChooseScheme = {
 	answers: [],
+	questionCreated: false,
+	addedOption: false,
 };
 
 export const singleChooseSlice = createSlice({
@@ -11,10 +13,14 @@ export const singleChooseSlice = createSlice({
 	initialState,
 	selectors: {
 		getAnswers: (state: ISingleChooseScheme) => state.answers,
+		getQuestionCreated: (state: ISingleChooseScheme) => state.questionCreated,
+		getAddedOption: (state: ISingleChooseScheme) => state.addedOption,
 	},
 	reducers: {
 		addAnswer(state, action: PayloadAction<IAnswer>) {
 			state.answers = [...state.answers, action.payload];
+			state.addedOption = true;
+			console.log('Ответ добавлен:', action.payload);
 		},
 		removeAnswer(state, action: PayloadAction<number>) {
 			state.answers = state.answers.filter(answer => answer.id !== action.payload);
@@ -39,6 +45,11 @@ export const singleChooseSlice = createSlice({
 		clearAnswers(state) {
 			state.answers = [];
 		},
+		setQuestionCreated(state, action: PayloadAction<boolean>) {
+			state.questionCreated = action.payload;
+			console.log('Вопрос создан:', action.payload);
+		},
+
 	},
 });
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { toast } from 'react-toastify';
 import css from './QuestionList.module.scss';
 import { IQuestion } from '../../../../entities/questions/api/types';
 import { ReactComponent as DeleteIcon } from '../../../../shared/assets/images/trash.svg';
@@ -56,7 +57,10 @@ export const QuestionList = ({
 					{!selectMode && showDeleteIcon && (
 						<DeleteIcon
 							className={css.delete}
-							onClick={() => onDeleteQuestion(question.id)}
+							onClick={() => {
+								onDeleteQuestion(question.id);
+								toast.success('Вопрос удален успешно');
+							}}
 						/>
 					)}
 				</div>
