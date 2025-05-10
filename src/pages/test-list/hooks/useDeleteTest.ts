@@ -11,6 +11,7 @@ export const useDeleteTest = () => {
 		try {
 			await deleteTest({ id: testId }).unwrap();
 			dispatch(testAPI.util?.invalidateTags(['test']));
+			toast.success('Тест удален успешно');
 		} catch (error) {
 			toast.error('Ошибка при удалении теста');
 		}

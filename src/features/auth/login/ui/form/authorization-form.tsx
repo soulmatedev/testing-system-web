@@ -21,12 +21,13 @@ export const AuthorizationForm = () => {
 			<AuthorizationEmailInput value={email} onChange={handleChangeEmail} />
 			<AuthorizationPasswordInput value={password} onChange={handleChangePassword} />
 			<AuthButton onSignIn={onSignIn} />
-			<p
+			<button
+				type="button"
 				className={css.question}
 				onClick={navigateToRegistration}
 			>
 				Не зарегистрированы?
-			</p>
+			</button>
 		</div>
 	);
 };

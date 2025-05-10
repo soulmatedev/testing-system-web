@@ -5,26 +5,25 @@ import css from './passing-test-block.module.scss';
 import { MainButton } from '../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../modal';
 import { testAPI } from '../../../../entities/tests/api/api';
+import { IAnswer } from '../../../../entities/answers/api/types';
 
 export const PassingTestBlock = () => {
 	const { id } = useParams<{ id: string }>();
 
-	const { data } = testAPI.useGetTestsByUserQuery();
+	const { data } = testAPI.useGetTestByUserQuery(Number(id));
 
 	const navigate = useNavigate();
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: number | null }>({});
 
-	const test = data?.find((test) => String(test.id) === id);
+	const test = data;
 
 	if (!test || !test.questions || test.questions.length === 0) {
 		return <div>Тест пустой или не найден</div>;
 	}
 
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-ignore
-	const { title, description, questions } = test;
+	const { name, questions } = test;
 	const currentQuestion = questions[currentQuestionIndex];
 
 	const handleNextQuestion = () => {
@@ -74,8 +73,7 @@ export const PassingTestBlock = () => {
 		<div className={css.wrapper}>
 			<div className={css.header}>
 				<div className={css.test}>
-					<h1 className={css.title}>{title}</h1>
-					<p className={css.description}>{description}</p>
+					<h1 className={css.title}>{name}</h1>
 				</div>
 				<div className={css.question_count_block}>
 					<div className={css.question_count}>
@@ -91,7 +89,7 @@ export const PassingTestBlock = () => {
 				<div className={css.questions}>
 					<p className={css.question_text}>{currentQuestion.text}</p>
 					<ul className={css.questions_list}>
-						{currentQuestion.answers.map((answer: any) => (
+						{currentQuestion.answers.map((answer: IAnswer) => (
 							<li key={answer.id} className={css.answer_item}>
 								<div className={css.checkbox_label}>
 									<input

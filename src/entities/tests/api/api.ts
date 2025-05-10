@@ -35,6 +35,13 @@ export const testAPI = createApi({
 			}),
 			providesTags: ['test'],
 		}),
+		getTestByUser: builder.query<ITest, number>({
+			query: (userId) => ({
+				url: `${URI_TEST}/${userId}`,
+				method: 'GET',
+			}),
+			providesTags: ['test'],
+		}),
 		delete: builder.mutation<void, { id: number }>({
 			query: ({ id }) => ({
 				url: `${URI_TEST}/${id}`,

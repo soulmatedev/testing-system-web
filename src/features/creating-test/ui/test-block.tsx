@@ -81,13 +81,15 @@ export const TestBlock = () => {
 	const onCreateTest = async () => {
 		if (!testId) return toast.error('Ошибка: тест не инициализирован');
 
+		const payload = {
+			id: testId,
+			name: title,
+			description,
+			questions: questions.map(q => q.id),
+		};
+
 		try {
-			await update({
-				id: testId,
-				name: title,
-				description,
-				questions: questions.map(q => q.id),
-			}).unwrap();
+			await update(payload).unwrap();
 
 			toast.success('Тест сохранён');
 			setTestSaved(true);
