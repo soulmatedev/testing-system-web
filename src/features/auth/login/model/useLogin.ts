@@ -48,6 +48,7 @@ export const useLogin = () => {
 				localStorage.setItem('id', id);
 				localStorage.setItem('token', access_token);
 				localStorage.setItem('login', login);
+				localStorage.setItem('email', email);
 				navigate('/test-list');
 				toast.success('Авторизация прошла успешно');
 				dispatch(authActions.clearData());

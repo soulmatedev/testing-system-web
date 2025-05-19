@@ -6,11 +6,13 @@ import { MainButton } from '../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../modal';
 import { testAPI } from '../../../../entities/tests/api/api';
 import { IAnswer } from '../../../../entities/answers/api/types';
+import { useDeleteTest } from '../../../test-list/hooks/useDeleteTest';
 
 export const PassingTestBlock = () => {
 	const { id } = useParams<{ id: string }>();
 
 	const { data } = testAPI.useGetTestByUserQuery(Number(id));
+	const { onDeleteTest } = useDeleteTest();
 
 	const navigate = useNavigate();
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -45,6 +47,7 @@ export const PassingTestBlock = () => {
 	const handleConfirmFinish = () => {
 		setIsModalOpen(false);
 		navigate('/test-list');
+		onDeleteTest(Number(id));
 		toast.success('Тест завершен успешно');
 	};
 

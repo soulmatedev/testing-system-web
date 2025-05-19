@@ -1,10 +1,17 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import css from './navbar.module.scss';
 
 export const Navbar = () => {
-	const navigate = useLocation();
+	const location = useLocation();
 	const login = localStorage.getItem('login');
+	const profileId = localStorage.getItem('id');
+
+	const navigate = useNavigate();
+
+	const onProfileClick = () => {
+		navigate(`/profile/${profileId}`);
+	};
 
 	return (
 		<div className={css.navbar}>
@@ -12,29 +19,31 @@ export const Navbar = () => {
 			<div className={css.items}>
 				<NavLink
 					to="/test-list"
-					className={`${css.navbar_link} ${navigate.pathname === '/test-list' ? css.active : ''}`}
+					className={`${css.navbar_link} ${location.pathname === '/test-list' ? css.active : ''}`}
 				>
 					Список тестов
 				</NavLink>
 				<NavLink
 					to="/library-questions"
-					className={`${css.navbar_link} ${navigate.pathname === '/library-questions' ? css.active : ''}`}
+					className={`${css.navbar_link} ${location.pathname === '/library-questions' ? css.active : ''}`}
 				>
 					Библиотека вопросов
 				</NavLink>
 				<NavLink
 					to="/test-constructor"
-					className={`${css.navbar_link} ${navigate.pathname === '/test-constructor' ? css.active : ''}`}
+					className={`${css.navbar_link} ${location.pathname === '/test-constructor' ? css.active : ''}`}
 				>
 					Конструктор тестов
 				</NavLink>
 			</div>
-			<div
+			<button
 				className={css.profile}
+				onClick={onProfileClick}
+				type="button"
 			>
 				<p>{login}</p>
 				<div className={css.avatar} />
-			</div>
+			</button>
 		</div>
 	);
 };

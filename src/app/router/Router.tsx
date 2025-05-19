@@ -7,6 +7,7 @@ import { PassingTestPage } from '../../pages/passing-test';
 import { TestConstructorPage } from '../../pages/test-constructor';
 import { AuthorizationPage } from '../../pages/auth/login';
 import { RegistrationPage } from '../../pages/auth/registration';
+import { ProfilePage } from '../../pages/profile';
 
 const Router = () => {
 	const location = useLocation();
@@ -22,6 +23,7 @@ const Router = () => {
 				<Route path="/library-questions" element={<LibraryQuestionsPage />} />
 				<Route path="/test-constructor" element={<TestConstructorPage />} />
 				<Route path="/test/:id" element={<PassingTestPage />} />
+				<Route path="/profile/:id" element={<ProfilePage />} />
 			</Routes>
 		</div>
 	);

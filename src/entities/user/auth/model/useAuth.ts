@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { authActions } from './authSlice';
-import { AppDispatch } from '../../../../../../testing-system-web/src/app/store';
+import { AppDispatch } from '../../../../app/store';
 
 export const useAuth = () => {
 	const dispatch: AppDispatch = useDispatch();
