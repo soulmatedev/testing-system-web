@@ -5,6 +5,7 @@ import { testAPI } from '../../../../entities/tests/api/api';
 import { TestTabs } from '../tabs';
 import { testTabs } from '../tabs/model/data';
 import { ALL_TESTS_TAB, COMPLETED_TESTS_TAB } from '../tabs/model/consts';
+import { CompletedTestList } from './completed-tests-list';
 
 export const TestListBlock = () => {
 	const userId = localStorage.getItem('id');
@@ -19,7 +20,7 @@ export const TestListBlock = () => {
 		skip: !shouldFetchCompletedTests,
 	});
 
-	const filteredAllTests = allTests?.filter(test => test.status !== 'completed') ?? [];
+	const filteredAllTests = allTests?.filter(test => test.status !== 'Завершен') ?? [];
 
 	const hasTests = ((activeTab === ALL_TESTS_TAB ? filteredAllTests : completedTests)?.length ?? 0) > 0;
 
@@ -46,7 +47,7 @@ export const TestListBlock = () => {
 				{activeTab === ALL_TESTS_TAB ? (
 					<TestList data={filteredAllTests} />
 				) : (
-					<TestList data={completedTests} />
+					<CompletedTestList data={completedTests} />
 				)}
 			</div>
 		</div>

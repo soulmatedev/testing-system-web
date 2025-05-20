@@ -1,0 +1,41 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  min-height: 45px;
+  cursor: pointer;
+
+  border: var(--border-top);
+
+  padding: var(--item-padding);
+
+  p {
+    font-size: var(--font-size-s);
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: start;
+    text-overflow: ellipsis;
+    font-weight: var(--font-weight-regular);
+  }
+
+  .name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px;
+  }
+
+  .description {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 300px;
+  }
+}
+
+.selected {
+  border-color: var(--second-font-color);
+}
+

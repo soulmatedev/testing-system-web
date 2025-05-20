@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import css from './test-info-modal.module.scss';
+import css from './completed-tests-modal.module.scss';
 import { Modal } from '../../../../../shared/ui/modal';
 import { SecondButton } from '../../../../../shared/ui/second-button';
 import { MainButton } from '../../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../../../../passing-test/ui/modal';
 import { useDeleteTest } from '../../../hooks/useDeleteTest';
+import { ResultTestModal } from '../result-test-modal';
 
 interface SelectQuestionsModalProps {
 	id: number | null,
@@ -16,7 +17,7 @@ interface SelectQuestionsModalProps {
 	closeFunc: (active: boolean) => void,
 }
 
-export const TestInfoModal = (props: SelectQuestionsModalProps) => {
+export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 	const {
 		id,
 		name,
@@ -26,8 +27,7 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 		closeFunc,
 	} = props;
 
-	const navigate = useNavigate();
-
+	const [isTestResultModalOpen, setTestResultModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const [testToDelete, setTestToDelete] = useState<number | null>(null);
 
@@ -51,8 +51,12 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 		setTestToDelete(null);
 	};
 
-	const handleNavigateToTest = () => {
-		navigate(`/test/${id}`);
+	const onResultClick = () => {
+		setTestResultModalOpen(true);
+	};
+
+	const closeTestResultModal = () => {
+		setTestResultModalOpen(false);
 	};
 
 	return (
@@ -60,6 +64,7 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 			<Modal
 				active={active}
 				closeFunc={closeFunc}
+				modalInModalActive={isTestResultModalOpen}
 			>
 				<div className={css.wrapper}>
 					<div>
@@ -84,9 +89,9 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 							onClick={() => handleDeleteClick(id!)}
 						/>
 						<MainButton
-							text="Перейти к тесту"
+							text="Результаты"
 							height={32}
-							onClick={handleNavigateToTest}
+							onClick={onResultClick}
 						/>
 					</div>
 				</div>
@@ -96,6 +101,10 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 				onConfirm={confirmDelete}
 				onCancel={cancelDelete}
 				message="Вы уверены, что хотите удалить этот тест?"
+			/>
+			<ResultTestModal
+				active={isTestResultModalOpen}
+				closeFunc={closeTestResultModal}
 			/>
 		</>
 	);

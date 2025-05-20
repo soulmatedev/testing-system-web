@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import css from './list.module.scss';
 import { TestListItem } from './item';
 import { ITest } from '../../../../../entities/tests/api/types';
-import { TestInfoModal } from '../../modals/test-item-modal';
+import { CompletedTestsModal } from '../../modals/completed-tests-modal';
 
 interface TestListProps {
 	data: ITest[] | undefined;
 }
 
-export const TestList = ({ data }: TestListProps) => {
+export const CompletedTestList = ({ data }: TestListProps) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedTest, setSelectedTest] = useState<ITest | null>(null);
 
@@ -45,7 +45,7 @@ export const TestList = ({ data }: TestListProps) => {
 					</div>
 				)}
 			</div>
-			<TestInfoModal
+			<CompletedTestsModal
 				id={selectedTest?.id ?? null}
 				name={selectedTest?.name ?? ''}
 				description={selectedTest?.description ?? ''}
