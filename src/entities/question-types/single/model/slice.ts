@@ -47,7 +47,6 @@ export const singleChooseSlice = createSlice({
 		},
 		setQuestionCreated(state, action: PayloadAction<boolean>) {
 			state.questionCreated = action.payload;
-			console.log('Вопрос создан:', action.payload);
 		},
 
 	},

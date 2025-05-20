@@ -1,0 +1,44 @@
+.tabsBlock {
+  display: flex;
+  align-items: center;
+}
+
+.tab {
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  color: #212121;
+  padding: 4px 6px;
+  margin-right: 16px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--light-bg-color);
+    border-bottom: 2px solid var(--light-bg-color);
+  }
+
+}
+
+.activeTab {
+  border-bottom: 2px solid var(--second-font-color);
+  color: var(--second-font-color);
+
+  &:hover {
+    color: var(--second-font-color);
+    border-bottom: 2px solid var(--second-font-color);
+  }
+}
+
+.disabled {
+  color: #9E9E9E;
+  cursor: default !important;
+
+  &:hover {
+    color: #9E9E9E;
+    border-bottom: 2px solid transparent;
+  }
+}

@@ -35,12 +35,27 @@ export const testAPI = createApi({
 			}),
 			providesTags: ['test'],
 		}),
+		getCompletedTestsByUser: builder.query<ITest[], number>({
+			query: (userId) => ({
+				url: `${URI_TEST}/completed`,
+				method: 'GET',
+				params: { userId },
+			}),
+			providesTags: ['test'],
+		}),
 		getTestByUser: builder.query<ITest, number>({
 			query: (userId) => ({
 				url: `${URI_TEST}/${userId}`,
 				method: 'GET',
 			}),
 			providesTags: ['test'],
+		}),
+		completeTest: builder.mutation<void, { userId: number; testId: number }>({
+			query: ({ testId, userId }) => ({
+				url: `${URI_TEST}/${testId}/complete?userId=${userId}`,
+				method: 'PATCH',
+			}),
+			invalidatesTags: ['test'],
 		}),
 		delete: builder.mutation<void, { id: number }>({
 			query: ({ id }) => ({

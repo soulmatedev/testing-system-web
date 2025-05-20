@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from './test-list-block.module.scss';
 import { TestList } from './list';
 import { testAPI } from '../../../../entities/tests/api/api';
+import { TestTabs } from '../tabs';
+import { testTabs } from '../tabs/model/data';
+import { ALL_TESTS_TAB, COMPLETED_TESTS_TAB } from '../tabs/model/consts';
 
 export const TestListBlock = () => {
-	const { data } = testAPI.useGetTestsByUserQuery();
+	const userId = localStorage.getItem('id');
 
-	const hasTests = (data?.length ?? 0) > 0;
+	const [activeTab, setActiveTab] = useState(ALL_TESTS_TAB);
+
+	const shouldFetchCompletedTests = activeTab === COMPLETED_TESTS_TAB && Boolean(userId);
+
+	const { data: allTests } = testAPI.useGetTestsByUserQuery();
+
+	const { data: completedTests } = testAPI.useGetCompletedTestsByUserQuery(Number(userId), {
+		skip: !shouldFetchCompletedTests,
+	});
+
+	const filteredAllTests = allTests?.filter(test => test.status !== 'completed') ?? [];
+
+	const hasTests = ((activeTab === ALL_TESTS_TAB ? filteredAllTests : completedTests)?.length ?? 0) > 0;
 
 	return (
 		<div className={css.wrapper}>
 			<div className={css.header}>
 				<p>Список тестов</p>
 			</div>
+
+			<TestTabs
+				data={testTabs}
+				activeName={activeTab}
+				onTabChange={setActiveTab}
+			/>
+
 			<div className={css.block}>
 				{hasTests && (
 					<div className={css.headers}>
@@ -20,7 +42,12 @@ export const TestListBlock = () => {
 						<div>Описание</div>
 					</div>
 				)}
-				<TestList data={data} />
+
+				{activeTab === ALL_TESTS_TAB ? (
+					<TestList data={filteredAllTests} />
+				) : (
+					<TestList data={completedTests} />
+				)}
 			</div>
 		</div>
 	);

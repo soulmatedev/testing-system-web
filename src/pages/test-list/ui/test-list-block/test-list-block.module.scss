@@ -4,7 +4,7 @@
 }
 
 .header {
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   p {
     font-size: var(--font-size-xxl);
   }
@@ -13,6 +13,7 @@
   min-width: var(--block-min-width);
   background-color: var(--block-bg-color);
   border-radius: var(--block-border-radius);
+  margin-top: var(--gap-m);
 
   .headers {
     display: grid;

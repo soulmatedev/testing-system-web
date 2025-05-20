@@ -18,7 +18,15 @@ export const TestListItem = (props: TestListItemProps) => {
 	} = props;
 
 	return (
-		<button className={`${css.wrapper} ${isSelected ? css.selected : ''}`} onClick={onClick} type="button">
+		<div
+			role="button"
+			tabIndex={0}
+			className={`${css.wrapper} ${isSelected ? css.selected : ''}`}
+			onClick={onClick}
+			onKeyDown={(e) => {
+				if (e.key === 'Enter' || e.key === ' ') onClick?.();
+			}}
+		>
 			<p className={css.name}>{title}</p>
 			<p className={css.description}>{description}</p>
 			<button
@@ -27,6 +35,6 @@ export const TestListItem = (props: TestListItemProps) => {
 			>
 				<RightIcon />
 			</button>
-		</button>
+		</div>
 	);
 };

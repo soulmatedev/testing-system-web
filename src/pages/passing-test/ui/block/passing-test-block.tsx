@@ -6,13 +6,17 @@ import { MainButton } from '../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../modal';
 import { testAPI } from '../../../../entities/tests/api/api';
 import { IAnswer } from '../../../../entities/answers/api/types';
-import { useDeleteTest } from '../../../test-list/hooks/useDeleteTest';
 
 export const PassingTestBlock = () => {
 	const { id } = useParams<{ id: string }>();
 
+	const userId = localStorage.getItem('id');
+
 	const { data } = testAPI.useGetTestByUserQuery(Number(id));
-	const { onDeleteTest } = useDeleteTest();
+
+	const [completeTest] = testAPI.useCompleteTestMutation();
+
+	// const { onDeleteTest } = useDeleteTest();
 
 	const navigate = useNavigate();
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -44,11 +48,16 @@ export const PassingTestBlock = () => {
 		setIsModalOpen(true);
 	};
 
-	const handleConfirmFinish = () => {
+	const handleConfirmFinish = async () => {
 		setIsModalOpen(false);
-		navigate('/test-list');
-		onDeleteTest(Number(id));
-		toast.success('Тест завершен успешно');
+		try {
+			await completeTest({ testId: Number(id), userId: Number(userId) }).unwrap();
+			toast.success('Тест завершен успешно');
+			navigate('/test-list');
+		} catch (error) {
+			toast.error('Ошибка при завершении теста');
+			console.error(error);
+		}
 	};
 
 	const handleCancelFinish = () => {
