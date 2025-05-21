@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import {
-	URI_CREATE_TEST, URI_TEST,
+	URI_CREATE_TEST, URI_RESULTS_TEST, URI_TEST,
 } from './consts';
 import {
 	ICreateTestRequest, ICreateTestResponse, ITest, IUpdateTestRequest,
@@ -37,7 +37,7 @@ export const testAPI = createApi({
 		}),
 		getCompletedTestsByUser: builder.query<ITest[], number>({
 			query: (userId) => ({
-				url: `${URI_TEST}/completed`,
+				url: `${URI_RESULTS_TEST}/results`,
 				method: 'GET',
 				params: { userId },
 			}),
@@ -52,7 +52,7 @@ export const testAPI = createApi({
 		}),
 		completeTest: builder.mutation<void, { userId: number; testId: number }>({
 			query: ({ testId, userId }) => ({
-				url: `${URI_TEST}/${testId}/complete?userId=${userId}`,
+				url: `${URI_RESULTS_TEST}/${testId}/complete?userId=${userId}`,
 				method: 'PATCH',
 			}),
 			invalidatesTags: ['test'],

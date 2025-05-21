@@ -2,4 +2,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: calc(var(--height-with-navbar) - var(--navbar-height));
 }
