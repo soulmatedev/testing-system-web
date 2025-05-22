@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import css from './completed-tests-modal.module.scss';
 import { Modal } from '../../../../../shared/ui/modal';
 import { SecondButton } from '../../../../../shared/ui/second-button';

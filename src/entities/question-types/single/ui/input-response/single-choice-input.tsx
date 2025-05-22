@@ -11,7 +11,6 @@ interface SingleChoiceInputResponseProps {
 	onDelete: (id: number) => void,
 	onAnswerChange: (answer: IAnswer) => void,
 	onSelect: (id: number) => void,
-	selected: boolean,
 }
 
 export const SingleChoiceInput = ({
@@ -19,11 +18,9 @@ export const SingleChoiceInput = ({
 	onDelete,
 	onAnswerChange,
 	onSelect,
-	selected,
 }: SingleChoiceInputResponseProps) => {
 	const [inputText, setInputText] = useState(answer.text);
 	const [weight, setWeight] = useState(answer.weight);
-	const [isCorrect, setIsCorrect] = useState(answer.isCorrect);
 
 	const updateResponseText = (e: ChangeEvent<HTMLInputElement>) => {
 		setInputText(e.target.value);
@@ -41,16 +38,7 @@ export const SingleChoiceInput = ({
 		});
 	};
 
-	const updateResponseIsCorrect = (checked: boolean) => {
-		setIsCorrect(checked);
-		onAnswerChange({
-			...answer,
-			isCorrect: checked,
-		});
-	};
-
-	const handleCheckboxChange = (checked: boolean) => {
-		updateResponseIsCorrect(checked);
+	const handleCheckboxChange = () => {
 		onSelect(answer.id);
 	};
 
@@ -62,7 +50,7 @@ export const SingleChoiceInput = ({
 				showCheckbox
 				value={inputText}
 				onChange={updateResponseText}
-				checked={isCorrect}
+				checked={answer.isCorrect}
 				onCheckboxChange={handleCheckboxChange}
 			/>
 			<WeightDropdown

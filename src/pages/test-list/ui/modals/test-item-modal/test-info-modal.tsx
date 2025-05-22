@@ -6,6 +6,7 @@ import { SecondButton } from '../../../../../shared/ui/second-button';
 import { MainButton } from '../../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../../../../passing-test/ui/modal';
 import { useDeleteTest } from '../../../hooks/useDeleteTest';
+import { useTest } from '../../../../../entities/tests/model/hooks/useTest';
 
 interface SelectQuestionsModalProps {
 	id: number | null,

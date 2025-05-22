@@ -5,9 +5,9 @@ import {
 	FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
 import { v4 as uuid } from 'uuid';
-import { SERVER_ENVIRONMENT_DEV } from '../../api/API';
+import { BASE_API_URL, SERVER_ENVIRONMENT_DEV } from '../../api/API';
 
-const BASE_API_URL_DEV = 'http://localhost:25504/api/';
+const BASE_API_URL_DEV = 'https://a.service-to.ru/api/';
 
 export const providesList = <R extends { id: string | number }[], T extends string>(
 	resultsWithIds: R | undefined,
@@ -74,7 +74,7 @@ export const baseQuery: BaseQueryFn<
 	if (result.error && result.error.status === 401) {
 		localStorage.removeItem('token');
 		sessionStorage.removeItem('token');
-		window.location.href = 'http://localhost:3000/';
+		window.location.href = BASE_API_URL;
 	}
 
 	return result;

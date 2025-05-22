@@ -19,6 +19,7 @@ export const testAPI = createApi({
 				method: 'POST',
 				body: { ...data },
 			}),
+			invalidatesTags: ['test'],
 		}),
 		update: builder.mutation<void, IUpdateTestRequest>({
 			query: ({ id, ...data }) => ({
@@ -37,7 +38,8 @@ export const testAPI = createApi({
 		}),
 		getCompletedTestsByUser: builder.query<ITest[], number>({
 			query: (userId) => ({
-				url: `${URI_RESULTS_TEST}/results`,
+				url: `${URI_TEST}/completed`,
+				// url: `${URI_RESULTS_TEST}/results`,
 				method: 'GET',
 				params: { userId },
 			}),
@@ -52,7 +54,8 @@ export const testAPI = createApi({
 		}),
 		completeTest: builder.mutation<void, { userId: number; testId: number }>({
 			query: ({ testId, userId }) => ({
-				url: `${URI_RESULTS_TEST}/${testId}/complete?userId=${userId}`,
+				url: `${URI_TEST}/${testId}/complete?userId=${userId}`,
+				// url: `${URI_RESULTS_TEST}/${testId}/complete?userId=${userId}`,
 				method: 'PATCH',
 			}),
 			invalidatesTags: ['test'],

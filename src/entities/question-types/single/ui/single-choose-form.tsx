@@ -13,19 +13,13 @@ export const SingleChooseForm = () => {
 	const [selectedResponseId, setSelectedResponseId] = useState<number | null>(null);
 
 	const handleSelectResponse = (id: number) => {
-		if (selectedResponseId === id) {
-			updateAnswerCorrectness(id, false);
-			setSelectedResponseId(null);
-		} else {
-			setSelectedResponseId(id);
-			answers.forEach((answer) => {
-				if (answer.id === id) {
-					updateAnswerCorrectness(id, true);
-				} else {
-					updateAnswerCorrectness(answer.id, false);
-				}
+		answers.forEach((answer) => {
+			const isSelected = answer.id === id;
+			updateResponseAnswer({
+				...answer,
+				isCorrect: isSelected,
 			});
-		}
+		});
 	};
 
 	return (
@@ -38,7 +32,6 @@ export const SingleChooseForm = () => {
 						onDelete={removeAnswer}
 						onAnswerChange={updateResponseAnswer}
 						onSelect={handleSelectResponse}
-						selected={selectedResponseId === answer.id}
 					/>
 				</div>
 			))}

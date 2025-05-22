@@ -24,6 +24,9 @@ export const TestListBlock = () => {
 
 	const hasTests = ((activeTab === ALL_TESTS_TAB ? filteredAllTests : completedTests)?.length ?? 0) > 0;
 
+	console.log('allTests', allTests);
+	console.log('filteredAllTests', filteredAllTests);
+
 	return (
 		<div className={css.wrapper}>
 			<div className={css.header}>
