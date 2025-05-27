@@ -33,15 +33,17 @@ export const TestList = ({ data }: TestListProps) => {
 					</div>
 				) : (
 					<div className={css.block}>
-						{testArray.map((test) => (
-							<TestListItem
-								key={test.id}
-								title={test.name}
-								description={test.description}
-								isSelected={selectedTest?.id === test.id}
-								onClick={() => openTestInfoModal(test)}
-							/>
-						))}
+						{testArray
+							.filter((test) => test.name.trim() !== '')
+							.map((test) => (
+								<TestListItem
+									key={test.id}
+									title={test.name}
+									description={test.description}
+									isSelected={selectedTest?.id === test.id}
+									onClick={() => openTestInfoModal(test)}
+								/>
+							))}
 					</div>
 				)}
 			</div>

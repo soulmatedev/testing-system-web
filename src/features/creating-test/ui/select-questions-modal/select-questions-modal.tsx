@@ -6,16 +6,16 @@ import { IQuestion } from '../../../../entities/questions/api/types';
 import { QuestionList } from '../../../question-constructor-form/ui/question-list';
 import { useAppDispatch } from '../../../../shared/libs/utils/redux';
 import { testActions } from '../../../../entities/tests/model/slices/testSlice';
+import { SearchBar } from '../search';
+import { useFilteredQuestions } from '../../hooks/useFilteredQuestions';
 
 interface SelectQuestionsModalProps {
-	active: boolean,
-	closeFunc: (active: boolean) => void,
-	testId: number,
+	active: boolean;
+	closeFunc: (active: boolean) => void;
+	testId: number;
 }
 
-export const SelectQuestionsModal = (props: SelectQuestionsModalProps) => {
-	const { active, closeFunc, testId } = props;
-
+export const SelectQuestionsModal = ({ active, closeFunc, testId }: SelectQuestionsModalProps) => {
 	const dispatch = useAppDispatch();
 
 	const { data } = questionAPI.useGetAllQuery({
@@ -28,6 +28,9 @@ export const SelectQuestionsModal = (props: SelectQuestionsModalProps) => {
 	const [unbind] = questionAPI.useUnbindMutation();
 
 	const [selectedIds, setSelectedIds] = useState<number[]>([]);
+	const [search, setSearch] = useState('');
+
+	const filteredData = useFilteredQuestions(data, search);
 
 	const toggleSelect = async (id: number) => {
 		const isSelected = selectedIds.includes(id);
@@ -35,10 +38,10 @@ export const SelectQuestionsModal = (props: SelectQuestionsModalProps) => {
 		try {
 			if (isSelected) {
 				await unbind({ questionId: id, testId }).unwrap();
-				setSelectedIds((prev) => prev.filter((qId) => qId !== id));
+				setSelectedIds(prev => prev.filter(qId => qId !== id));
 			} else {
 				await bind({ questionId: id, testId }).unwrap();
-				setSelectedIds((prev) => [...prev, id]);
+				setSelectedIds(prev => [...prev, id]);
 			}
 
 			dispatch(questionAPI.util.invalidateTags(['questionAPI']));
@@ -57,10 +60,7 @@ export const SelectQuestionsModal = (props: SelectQuestionsModalProps) => {
 	};
 
 	return (
-		<Modal
-			active={active}
-			closeFunc={closeFunc}
-		>
+		<Modal active={active} closeFunc={closeFunc}>
 			<div className={css.header}>
 				<p className={css.title}>Список всех вопросов</p>
 				<p className={css.selected_questions}>
@@ -70,12 +70,15 @@ export const SelectQuestionsModal = (props: SelectQuestionsModalProps) => {
 					{' '}
 					из
 					{' '}
-					{ data?.length || 0 }
+					{data?.length || 0}
 				</p>
 			</div>
+
+			<SearchBar tagName={search} onTagNameChange={e => setSearch(e.target.value)} />
+
 			<div className={css.questions}>
-				{data && data.length > 0 ? (
-					data.map((question: IQuestion) => (
+				{filteredData.length > 0 ? (
+					filteredData.map((question: IQuestion) => (
 						<QuestionList
 							key={question.id}
 							question={question}
@@ -85,9 +88,7 @@ export const SelectQuestionsModal = (props: SelectQuestionsModalProps) => {
 						/>
 					))
 				) : (
-					<div className={css.no_questions}>
-						Нет доступных вопросов
-					</div>
+					<div className={css.no_questions}>Нет доступных вопросов</div>
 				)}
 			</div>
 		</Modal>

@@ -88,6 +88,16 @@ export const TestBlock = () => {
 			questions: questions.map(q => q.id),
 		};
 
+		if (title === '') {
+			toast.error('Введите название теста');
+			return;
+		}
+
+		if (!questions || questions.length === 0) {
+			toast.error('Выберите вопросы для теста');
+			return;
+		}
+
 		try {
 			await update(payload).unwrap();
 

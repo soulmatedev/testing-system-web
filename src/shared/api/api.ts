@@ -7,7 +7,8 @@ import {
 import { v4 as uuid } from 'uuid';
 import { BASE_API_URL, SERVER_ENVIRONMENT_DEV } from '../../api/API';
 
-const BASE_API_URL_DEV = 'https://a.service-to.ru/api/';
+// const BASE_API_URL_DEV = 'https://a.service-to.ru/api/';
+const BASE_API_URL_DEV = 'http://localhost:25504/api/';
 
 export const providesList = <R extends { id: string | number }[], T extends string>(
 	resultsWithIds: R | undefined,
