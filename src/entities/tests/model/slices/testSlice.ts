@@ -7,6 +7,8 @@ interface ITestState {
 	description: string;
 	questions: IQuestion[];
 	tests: ICreateTestRequest[];
+	correctAnswersCount: number;
+	totalQuestionsCount: number;
 }
 
 const initialState: ITestState = {
@@ -14,6 +16,8 @@ const initialState: ITestState = {
 	description: '',
 	questions: [],
 	tests: [],
+	correctAnswersCount: 0,
+	totalQuestionsCount: 0,
 };
 
 const testSlice = createSlice({
@@ -46,6 +50,12 @@ const testSlice = createSlice({
 		},
 		setTests(state, action: PayloadAction<ICreateTestRequest[]>) {
 			state.tests = action.payload;
+		},
+		setCorrectAnswersCount(state, action: PayloadAction<number>) {
+			state.correctAnswersCount = action.payload;
+		},
+		setTotalQuestionsCount(state, action: PayloadAction<number>) {
+			state.totalQuestionsCount = action.payload;
 		},
 		resetTest(state) {
 			state.name = '';

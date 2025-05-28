@@ -6,6 +6,7 @@ import { MainButton } from '../../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../../../../passing-test/ui/modal';
 import { useDeleteTest } from '../../../hooks/useDeleteTest';
 import { ResultTestModal } from '../result-test-modal';
+import { testAPI } from '../../../../../entities/tests/api/api';
 
 interface SelectQuestionsModalProps {
 	id: number | null,
@@ -25,6 +26,9 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 		active,
 		closeFunc,
 	} = props;
+
+	const userId = Number(localStorage.getItem('id'));
+	const { data: testResult } = testAPI.useGetTestResultQuery({ testId: id, userId });
 
 	const [isTestResultModalOpen, setTestResultModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -104,6 +108,7 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 			<ResultTestModal
 				active={isTestResultModalOpen}
 				closeFunc={closeTestResultModal}
+				result={testResult}
 			/>
 		</>
 	);

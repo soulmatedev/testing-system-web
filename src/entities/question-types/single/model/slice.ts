@@ -20,7 +20,6 @@ export const singleChooseSlice = createSlice({
 		addAnswer(state, action: PayloadAction<IAnswer>) {
 			state.answers = [...state.answers, action.payload];
 			state.addedOption = true;
-			console.log('Ответ добавлен:', action.payload);
 		},
 		removeAnswer(state, action: PayloadAction<number>) {
 			state.answers = state.answers.filter(answer => answer.id !== action.payload);

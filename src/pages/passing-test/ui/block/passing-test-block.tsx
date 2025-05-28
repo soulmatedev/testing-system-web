@@ -6,17 +6,19 @@ import { MainButton } from '../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../modal';
 import { testAPI } from '../../../../entities/tests/api/api';
 import { IAnswer } from '../../../../entities/answers/api/types';
+import { useAppDispatch } from '../../../../shared/libs/utils/redux';
+import { testActions } from '../../../../entities/tests/model/slices/testSlice';
 
 export const PassingTestBlock = () => {
 	const { id } = useParams<{ id: string }>();
+
+	const dispatch = useAppDispatch();
 
 	const userId = localStorage.getItem('id');
 
 	const { data } = testAPI.useGetTestByUserQuery(Number(id));
 
 	const [completeTest] = testAPI.useCompleteTestMutation();
-
-	// const { onDeleteTest } = useDeleteTest();
 
 	const navigate = useNavigate();
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -50,8 +52,33 @@ export const PassingTestBlock = () => {
 
 	const handleConfirmFinish = async () => {
 		setIsModalOpen(false);
+
+		let correctCount = 0;
+
+		const totalQuestionsCount = test.questions.length;
+
+		test.questions.forEach((question) => {
+			const userAnswer = selectedAnswers[question.id];
+
+			const correctAnswers = question.answers
+				.filter((answer) => answer.isCorrect)
+				.map((a) => a.id);
+
+			if (correctAnswers.includes(userAnswer!)) {
+				correctCount++;
+			}
+		});
+
+		dispatch(testActions.setCorrectAnswersCount(correctCount));
+		dispatch(testActions.setTotalQuestionsCount(totalQuestionsCount));
+
 		try {
-			await completeTest({ testId: Number(id), userId: Number(userId) }).unwrap();
+			await completeTest({
+				testId: Number(id),
+				userId: Number(userId),
+				questionsTotal: totalQuestionsCount,
+				correctAnswers: correctCount,
+			});
 			toast.success('Тест завершен успешно');
 			navigate('/test-list');
 		} catch (error) {
