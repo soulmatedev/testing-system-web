@@ -17,6 +17,8 @@ export const ResultTestModal = (props: ResultTestModalProps) => {
 		result,
 	} = props;
 
+	const login = localStorage.getItem('login');
+
 	return (
 		<Modal
 			active={active}
@@ -38,7 +40,7 @@ export const ResultTestModal = (props: ResultTestModalProps) => {
 				</div>
 				<div>
 					<p className={css.title}>Выполнил</p>
-					<p className={css.completed}>soulmate</p>
+					<p className={css.completed}>{login}</p>
 				</div>
 				<div>
 					<p className={css.title}>Дата и время завершения</p>
