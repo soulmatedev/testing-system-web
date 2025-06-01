@@ -53,13 +53,6 @@ export const SingleChoiceInput = ({
 				checked={answer.isCorrect}
 				onCheckboxChange={handleCheckboxChange}
 			/>
-			<WeightDropdown
-				placeholder="Вес"
-				width={65}
-				height={36}
-				value={weight as WeightValues}
-				onChange={updateResponseWeight}
-			/>
 			<div className={css.delete}>
 				<TrashIcon className={css.trash_icon} onClick={() => onDelete(answer.id)} />
 			</div>

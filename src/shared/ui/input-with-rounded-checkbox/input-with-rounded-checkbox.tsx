@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import { Hint } from '@skbkontur/react-ui';
 import css from './input-with-rounded-checkbox.module.scss';
 
 interface InputProps {
@@ -41,12 +42,14 @@ export const InputWithRoundedCheckbox = (props: InputProps) => {
 				onChange={onChange}
 			/>
 			{showCheckbox && (
-				<input
-					type="checkbox"
-					className={css.checkbox}
-					checked={checked}
-					onChange={handleCheckboxChange}
-				/>
+				<Hint text="Верный ответ">
+					<input
+						type="checkbox"
+						className={css.checkbox}
+						checked={checked}
+						onChange={handleCheckboxChange}
+					/>
+				</Hint>
 			)}
 		</div>
 	);

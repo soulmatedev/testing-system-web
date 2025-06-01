@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import css from './single-choose-form.module.scss';
 import { SingleChoiceInput } from './input-response';
 import { useSingleChoose } from '../model';
-import { CompetenciesList } from './competencies-list';
 import { CreateAnswerButton } from './create-answer-button';
 
 export const SingleChooseForm = () => {
 	const {
-		answers, addAnswer, removeAnswer, updateResponseAnswer, updateAnswerCorrectness,
+		answers, addAnswer, removeAnswer, updateResponseAnswer,
 	} = useSingleChoose();
-
-	const [selectedResponseId, setSelectedResponseId] = useState<number | null>(null);
 
 	const handleSelectResponse = (id: number) => {
 		answers.forEach((answer) => {
@@ -26,7 +23,6 @@ export const SingleChooseForm = () => {
 		<div className={css.wrapper}>
 			{answers.map((answer) => (
 				<div className={css.item} key={answer.id}>
-					<CompetenciesList answerId={answer.id} />
 					<SingleChoiceInput
 						answer={answer}
 						onDelete={removeAnswer}
