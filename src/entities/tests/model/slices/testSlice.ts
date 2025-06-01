@@ -10,6 +10,8 @@ interface ITestState {
 	correctAnswersCount: number;
 	totalQuestionsCount: number;
 	selectedUserId: number | null;
+
+	isTestResultModalActive: boolean,
 }
 
 const initialState: ITestState = {
@@ -20,6 +22,8 @@ const initialState: ITestState = {
 	correctAnswersCount: 0,
 	totalQuestionsCount: 0,
 	selectedUserId: null,
+
+	isTestResultModalActive: false,
 };
 
 const testSlice = createSlice({
@@ -27,8 +31,12 @@ const testSlice = createSlice({
 	initialState,
 	selectors: {
 		getSelectedUserId: (state) => state.selectedUserId,
+		getIsTestResultModalActive: (state) => state.isTestResultModalActive || false,
 	},
 	reducers: {
+		setIsTestResultModalActive: (state, action: PayloadAction<boolean>) => {
+			state.isTestResultModalActive = action.payload;
+		},
 		setTitle(state, action: PayloadAction<string>) {
 			state.name = action.payload;
 		},

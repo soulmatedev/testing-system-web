@@ -7,6 +7,8 @@ import { ConfirmationModal } from '../../../../passing-test/ui/modal';
 import { useDeleteTest } from '../../../hooks/useDeleteTest';
 import { ResultTestModal } from '../result-test-modal';
 import { testAPI } from '../../../../../entities/tests/api/api';
+import { useAppDispatch, useAppSelector } from '../../../../../shared/libs/utils/redux';
+import { testActions, testSelectors } from '../../../../../entities/tests/model/slices/testSlice';
 
 interface SelectQuestionsModalProps {
 	id: number | null,
@@ -27,10 +29,13 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 		closeFunc,
 	} = props;
 
+	const dispatch = useAppDispatch();
+
+	const isTestResultModalOpen = useAppSelector(testSelectors.getIsTestResultModalActive);
+
 	const userId = Number(localStorage.getItem('id'));
 	const { data: testResult } = testAPI.useGetTestResultQuery({ testId: id, userId });
 
-	const [isTestResultModalOpen, setTestResultModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const [testToDelete, setTestToDelete] = useState<number | null>(null);
 
@@ -55,11 +60,11 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 	};
 
 	const onResultClick = () => {
-		setTestResultModalOpen(true);
+		dispatch(testActions.setIsTestResultModalActive(true));
 	};
 
-	const closeTestResultModal = () => {
-		setTestResultModalOpen(false);
+	const onClose = () => {
+		dispatch(testActions.setIsTestResultModalActive(false));
 	};
 
 	return (
@@ -106,9 +111,8 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 				message="Вы уверены, что хотите удалить этот тест?"
 			/>
 			<ResultTestModal
-				active={isTestResultModalOpen}
-				closeFunc={closeTestResultModal}
 				result={testResult}
+				onClose={onClose}
 			/>
 		</>
 	);

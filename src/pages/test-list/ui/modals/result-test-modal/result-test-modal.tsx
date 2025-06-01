@@ -3,26 +3,28 @@ import css from './result-test-modal.module.scss';
 import { Modal } from '../../../../../shared/ui/modal';
 import { ITestResult } from '../../../../../entities/tests/api/types';
 import { formatDate } from '../../../../../shared/libs/utils/formatDate';
+import { useAppSelector } from '../../../../../shared/libs/utils/redux';
+import { testSelectors } from '../../../../../entities/tests/model/slices/testSlice';
 
 interface ResultTestModalProps {
-	active: boolean,
-	closeFunc: (active: boolean) => void,
 	result?: ITestResult,
+	onClose: () => void,
 }
 
 export const ResultTestModal = (props: ResultTestModalProps) => {
 	const {
-		active,
-		closeFunc,
 		result,
+		onClose,
 	} = props;
 
 	const login = localStorage.getItem('login');
 
+	const isActive = useAppSelector(testSelectors.getIsTestResultModalActive);
+
 	return (
 		<Modal
-			active={active}
-			closeFunc={closeFunc}
+			active={isActive}
+			closeFunc={onClose}
 		>
 			<p className={css.header}>Результаты</p>
 			<div className={css.wrapper}>

@@ -6,6 +6,7 @@ import { TestTabs } from '../tabs';
 import { testTabs } from '../tabs/model/data';
 import { ALL_TESTS_TAB, COMPLETED_TESTS_TAB } from '../tabs/model/consts';
 import { CompletedTestList } from './completed-tests-list';
+import { ResultTestModal } from '../modals/result-test-modal';
 
 export const TestListBlock = () => {
 	const userId = localStorage.getItem('id');

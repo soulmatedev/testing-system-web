@@ -8,22 +8,26 @@ import { testAPI } from '../../../../entities/tests/api/api';
 import { IAnswer } from '../../../../entities/answers/api/types';
 import { useAppDispatch } from '../../../../shared/libs/utils/redux';
 import { testActions } from '../../../../entities/tests/model/slices/testSlice';
+import { ResultTestModal } from '../../../test-list/ui/modals/result-test-modal';
 
 export const PassingTestBlock = () => {
 	const { id } = useParams<{ id: string }>();
 
 	const dispatch = useAppDispatch();
 
-	const userId = localStorage.getItem('id');
+	const userId = Number(localStorage.getItem('id'));
 
 	const { data } = testAPI.useGetTestByUserQuery(Number(id));
 
 	const [completeTest] = testAPI.useCompleteTestMutation();
 
-	const navigate = useNavigate();
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: number | null }>({});
+
+	const { data: testResult } = testAPI.useGetTestResultQuery({ testId: Number(id), userId });
+
+	const navigate = useNavigate();
 
 	const test = data;
 
@@ -80,11 +84,17 @@ export const PassingTestBlock = () => {
 				correctAnswers: correctCount,
 			});
 			toast.success('Тест завершен успешно');
-			navigate('/test-list');
+
+			dispatch(testActions.setIsTestResultModalActive(true));
 		} catch (error) {
 			toast.error('Ошибка при завершении теста');
 			console.error(error);
 		}
+	};
+
+	const onClose = () => {
+		dispatch(testActions.setIsTestResultModalActive(false));
+		navigate('/test-list');
 	};
 
 	const handleCancelFinish = () => {
@@ -119,7 +129,9 @@ export const PassingTestBlock = () => {
 						Вопрос
 						{' '}
 						{currentQuestionIndex + 1}
+						{' '}
 						/
+						{' '}
 						{questions.length}
 					</div>
 				</div>
@@ -167,6 +179,11 @@ export const PassingTestBlock = () => {
 				onConfirm={handleConfirmFinish}
 				onCancel={handleCancelFinish}
 				message="Вы уверены, что хотите завершить тест?"
+			/>
+
+			<ResultTestModal
+				result={testResult}
+				onClose={onClose}
 			/>
 		</div>
 	);
