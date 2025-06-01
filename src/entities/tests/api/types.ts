@@ -12,6 +12,7 @@ export interface ICreateTestRequest {
 	name: string;
 	description: string;
 	questions: number[];
+	userId: number;
 }
 
 export interface ICreateTestResponse {
@@ -32,6 +33,7 @@ export interface IUpdateTestRequest {
 	name: string;
 	description: string;
 	questions: number[];
+	userId: number;
 }
 
 export interface ICompleteTestRequest {

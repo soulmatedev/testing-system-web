@@ -21,6 +21,7 @@ export interface ISignUpRequest {
 }
 
 export interface IAccountResponse {
+	id: number;
 	email: string;
 	password: string;
 	login: string | null;

@@ -15,15 +15,26 @@ import { QuestionList } from '../../question-constructor-form/ui/question-list';
 import { useDeleteTest } from '../../../pages/test-list/hooks/useDeleteTest';
 import { ConfirmationModal } from '../../../pages/passing-test/ui/modal';
 import { useBlockExitWithModal } from '../../../pages/test-list/hooks/useBlockExitWithModal';
+import { ExecutorDropdown } from '../../executor-dropdown';
+import { authAPI } from '../../../entities/user/auth/api/api';
+import { useAppDispatch, useAppSelector } from '../../../shared/libs/utils/redux';
+import { testActions, testSelectors } from '../../../entities/tests/model/slices/testSlice';
 
 export const TestBlock = () => {
 	const navigate = useNavigate();
+
+	const dispatch = useAppDispatch();
+
+	const { data: executors } = authAPI.useGetAllUsersQuery();
+
+	const userId = Number(localStorage.getItem('id'));
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [testId, setTestId] = useState<number | null>(null);
 	const [testSaved, setTestSaved] = useState(false);
 	const [isExitModalOpen, setIsExitModalOpen] = useState(false);
 	const testCreated = useRef(false);
+	const [selectedExecutor, setSelectedExecutor] = useState<string>('');
 
 	const questions = useSelector(selectQuestions);
 	const title = useSelector(selectTitle);
@@ -36,6 +47,8 @@ export const TestBlock = () => {
 
 	const [createTest] = testAPI.useCreateTestMutation();
 	const [update] = testAPI.useUpdateMutation();
+
+	const selectedUserId = useAppSelector(testSelectors.getSelectedUserId);
 
 	const {
 		updateTitle,
@@ -52,6 +65,7 @@ export const TestBlock = () => {
 			name: '',
 			description: '',
 			questions: [],
+			userId,
 		})
 			.unwrap()
 			.then((res) => {
@@ -81,13 +95,6 @@ export const TestBlock = () => {
 	const onCreateTest = async () => {
 		if (!testId) return toast.error('Ошибка: тест не инициализирован');
 
-		const payload = {
-			id: testId,
-			name: title,
-			description,
-			questions: questions.map(q => q.id),
-		};
-
 		if (title === '') {
 			toast.error('Введите название теста');
 			return;
@@ -97,6 +104,19 @@ export const TestBlock = () => {
 			toast.error('Выберите вопросы для теста');
 			return;
 		}
+
+		if (selectedUserId === null) {
+			toast.error('Выберите исполнителя');
+			return;
+		}
+
+		const payload = {
+			id: testId,
+			name: title,
+			description,
+			questions: questions.map(q => q.id),
+			userId: selectedUserId,
+		};
 
 		try {
 			await update(payload).unwrap();
@@ -113,6 +133,15 @@ export const TestBlock = () => {
 			toast.error('Ошибка при сохранении теста');
 		}
 	};
+
+	useEffect(() => {
+		if (!selectedExecutor || !executors) return;
+
+		const selectedUser = executors.find((user) => user.email === selectedExecutor);
+		if (selectedUser) {
+			dispatch(testActions.setSelectedUserId(selectedUser.id));
+		}
+	}, [selectedExecutor, executors, dispatch]);
 
 	return (
 		<>
@@ -132,6 +161,14 @@ export const TestBlock = () => {
 								height={32}
 							/>
 						</div>
+					</div>
+					<div className={css.executor}>
+						Исполнитель:
+						<ExecutorDropdown
+							value={selectedExecutor}
+							onChange={setSelectedExecutor}
+							options={executors || []}
+						/>
 					</div>
 					<QuestionFormPanel
 						description={description}

@@ -9,6 +9,7 @@ interface ITestState {
 	tests: ICreateTestRequest[];
 	correctAnswersCount: number;
 	totalQuestionsCount: number;
+	selectedUserId: number | null;
 }
 
 const initialState: ITestState = {
@@ -18,11 +19,15 @@ const initialState: ITestState = {
 	tests: [],
 	correctAnswersCount: 0,
 	totalQuestionsCount: 0,
+	selectedUserId: null,
 };
 
 const testSlice = createSlice({
 	name: 'test',
 	initialState,
+	selectors: {
+		getSelectedUserId: (state) => state.selectedUserId,
+	},
 	reducers: {
 		setTitle(state, action: PayloadAction<string>) {
 			state.name = action.payload;
@@ -57,11 +62,15 @@ const testSlice = createSlice({
 		setTotalQuestionsCount(state, action: PayloadAction<number>) {
 			state.totalQuestionsCount = action.payload;
 		},
+		setSelectedUserId(state, action: PayloadAction<number | null>) {
+			state.selectedUserId = action.payload;
+		},
 		resetTest(state) {
 			state.name = '';
 			state.description = '';
 			state.questions = [];
 			state.tests = [];
+			state.selectedUserId = null;
 		},
 	},
 });
@@ -69,4 +78,5 @@ const testSlice = createSlice({
 export const {
 	actions: testActions,
 	reducer: testReducer,
+	selectors: testSelectors,
 } = testSlice;
