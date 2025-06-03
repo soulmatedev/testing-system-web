@@ -6,6 +6,7 @@ import { selectEmail, selectPassword } from '../../../../entities/user/auth/mode
 import { authAPI } from '../../../../entities/user/auth/api/api';
 import { ISignInRequest } from '../../../../entities/user/auth/api/types';
 import { authActions } from '../../../../entities/user/auth/model/authSlice';
+import { testAPI } from '../../../../entities/tests/api/api';
 
 export const useLogin = () => {
 	const navigate = useNavigate();
@@ -59,6 +60,7 @@ export const useLogin = () => {
 				navigate('/test-list');
 				toast.success('Авторизация прошла успешно');
 				dispatch(authActions.clearData());
+				dispatch(testAPI.util?.invalidateTags(['test']));
 			} else {
 				console.error('Токен не найден в ответе от сервера');
 			}
