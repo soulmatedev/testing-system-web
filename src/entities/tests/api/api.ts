@@ -45,6 +45,20 @@ export const testAPI = createApi({
 			}),
 			providesTags: ['test'],
 		}),
+		getAllCompletedTests: builder.query<ITest[], void>({
+			query: () => ({
+				url: `${URI_TEST}/all/completed`,
+				method: 'GET',
+			}),
+			providesTags: ['test'],
+		}),
+		getAllTests: builder.query<ITest[], void>({
+			query: () => ({
+				url: `${URI_TEST}/all`,
+				method: 'GET',
+			}),
+			providesTags: ['test'],
+		}),
 		getTestByUser: builder.query<ITest, number>({
 			query: (userId) => ({
 				url: `${URI_TEST}/${userId}`,

@@ -1,4 +1,5 @@
 import { IQuestion } from '../../questions/api/types';
+import { IUserResponse } from '../../user/auth/api/types';
 
 export interface ITest {
 	id: number;
@@ -6,6 +7,7 @@ export interface ITest {
 	description: string;
 	status: string;
 	questions: IQuestion[];
+	user: IUserResponse
 }
 
 export interface ICreateTestRequest {

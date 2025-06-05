@@ -51,6 +51,7 @@ export const TestList = ({ data }: TestListProps) => {
 				id={selectedTest?.id ?? null}
 				name={selectedTest?.name ?? ''}
 				description={selectedTest?.description ?? ''}
+				user={selectedTest?.user ?? null}
 				status={selectedTest?.status ?? ''}
 				active={isModalOpen}
 				closeFunc={closeTestInfoModal}

@@ -28,3 +28,10 @@ export interface IAccountResponse {
 	name: string | null;
 	role: number | null;
 }
+
+export interface IUserResponse {
+	id: number;
+	email: string;
+	login: string | null;
+	role: number | null;
+}

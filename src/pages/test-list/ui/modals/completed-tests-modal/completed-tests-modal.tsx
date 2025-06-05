@@ -9,11 +9,13 @@ import { ResultTestModal } from '../result-test-modal';
 import { testAPI } from '../../../../../entities/tests/api/api';
 import { useAppDispatch, useAppSelector } from '../../../../../shared/libs/utils/redux';
 import { testActions, testSelectors } from '../../../../../entities/tests/model/slices/testSlice';
+import { IUserResponse } from '../../../../../entities/user/auth/api/types';
 
 interface SelectQuestionsModalProps {
 	id: number | null,
 	name: string,
 	description: string,
+	user: IUserResponse | null,
 	status: string,
 	active: boolean,
 	closeFunc: (active: boolean) => void,
@@ -24,6 +26,7 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 		id,
 		name,
 		description,
+		user,
 		status,
 		active,
 		closeFunc,
@@ -90,6 +93,11 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 						<h1 className={css.status}>{status}</h1>
 					</div>
 
+					<div>
+						<p className={css.title}>Исполнитель</p>
+						<h1 className={css.status}>{user?.login}</h1>
+					</div>
+
 					<div className={css.options}>
 						<SecondButton
 							text="Удалить"
@@ -111,6 +119,7 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 				message="Вы уверены, что хотите удалить этот тест?"
 			/>
 			<ResultTestModal
+				user={user}
 				result={testResult}
 				onClose={onClose}
 			/>

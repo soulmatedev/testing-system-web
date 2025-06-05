@@ -6,24 +6,38 @@ import { TestTabs } from '../tabs';
 import { testTabs } from '../tabs/model/data';
 import { ALL_TESTS_TAB, COMPLETED_TESTS_TAB } from '../tabs/model/consts';
 import { CompletedTestList } from './completed-tests-list';
-import { ResultTestModal } from '../modals/result-test-modal';
 
 export const TestListBlock = () => {
 	const userId = localStorage.getItem('id');
+	const roleId = localStorage.getItem('role');
 
 	const [activeTab, setActiveTab] = useState(ALL_TESTS_TAB);
 
 	const shouldFetchCompletedTests = activeTab === COMPLETED_TESTS_TAB && Boolean(userId);
 
-	const { data: allTests } = testAPI.useGetTestsByUserQuery();
-
-	const { data: completedTests } = testAPI.useGetCompletedTestsByUserQuery(Number(userId), {
-		skip: !shouldFetchCompletedTests,
+	const { data: allTests } = testAPI.useGetAllTestsQuery(undefined, {
+		skip: roleId === '0',
 	});
 
-	const filteredAllTests = allTests?.filter(test => test.status !== 'Завершен') ?? [];
+	const { data: myTests } = testAPI.useGetTestsByUserQuery(undefined, {
+		skip: roleId !== '0',
+	});
 
-	const hasTests = ((activeTab === ALL_TESTS_TAB ? filteredAllTests : completedTests)?.length ?? 0) > 0;
+	const {
+		data: completedTestsByUser,
+	} = testAPI.useGetCompletedTestsByUserQuery(Number(userId), {
+		skip: !(roleId === '0' && shouldFetchCompletedTests),
+	});
+
+	const {
+		data: allCompletedTests,
+	} = testAPI.useGetAllCompletedTestsQuery(undefined, {
+		skip: !(roleId !== '0' && shouldFetchCompletedTests),
+	});
+
+	const filteredAllTests = (roleId === '0' ? myTests : allTests)?.filter(test => test.status !== 'Завершен') ?? [];
+
+	const completedTests = roleId === '0' ? completedTestsByUser : allCompletedTests;
 
 	return (
 		<div className={css.wrapper}>
@@ -38,7 +52,7 @@ export const TestListBlock = () => {
 			/>
 
 			<div className={css.block}>
-				{hasTests && (
+				{completedTests && (
 					<div className={css.headers}>
 						<div>Название</div>
 						<div>Описание</div>

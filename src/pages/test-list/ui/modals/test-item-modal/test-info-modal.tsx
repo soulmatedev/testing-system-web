@@ -6,10 +6,12 @@ import { SecondButton } from '../../../../../shared/ui/second-button';
 import { MainButton } from '../../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../../../../passing-test/ui/modal';
 import { useDeleteTest } from '../../../hooks/useDeleteTest';
+import { IUserResponse } from '../../../../../entities/user/auth/api/types';
 
 interface SelectQuestionsModalProps {
 	id: number | null,
 	name: string,
+	user: IUserResponse | null,
 	description: string,
 	status: string,
 	active: boolean,
@@ -20,6 +22,7 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 	const {
 		id,
 		name,
+		user,
 		description,
 		status,
 		active,
@@ -30,6 +33,9 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 	const [testToDelete, setTestToDelete] = useState<number | null>(null);
 
 	const { onDeleteTest } = useDeleteTest();
+
+	const login = localStorage.getItem('login');
+	const role = localStorage.getItem('role');
 
 	const navigate = useNavigate();
 
@@ -77,17 +83,24 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 						<h1 className={css.status}>{status}</h1>
 					</div>
 
+					<div>
+						<p className={css.title}>Исполнитель</p>
+						<h1 className={css.status}>{user?.login}</h1>
+					</div>
+
 					<div className={css.options}>
 						<SecondButton
 							text="Удалить"
 							height={32}
 							onClick={() => handleDeleteClick(id!)}
 						/>
-						<MainButton
-							text="Перейти к тесту"
-							height={32}
-							onClick={handleNavigateToTest}
-						/>
+						{user?.login === login && (
+							<MainButton
+								text="Перейти к тесту"
+								height={32}
+								onClick={handleNavigateToTest}
+							/>
+						)}
 					</div>
 				</div>
 			</Modal>
