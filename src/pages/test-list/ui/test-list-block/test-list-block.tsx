@@ -23,6 +23,8 @@ export const TestListBlock = () => {
 		skip: roleId !== '0',
 	});
 
+	console.log(myTests);
+
 	const {
 		data: completedTestsByUser,
 	} = testAPI.useGetCompletedTestsByUserQuery(Number(userId), {

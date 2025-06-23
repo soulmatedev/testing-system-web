@@ -36,7 +36,7 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 
 	const isTestResultModalOpen = useAppSelector(testSelectors.getIsTestResultModalActive);
 
-	const userId = Number(localStorage.getItem('id'));
+	const userId = user?.id ?? 0;
 	const { data: testResult } = testAPI.useGetTestResultQuery({ testId: id, userId });
 
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);

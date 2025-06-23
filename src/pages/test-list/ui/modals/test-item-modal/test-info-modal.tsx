@@ -29,13 +29,14 @@ export const TestInfoModal = (props: SelectQuestionsModalProps) => {
 		closeFunc,
 	} = props;
 
+	console.log(user);
+
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const [testToDelete, setTestToDelete] = useState<number | null>(null);
 
 	const { onDeleteTest } = useDeleteTest();
 
 	const login = localStorage.getItem('login');
-	const role = localStorage.getItem('role');
 
 	const navigate = useNavigate();
 
