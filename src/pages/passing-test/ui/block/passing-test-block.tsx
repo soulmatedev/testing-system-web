@@ -38,6 +38,8 @@ export const PassingTestBlock = () => {
 	const { name, questions } = test;
 	const currentQuestion = questions[currentQuestionIndex];
 
+	const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+
 	const handleNextQuestion = () => {
 		if (currentQuestionIndex < questions.length - 1) {
 			setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
@@ -136,22 +138,29 @@ export const PassingTestBlock = () => {
 					</div>
 				</div>
 			</div>
+			<div className={css.progress_wrapper}>
+				<div className={css.progress_fill} style={{ width: `${progress}%` }} />
+			</div>
 			<div className={css.questions_wrapper}>
 				<div className={css.questions}>
 					<p className={css.question_text}>{currentQuestion.text}</p>
 					<ul className={css.questions_list}>
 						{currentQuestion.answers.map((answer: IAnswer) => (
 							<li key={answer.id} className={css.answer_item}>
-								<div className={css.checkbox_label}>
+								<label
+									className={`${css.answer_card} ${
+										selectedAnswers[currentQuestion.id] === answer.id ? css.selected : ''
+									}`}
+								>
 									<input
-										type={currentQuestion.type === 'singleChoise' ? 'radio' : 'checkbox'}
+										type={currentQuestion.type === 'single' ? 'radio' : 'checkbox'}
 										name={`question_${currentQuestion.id}`}
 										checked={selectedAnswers[currentQuestion.id] === answer.id}
 										onChange={() => handleAnswerSelect(currentQuestion.id, answer.id)}
 										className={`${css.checkbox} ${getCheckboxClassName(currentQuestion.type)}`}
 									/>
-									{answer.text}
-								</div>
+									<span className={css.answer_text}>{answer.text}</span>
+								</label>
 							</li>
 						))}
 					</ul>

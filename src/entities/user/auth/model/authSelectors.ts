@@ -8,4 +8,4 @@ export const selectPassword = (state: RootState) => state.auth.password;
 
 export const selectIsFormValid = (state: RootState) => state.auth.email.trim() !== ''
 	&& state.auth.password.trim() !== ''
-	&& state.auth.password.length >= 4;
+	&& state.auth.password.length >= 6;
