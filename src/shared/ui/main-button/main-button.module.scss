@@ -11,6 +11,8 @@
   color: var(--white-font-color);
   border-radius: var(--main-button-border-radius);
   padding: var(--main-button-padding);
+  box-shadow: var(--main-button-shadow);
+  transition: background-color 0.2s ease;
 
   &:hover {
     background-color: var(--main-button-bg-hover-color);

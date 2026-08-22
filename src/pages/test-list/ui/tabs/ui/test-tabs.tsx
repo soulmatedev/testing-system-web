@@ -18,7 +18,7 @@ export const TestTabs = ({ data, activeName, onTabChange }: ITabsProps) => {
 
 	return (
 		<div className={css.tabsBlock}>
-			{data.map(({ name, disabled }) => (
+			{data.map(({ name, disabled, count }) => (
 				<button
 					key={name}
 					type="button"
@@ -31,6 +31,9 @@ export const TestTabs = ({ data, activeName, onTabChange }: ITabsProps) => {
 					disabled={disabled}
 				>
 					{name}
+					{count !== undefined && (
+						<span className={css.count}>{count}</span>
+					)}
 				</button>
 			))}
 		</div>

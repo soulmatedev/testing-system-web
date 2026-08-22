@@ -2,7 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px 24px 20px 24px;
+  // Горизонтальный отступ намеренно не задаём здесь — его даёт padding
+  // самой строки (--item-padding, 26px), тот же, что и у .headers
+  // в test-list-block.module.scss. Если добавить отступ и тут, шапка
+  // колонок и строки таблицы разъезжаются по горизонтали.
+  padding: 16px 0 20px 0;
 }
 
 .not_found_block {
@@ -30,4 +34,18 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap-m);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 26px 0 26px;
+}
+
+.shown {
+  margin: 0;
+  font-size: var(--font-size-s);
+  color: var(--muted-font-color);
 }

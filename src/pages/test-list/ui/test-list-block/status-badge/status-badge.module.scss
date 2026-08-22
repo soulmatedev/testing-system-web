@@ -1,0 +1,16 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: var(--pill-border-radius);
+  font-size: var(--font-size-s);
+  font-weight: 700;
+  background-color: var(--badge-bg-color);
+  color: var(--badge-text-color);
+  white-space: nowrap;
+}
+
+.success {
+  background-color: var(--badge-success-bg-color);
+  color: var(--badge-success-text-color);
+}

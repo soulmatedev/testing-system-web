@@ -1,8 +1,8 @@
 .wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: minmax(200px, 2fr) 110px 90px 160px 24px;
   align-items: center;
+  gap: var(--gap-ml);
   border-radius: 10px;
   min-height: 45px;
   cursor: pointer;
@@ -15,29 +15,65 @@
   &:hover {
     border-color: var(--second-font-color);
   }
+}
 
-  p {
-    font-size: var(--font-size-s);
+.main {
+  overflow: hidden;
+}
+
+.name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--black-font-color);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.description {
+  margin: 2px 0 0 0;
+  font-size: var(--font-size-s);
+  color: var(--muted-font-color);
+  font-weight: var(--font-weight-regular);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.status {
+  display: flex;
+}
+
+.questionsCount {
+  margin: 0;
+  font-size: var(--font-size-s);
+  color: var(--black-font-color);
+  font-weight: var(--font-weight-medium);
+}
+
+.executor {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-ms);
+  font-size: var(--font-size-s);
+  color: var(--black-font-color);
+  overflow: hidden;
+
+  span {
     overflow: hidden;
     white-space: nowrap;
-    text-align: start;
     text-overflow: ellipsis;
-    font-weight: var(--font-weight-regular);
   }
+}
 
-  .name {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 200px;
-  }
+.noExecutor {
+  color: var(--muted-font-color);
+}
 
-  .description {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 300px;
-  }
+.button {
+  display: flex;
+  cursor: pointer;
 }
 
 // Тот же паттерн выделения, что и у выбранного варианта ответа
@@ -46,4 +82,3 @@
   border-color: var(--second-font-color);
   background-color: var(--light-bg-color);
 }
-

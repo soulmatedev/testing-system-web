@@ -144,6 +144,11 @@
   background-image: url('../../../../shared/assets/images/check-mark.svg');
 }
 
+.unsupported_question {
+  color: var(--title-default-color);
+  font-size: var(--font-size-m);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .progress_fill,
   .answer_card,

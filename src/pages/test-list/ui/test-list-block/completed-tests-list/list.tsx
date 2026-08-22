@@ -3,16 +3,22 @@ import css from './list.module.scss';
 import { TestListItem } from './item';
 import { ITest } from '../../../../../entities/tests/api/types';
 import { CompletedTestsModal } from '../../modals/completed-tests-modal';
+import { Pagination } from '../pagination';
 
 interface TestListProps {
 	data: ITest[] | undefined;
 }
 
+const PAGE_SIZE = 8;
+
 export const CompletedTestList = ({ data }: TestListProps) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedTest, setSelectedTest] = useState<ITest | null>(null);
+	const [page, setPage] = useState(1);
 
 	const testArray = data || [];
+	const pageCount = Math.max(1, Math.ceil(testArray.length / PAGE_SIZE));
+	const pageItems = testArray.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
 	const openTestInfoModal = (test: ITest) => {
 		setSelectedTest(test);
@@ -33,11 +39,14 @@ export const CompletedTestList = ({ data }: TestListProps) => {
 					</div>
 				) : (
 					<div className={css.block}>
-						{testArray.map((test) => (
+						{pageItems.map((test) => (
 							<TestListItem
 								key={test.id}
 								title={test.name}
 								description={test.description}
+								status={test.status}
+								questionsCount={test.questions?.length ?? 0}
+								executorLogin={test.user?.login ?? null}
 								isSelected={selectedTest?.id === test.id}
 								onClick={() => openTestInfoModal(test)}
 							/>
@@ -45,6 +54,22 @@ export const CompletedTestList = ({ data }: TestListProps) => {
 					</div>
 				)}
 			</div>
+
+			{testArray.length > 0 && (
+				<div className={css.footer}>
+					<p className={css.shown}>
+						Показано
+						{' '}
+						{pageItems.length}
+						{' '}
+						из
+						{' '}
+						{testArray.length}
+					</p>
+					<Pagination page={page} pageCount={pageCount} onPageChange={setPage} />
+				</div>
+			)}
+
 			<CompletedTestsModal
 				id={selectedTest?.id ?? null}
 				name={selectedTest?.name ?? ''}

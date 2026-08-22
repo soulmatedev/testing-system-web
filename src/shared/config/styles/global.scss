@@ -4,7 +4,7 @@
   --default-border: 1px solid #D8E1EF;
   --default-border-radius: 12px;
   --disabled-button: #ccc;
-  --light-bg-color: #FFEFF5;
+  --light-bg-color: #FDF0F5;
   --light-gray-bg-color: #CCC;
 
   // * Router
@@ -26,12 +26,15 @@
   --font-weight-medium: 500;
 
   --white-font-color: #FFFFFF;
-  --black-font-color: #272727;
+  --black-font-color: #12172A;
   --light-gray-font-color: #ccc;
 
   --title-default-color: #A0ABBE;
 
-  --second-font-color: #F91F71;
+  --second-font-color: #E5175F;
+  --second-font-color-dark: #C81152;
+  --muted-font-color: #6B7490;
+  --nav-inactive-color: #5C6480;
 
   // * Margin
   --medium-space: 8px;
@@ -61,11 +64,12 @@
   --block-padding: 20px;
 
   // * Button
-  --main-button-bg-color: #F91F71;
+  --main-button-bg-color: var(--second-font-color);
   --main-button-disabled-bg-color: #fad4e3;
-  --main-button-bg-hover-color: #bf1f5a;
-  --main-button-border-radius: 8px;
+  --main-button-bg-hover-color: var(--second-font-color-dark);
+  --main-button-border-radius: 11px;
   --main-button-padding: 10px 15px 10px 15px;
+  --main-button-shadow: 0 6px 16px 0 rgba(229, 23, 95, 0.25);
 
   // * SquareCheckboxInput
   --input-border-radius: 8px;
@@ -85,7 +89,7 @@
   --navbar-height: 80px;
   --navbar-padding: 0 3rem 0 3rem;
   --navbar-border-radius: 0 0 16px 16px;
-  --navbar-navlink-active-color: #F91F71;
+  --navbar-navlink-active-color: var(--second-font-color);
 
   // * Icon
   --icon-hover-color: var(--second-font-color);
@@ -147,4 +151,16 @@
   // * CompetencyCard
   --competency-card-padding: 3px 12px;
   --competency-card-radius: 8px;
+
+  // * Redesign — токены из макета "Soulmate Redesign" (карточки статистики,
+  // бейджи статуса, аватары, pill-элементы), используются на списке тестов.
+  --pill-border-radius: 999px;
+  --card-border-radius-lg: 14px;
+  --soft-border-color: #E4E9F4;
+  --badge-bg-color: var(--light-bg-color);
+  --badge-text-color: var(--second-font-color-dark);
+  --badge-success-bg-color: #E7F7EF;
+  --badge-success-text-color: #12925F;
+  --avatar-bg-color: #FDE7EF;
+  --avatar-text-color: var(--second-font-color);
 }

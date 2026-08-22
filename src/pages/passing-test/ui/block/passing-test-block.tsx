@@ -66,7 +66,10 @@ export const PassingTestBlock = () => {
 		test.questions.forEach((question) => {
 			const userAnswer = selectedAnswers[question.id];
 
-			const correctAnswers = question.answers
+			// У вопросов типа matching/open поле answers бэкенд не присылает
+			// (json:"answers,omitempty") — такие вопросы пока не оцениваются
+			// в этом интерфейсе прохождения теста, см. isAnswerChoiceType ниже.
+			const correctAnswers = (question.answers ?? [])
 				.filter((answer) => answer.isCorrect)
 				.map((a) => a.id);
 
@@ -144,26 +147,37 @@ export const PassingTestBlock = () => {
 			<div className={css.questions_wrapper}>
 				<div className={css.questions}>
 					<p className={css.question_text}>{currentQuestion.text}</p>
-					<ul className={css.questions_list}>
-						{currentQuestion.answers.map((answer: IAnswer) => (
-							<li key={answer.id} className={css.answer_item}>
-								<label
-									className={`${css.answer_card} ${
-										selectedAnswers[currentQuestion.id] === answer.id ? css.selected : ''
-									}`}
-								>
-									<input
-										type={currentQuestion.type === 'single' ? 'radio' : 'checkbox'}
-										name={`question_${currentQuestion.id}`}
-										checked={selectedAnswers[currentQuestion.id] === answer.id}
-										onChange={() => handleAnswerSelect(currentQuestion.id, answer.id)}
-										className={`${css.checkbox} ${getCheckboxClassName(currentQuestion.type)}`}
-									/>
-									<span className={css.answer_text}>{answer.text}</span>
-								</label>
-							</li>
-						))}
-					</ul>
+					{currentQuestion.answers && currentQuestion.answers.length > 0 ? (
+						<ul className={css.questions_list}>
+							{currentQuestion.answers.map((answer: IAnswer) => (
+								<li key={answer.id} className={css.answer_item}>
+									<label
+										htmlFor={`answer_${answer.id}`}
+										className={`${css.answer_card} ${
+											selectedAnswers[currentQuestion.id] === answer.id ? css.selected : ''
+										}`}
+									>
+										<input
+											id={`answer_${answer.id}`}
+											type={currentQuestion.type === 'single' ? 'radio' : 'checkbox'}
+											name={`question_${currentQuestion.id}`}
+											checked={selectedAnswers[currentQuestion.id] === answer.id}
+											onChange={() => handleAnswerSelect(currentQuestion.id, answer.id)}
+											className={`${css.checkbox} ${getCheckboxClassName(currentQuestion.type)}`}
+										/>
+										<span className={css.answer_text}>{answer.text}</span>
+									</label>
+								</li>
+							))}
+						</ul>
+					) : (
+						// Вопросы типа matching/open (варианты ответов не заполняются,
+						// у них pairs/свободный текст) пока не поддерживаются этим
+						// интерфейсом — не даём странице упасть, показываем заглушку.
+						<p className={css.unsupported_question}>
+							Этот тип вопроса пока не поддерживается в интерфейсе прохождения теста.
+						</p>
+					)}
 				</div>
 			</div>
 			<div className={css.buttons_wrapper}>

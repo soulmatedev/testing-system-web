@@ -1,38 +1,56 @@
 .tabsBlock {
   display: flex;
   align-items: center;
+  border-bottom: 1px solid var(--soft-border-color);
 }
 
 .tab {
-  font-weight: 500;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-ms);
+  font-weight: 600;
+  font-size: var(--font-size-m);
   text-align: center;
-  color: var(--black-font-color);
-  padding: 4px 6px;
-  margin-right: 16px;
+  color: var(--nav-inactive-color);
+  padding: 0 2px 12px;
+  margin-right: 24px;
   cursor: pointer;
   transition: all .2s ease-in-out;
   border-bottom: 2px solid transparent;
   text-decoration: none;
 
-  // Раньше hover красил текст в --light-bg-color (почти белый розовый) —
-  // текст становился нечитаемым на белом фоне. Используем тот же розовый
-  // акцент, что и у активной вкладки, только чуть менее выраженно.
   &:hover {
     cursor: pointer;
     color: var(--second-font-color);
-    border-bottom: 2px solid var(--light-bg-color);
   }
+}
 
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--pill-border-radius);
+  background-color: var(--default-bg-color);
+  color: var(--nav-inactive-color);
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .activeTab {
   border-bottom: 2px solid var(--second-font-color);
   color: var(--second-font-color);
+  font-weight: 700;
+
+  .count {
+    background-color: var(--light-bg-color);
+    color: var(--second-font-color);
+  }
 
   &:hover {
     color: var(--second-font-color);
-    border-bottom: 2px solid var(--second-font-color);
   }
 }
 

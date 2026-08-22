@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px 24px 20px 24px;
+  // См. пояснение в list/list.module.scss — горизонтальный отступ даёт
+  // padding самой строки, а не эта обёртка, иначе шапка колонок съезжает.
+  padding: 16px 0 20px 0;
 }
 
 .not_found_block {
@@ -30,4 +32,18 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap-m);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 26px 0 26px;
+}
+
+.shown {
+  margin: 0;
+  font-size: var(--font-size-s);
+  color: var(--muted-font-color);
 }
