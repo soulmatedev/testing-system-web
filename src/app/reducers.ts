@@ -10,6 +10,7 @@ import { competencyAPI } from '../entities/competencies/api/api';
 import { answerAPI } from '../entities/answers/api/api';
 import { authReducer } from '../entities/user/auth/model/authSlice';
 import { authAPI } from '../entities/user/auth/api/api';
+import { aiAPI } from '../entities/ai';
 
 export const reducers = combineReducers({
 	auth: authReducer,
@@ -28,6 +29,8 @@ export const reducers = combineReducers({
 
 	multipleChooseSlice: multipleChooseReducer,
 	relationChooseSlice: relationChooseReducer,
+
+	[aiAPI.reducerPath]: aiAPI.reducer,
 });
 
 export type RootState = ReturnType<typeof reducers>;

@@ -7,7 +7,7 @@
   font-weight: 500;
   font-size: 16px;
   text-align: center;
-  color: #212121;
+  color: var(--black-font-color);
   padding: 4px 6px;
   margin-right: 16px;
   cursor: pointer;
@@ -15,9 +15,12 @@
   border-bottom: 2px solid transparent;
   text-decoration: none;
 
+  // Раньше hover красил текст в --light-bg-color (почти белый розовый) —
+  // текст становился нечитаемым на белом фоне. Используем тот же розовый
+  // акцент, что и у активной вкладки, только чуть менее выраженно.
   &:hover {
     cursor: pointer;
-    color: var(--light-bg-color);
+    color: var(--second-font-color);
     border-bottom: 2px solid var(--light-bg-color);
   }
 

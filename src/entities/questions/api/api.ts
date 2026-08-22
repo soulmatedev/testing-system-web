@@ -21,6 +21,7 @@ export const questionAPI = createApi({
 				method: 'POST',
 				body: data,
 			}),
+			invalidatesTags: ['questionAPI'],
 		}),
 		getAll: builder.query<IGetQuestionsResponse, IGetQuestionsRequest>({
 			query: (data) => ({

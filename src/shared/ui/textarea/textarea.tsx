@@ -3,8 +3,8 @@ import css from './textarea.module.scss';
 
 interface TextAreaProps {
 	placeholder: string;
-	width?: number;
-	height?: number;
+	width?: number | string;
+	height?: number | string;
 	value?: string;
 	onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }

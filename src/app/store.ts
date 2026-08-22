@@ -5,6 +5,7 @@ import { questionAPI } from '../entities/questions/api/api';
 import { competencyAPI } from '../entities/competencies/api/api';
 import { answerAPI } from '../entities/answers/api/api';
 import { authAPI } from '../entities/user/auth/api/api';
+import { aiAPI } from '../entities/ai';
 
 const setupStore = () => configureStore({
 	reducer: reducers,
@@ -16,6 +17,7 @@ const setupStore = () => configureStore({
 		questionAPI.middleware,
 		competencyAPI.middleware,
 		answerAPI.middleware,
+		aiAPI.middleware,
 	),
 });
 

@@ -9,14 +9,20 @@
 }
 
 .selectMode {
-  border: 1px solid var(--border-color, #dcdcdc);
+  border: var(--default-border);
   width: 550px;
   margin-right: 12px;
   cursor: pointer;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--second-font-color);
+  }
 }
 
 .selected {
-  border: 1px solid var(--primary-color, var(--second-font-color));
+  border: 1px solid var(--second-font-color);
+  background-color: var(--light-bg-color);
 }
 
 .questionBlock {

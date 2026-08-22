@@ -8,8 +8,13 @@
   cursor: pointer;
 
   border: var(--border-top);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 
   padding: var(--item-padding);
+
+  &:hover {
+    border-color: var(--second-font-color);
+  }
 
   p {
     font-size: var(--font-size-s);
@@ -35,7 +40,10 @@
   }
 }
 
+// Тот же паттерн выделения, что и у выбранного варианта ответа
+// на странице прохождения теста (passing-test-block.module.scss).
 .selected {
   border-color: var(--second-font-color);
+  background-color: var(--light-bg-color);
 }
 

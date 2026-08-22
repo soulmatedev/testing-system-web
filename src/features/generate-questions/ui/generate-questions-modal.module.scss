@@ -1,0 +1,61 @@
+.modal {
+  width: 860px;
+  // Modal.content_wrapper (shared/ui/modal) уже задаёт max-width: 650px в своём
+  // модуле — так как классы независимы, порядок правил в бандле не гарантирован,
+  // поэтому явно перебиваем через !important, а не полагаемся на порядок каскада.
+  max-width: 860px !important;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  // Тот же стиль скролла, что и у body (shared/config/styles/main.module.scss) —
+  // webkit не наследует ::-webkit-scrollbar на вложенный overflow-контейнер,
+  // поэтому дублируем правило здесь.
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: #EEEEEE;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #A0ABBE;
+    border-radius: 44px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #fff;
+  }
+}
+
+.title {
+  font-size: var(--font-size-xxl);
+  margin-bottom: var(--gap-l);
+  padding-right: 24px;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-m);
+  margin-bottom: var(--gap-l);
+}
+
+.topic_field {
+  flex: 1 1 220px;
+}
+
+.type_field {
+  flex: 0 0 auto;
+}
+
+.count_field {
+  flex: 0 0 auto;
+  width: 70px;
+}
+
+.drafts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-m);
+}
