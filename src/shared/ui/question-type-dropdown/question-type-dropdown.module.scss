@@ -1,7 +1,11 @@
 .questionType {
-  padding: var(--question-type-padding);
-  border: var(--default-border);
+  height: var(--field-height);
+  padding: 0 12px;
+  border: 1px solid var(--input-border-color);
   outline: none;
-  border-radius: var(--question-type-border-radius);
+  border-radius: var(--field-border-radius);
   font-size: var(--font-size-m);
+  background-color: var(--white-bg-color);
+  color: var(--black-font-color);
+  cursor: pointer;
 }

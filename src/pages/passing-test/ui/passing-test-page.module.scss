@@ -1,6 +1,7 @@
 .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(var(--height-with-navbar) - var(--navbar-height));
+  // Та же раскладка страницы, что и на остальных экранах редизайна,
+  // только уже по ширине — как у профиля.
+  max-width: 840px;
+  margin: 0 auto;
+  padding: var(--page-padding);
 }

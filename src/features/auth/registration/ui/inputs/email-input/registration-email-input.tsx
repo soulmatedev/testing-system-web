@@ -15,7 +15,6 @@ export const RegistrationEmailInput = (props: RegistrationEmailInputProps) => {
 			<p className={css.label}>Почта</p>
 			<Input
 				placeholder="Введите почту"
-				width={349}
 				height={40}
 				value={value}
 				type={InputTypes.TEXT}

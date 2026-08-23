@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import css from './completed-tests-modal.module.scss';
 import { Modal } from '../../../../../shared/ui/modal';
-import { SecondButton } from '../../../../../shared/ui/second-button';
-import { MainButton } from '../../../../../shared/ui/main-button';
 import { ConfirmationModal } from '../../../../passing-test/ui/modal';
 import { useDeleteTest } from '../../../hooks/useDeleteTest';
 import { ResultTestModal } from '../result-test-modal';
@@ -10,24 +8,29 @@ import { testAPI } from '../../../../../entities/tests/api/api';
 import { useAppDispatch, useAppSelector } from '../../../../../shared/libs/utils/redux';
 import { testActions, testSelectors } from '../../../../../entities/tests/model/slices/testSlice';
 import { IUserResponse } from '../../../../../entities/user/auth/api/types';
+import { TestDetails } from '../test-details';
 
-interface SelectQuestionsModalProps {
+interface CompletedTestsModalProps {
 	id: number | null,
 	name: string,
 	description: string,
 	user: IUserResponse | null,
 	status: string,
+	questionsCount: number,
+	updatedAt: string,
 	active: boolean,
 	closeFunc: (active: boolean) => void,
 }
 
-export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
+export const CompletedTestsModal = (props: CompletedTestsModalProps) => {
 	const {
 		id,
 		name,
 		description,
 		user,
 		status,
+		questionsCount,
+		updatedAt,
 		active,
 		closeFunc,
 	} = props;
@@ -40,33 +43,22 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 	const { data: testResult } = testAPI.useGetTestResultQuery({ testId: id, userId });
 
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-	const [testToDelete, setTestToDelete] = useState<number | null>(null);
 
 	const { onDeleteTest } = useDeleteTest();
 
-	const handleDeleteClick = (id: number) => {
-		setTestToDelete(id);
-		setIsDeleteModalOpen(true);
-	};
-
 	const confirmDelete = async () => {
-		if (testToDelete !== null) {
-			await onDeleteTest(testToDelete);
+		if (id !== null) {
+			await onDeleteTest(id);
 		}
 		setIsDeleteModalOpen(false);
-		setTestToDelete(null);
-	};
-
-	const cancelDelete = () => {
-		setIsDeleteModalOpen(false);
-		setTestToDelete(null);
+		closeFunc(false);
 	};
 
 	const onResultClick = () => {
 		dispatch(testActions.setIsTestResultModalActive(true));
 	};
 
-	const onClose = () => {
+	const onResultClose = () => {
 		dispatch(testActions.setIsTestResultModalActive(false));
 	};
 
@@ -76,52 +68,30 @@ export const CompletedTestsModal = (props: SelectQuestionsModalProps) => {
 				active={active}
 				closeFunc={closeFunc}
 				modalInModalActive={isTestResultModalOpen}
+				styles={css.modal}
 			>
-				<div className={css.wrapper}>
-					<div>
-						<p className={css.title}>Название</p>
-						<h1 className={css.name}>{name}</h1>
-					</div>
-
-					<div>
-						<p className={css.title}>Описание</p>
-						<h1 className={css.description}>{description}</h1>
-					</div>
-
-					<div>
-						<p className={css.title}>Статус</p>
-						<h1 className={css.status}>{status}</h1>
-					</div>
-
-					<div>
-						<p className={css.title}>Исполнитель</p>
-						<h1 className={css.status}>{user?.login}</h1>
-					</div>
-
-					<div className={css.options}>
-						<SecondButton
-							text="Удалить"
-							height={32}
-							onClick={() => handleDeleteClick(id!)}
-						/>
-						<MainButton
-							text="Результаты"
-							height={32}
-							onClick={onResultClick}
-						/>
-					</div>
-				</div>
+				<TestDetails
+					name={name}
+					description={description}
+					status={status}
+					questionsCount={questionsCount}
+					executorLogin={user?.login ?? null}
+					updatedAt={updatedAt}
+					primaryLabel="Смотреть аналитику"
+					onPrimaryClick={onResultClick}
+					onDelete={() => setIsDeleteModalOpen(true)}
+				/>
 			</Modal>
 			<ConfirmationModal
 				isOpen={isDeleteModalOpen}
 				onConfirm={confirmDelete}
-				onCancel={cancelDelete}
+				onCancel={() => setIsDeleteModalOpen(false)}
 				message="Вы уверены, что хотите удалить этот тест?"
 			/>
 			<ResultTestModal
 				user={user}
 				result={testResult}
-				onClose={onClose}
+				onClose={onResultClose}
 			/>
 		</>
 	);

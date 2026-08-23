@@ -1,59 +1,78 @@
 import React from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import cx from 'classnames';
 import css from './navbar.module.scss';
+import { questionAPI } from '../../entities/questions/api/api';
+import { ADMIN } from '../../shared/types/role';
+import { Avatar } from '../../shared/ui/avatar';
 
 export const Navbar = () => {
-	const location = useLocation();
-	const login = localStorage.getItem('login');
+	const login = localStorage.getItem('login') ?? '';
 	const profileId = localStorage.getItem('id');
 	const roleId = Number(localStorage.getItem('role'));
 
 	const navigate = useNavigate();
 
-	const onProfileClick = () => {
-		navigate(`/profile/${profileId}`);
-	};
+	const isAdmin = roleId === ADMIN;
 
-	const isUser = roleId === 0;
+	// Счётчик вопросов в шапке из макета. Берём уже существующий запрос
+	// библиотеки — RTK Query отдаст его из кэша, если страница библиотеки
+	// уже загружалась. Сотруднику библиотека недоступна, поэтому пропускаем.
+	const { data: questions } = questionAPI.useGetAllQuery(
+		{ limit: 127, page: 1, search: '' },
+		{ skip: !isAdmin },
+	);
+
+	const onProfileClick = () => navigate(`/profile/${profileId}`);
+
+	const navLinkClassName = ({ isActive }: { isActive: boolean }) => cx(css.navbar_link, isActive && css.active);
 
 	return (
-		<div className={css.navbar}>
-			<NavLink className={css.navbar_link} to="/test-list" />
-			<div className={css.items}>
-				<NavLink
-					to="/test-list"
-					className={`${css.navbar_link} 
-					${location.pathname === '/test-list' ? css.active : ''}`}
-				>
-					Список тестов
+		<header className={css.navbar}>
+			<div className={css.inner}>
+				<NavLink to="/test-list" className={css.logo}>
+					<img
+						className={css.logo_mark}
+						src={`${process.env.PUBLIC_URL}/apple-touch-icon.png`}
+						alt=""
+					/>
+					<span className={css.logo_text}>Testly</span>
 				</NavLink>
-				{!isUser && (
-					<>
-						<NavLink
-							to="/library-questions"
-							className={`${css.navbar_link} 
-							${location.pathname === '/library-questions' ? css.active : ''}`}
-						>
-							Библиотека вопросов
-						</NavLink>
-						<NavLink
-							to="/test-constructor"
-							className={`${css.navbar_link} 
-							${location.pathname === '/test-constructor' ? css.active : ''}`}
-						>
-							Конструктор тестов
-						</NavLink>
-					</>
-				)}
+
+				<nav className={css.items}>
+					<NavLink to="/test-list" className={navLinkClassName}>
+						Список тестов
+					</NavLink>
+					{isAdmin && (
+						<>
+							<NavLink to="/library-questions" className={navLinkClassName}>
+								Библиотека вопросов
+							</NavLink>
+							<NavLink to="/test-constructor" className={navLinkClassName}>
+								Конструктор тестов
+							</NavLink>
+						</>
+					)}
+				</nav>
+
+				<div className={css.side}>
+					{isAdmin && questions && (
+						<div className={css.counter}>
+							{questions.length}
+							{' '}
+							вопросов
+						</div>
+					)}
+					<button
+						className={css.profile}
+						onClick={onProfileClick}
+						type="button"
+					>
+						<Avatar label={login} size="m" />
+						<span className={css.login}>{login}</span>
+					</button>
+				</div>
 			</div>
-			<button
-				className={css.profile}
-				onClick={onProfileClick}
-				type="button"
-			>
-				<p>{login}</p>
-				<div className={css.avatar} />
-			</button>
-		</div>
+		</header>
 	);
 };

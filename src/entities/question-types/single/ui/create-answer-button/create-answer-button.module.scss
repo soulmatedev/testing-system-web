@@ -1,23 +1,21 @@
+// Пунктирная кнопка «+ Вариант ответа» из макета.
 .add_answer {
-  position: relative;
-  color: var(--light-gray-font-color);
-  font-size: var(--font-size-s);
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  height: var(--field-height);
+  padding: 0 14px;
+  border: 1px dashed var(--dashed-border-color);
+  border-radius: var(--field-border-radius);
+  background-color: var(--white-bg-color);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--nav-inactive-color);
   cursor: pointer;
-  margin: var(--single-choose-form-margin);
-  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
 
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 107px;
-    height: 1px;
-    background-color: var(--light-gray-font-color);
-    transform: scaleX(0);
-  }
-
-  &:hover::after {
-    transform: scaleX(1);
+  &:hover {
+    border-color: var(--second-font-color);
+    color: var(--second-font-color);
   }
 }

@@ -1,9 +1,10 @@
 .badge {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   padding: 5px 11px;
   border-radius: var(--pill-border-radius);
-  font-size: var(--font-size-s);
+  font-size: 12.5px;
   font-weight: 700;
   background-color: var(--badge-bg-color);
   color: var(--badge-text-color);

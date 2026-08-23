@@ -16,12 +16,13 @@
   }
 
   .question_count {
-    font-size: var(--font-size-lm);
-    font-weight: var(--font-weight-medium);
+    font-size: 12.5px;
+    font-weight: 700;
     color: var(--second-font-color);
     background-color: var(--light-bg-color);
-    padding: var(--question-type-padding) var(--gap-ml);
-    border-radius: var(--main-button-border-radius);
+    padding: 6px 12px;
+    border-radius: var(--pill-border-radius);
+    white-space: nowrap;
   }
 }
 
@@ -42,10 +43,11 @@
 
 .questions_wrapper {
   height: auto;
-  width: var(--single-choose-form-width);
+  width: 100%;
   background-color: var(--block-bg-color);
-  padding: var(--passing-test-padding);
-  border-radius: var(--default-border-radius);
+  border: 1px solid var(--soft-border-color);
+  padding: var(--gap-l);
+  border-radius: var(--card-border-radius-xl);
   margin-bottom: var(--gap-l);
 }
 
@@ -61,11 +63,12 @@
 }
 
 .question_text {
-  font-size: var(--font-size-l);
-  font-weight: var(--font-weight-medium);
+  font-size: 16.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--black-font-color);
   line-height: 1.4;
-  margin-bottom: var(--gap-l);
+  margin-bottom: var(--gap-m);
 }
 
 .questions {
@@ -81,31 +84,35 @@
   .questions_list {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-ml);
+    gap: var(--gap-ms);
     font-size: var(--font-size-m);
   }
 }
 
 .title {
   margin: 0;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-medium);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--black-font-color);
 }
 
 .answer_item {
   .answer_card {
     display: flex;
     align-items: center;
-    gap: var(--gap-ml);
-    padding: var(--input-padding);
-    border: var(--default-border);
-    border-radius: var(--input-border-radius);
-    background-color: var(--block-bg-color);
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--option-border-color);
+    border-radius: var(--field-border-radius);
+    background-color: var(--option-bg-color);
+    font-size: var(--font-size-m);
+    color: var(--option-font-color);
     cursor: pointer;
     transition: border-color 0.2s ease, background-color 0.2s ease;
 
     &:hover {
-      border-color: var(--border-top);
+      border-color: var(--radio-border-color);
     }
 
     &.selected {
@@ -121,17 +128,18 @@
 }
 
 .checkbox {
-  width: var(--rounded-checkbox-width);
-  height: var(--rounded-checkbox-height);
+  width: 16px;
+  height: 16px;
   border-radius: var(--rounded-checkbox-border-radius);
-  border: var(--default-border);
-  background-color: var(--block-bg-color);
+  border: 2px solid var(--radio-border-color);
+  background-color: transparent;
   appearance: none;
   cursor: pointer;
   background-size: var(--rounded-checkbox-background-size);
   background-repeat: no-repeat;
   background-position: center;
   margin: 0;
+  flex: 0 0 auto;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
@@ -145,7 +153,7 @@
 }
 
 .unsupported_question {
-  color: var(--title-default-color);
+  color: var(--muted-font-color);
   font-size: var(--font-size-m);
 }
 

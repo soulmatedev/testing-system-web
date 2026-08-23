@@ -1,23 +1,25 @@
 .textarea {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  box-sizing: border-box;
 
-  font-weight: var(--font-weight-thin);
-  font-size: var(--font-size-m);
-  background-color: var(--white-font-color);
-  border-radius: var(--main-button-border-radius);
-  padding: var(--main-button-padding);
-  border: var(--default-border);
+  font-weight: var(--font-weight-regular);
+  font-size: 14.5px;
+  color: var(--black-font-color);
+  background-color: var(--option-bg-color);
+  border-radius: var(--default-border-radius);
+  padding: 12px 14px;
+  border: 1px solid var(--input-border-color);
   outline: none;
-  overflow: hidden;
 
-  height: 150px;
-  width: 550px;
-
-  resize: none;
+  // По умолчанию поле тянется по ширине контейнера — во всех местах макета
+  // textarea занимает всю ширину карточки. Точные размеры при необходимости
+  // передаются пропсами width/height.
+  width: 100%;
+  min-height: 88px;
+  resize: vertical;
+  transition: border-color 0.2s ease;
 
   &::placeholder {
-    color: #a0abbe;
+    color: var(--placeholder-color);
   }
 }

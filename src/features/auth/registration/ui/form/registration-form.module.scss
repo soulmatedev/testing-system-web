@@ -1,20 +1,42 @@
+// Карточка авторизации в стиле редизайна: белый блок с мягкой рамкой,
+// теми же радиусами и типографикой, что и карточки на остальных экранах.
 .block {
   display: flex;
   flex-direction: column;
-  gap: var(--question-form-gap);
+  gap: var(--header-space);
+  width: 380px;
   background-color: var(--block-bg-color);
-  padding: var(--form-padding);
-  border-radius: var(--default-border-radius);
-  margin: var(--question-form-margin);
-}
-
-
-.label {
-  font-size: var(--font-size-lm);
-  margin-bottom: var(--medium-space);
-  color: var(--light-gray-font-color);
+  border: 1px solid var(--soft-border-color);
+  padding: 28px;
+  border-radius: var(--card-border-radius-2xl);
 }
 
 .header {
-  font-size: var(--font-size-xl);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--black-font-color);
+}
+
+.label {
+  font-size: 12.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--gap-ms);
+  color: var(--label-font-color);
+}
+
+.question {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted-font-color);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--second-font-color);
+  }
 }

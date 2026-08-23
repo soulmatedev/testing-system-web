@@ -1,13 +1,9 @@
+// Форма вариантов ответа живёт внутри карточки конструктора вопроса,
+// поэтому своего фона и рамки не имеет — только вертикальная раскладка.
 .wrapper {
   display: flex;
-  height: auto;
   flex-direction: column;
-
-  background-color: var(--block-bg-color);
-  padding: var(--question-form-padding);
-  border-radius: var(--default-border-radius);
-  gap: var(--large-space);
-  margin-bottom: var(--gap-ms);
+  gap: var(--gap-ms);
 }
 
 .minus_icon {

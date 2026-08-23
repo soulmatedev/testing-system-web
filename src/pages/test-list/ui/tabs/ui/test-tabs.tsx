@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import { ITestTabs } from '../model/types';
 import css from './test-tabs.module.scss';

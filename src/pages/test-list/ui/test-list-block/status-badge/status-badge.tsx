@@ -6,13 +6,19 @@ interface StatusBadgeProps {
 	status: string;
 }
 
-// Домен знает только два реальных статуса теста (models.TestStatus на бэкенде):
-// "Создан" и "Завершен". Третьего состояния ("в работе") в системе нет —
-// не придумываем его на фронте.
-const COMPLETED_STATUS = 'Завершен';
+// Домен знает два статуса теста (models.TestStatus на бэкенде): «Создан»
+// и «Завершен». В части старых записей статус лежит латиницей ("created"),
+// поэтому приводим значение к единому виду только для отображения.
+const COMPLETED_STATUSES = ['Завершен', 'Завершён', 'completed'];
+const CREATED_STATUSES = ['created'];
 
-export const StatusBadge = ({ status }: StatusBadgeProps) => (
-	<span className={cx(css.badge, status === COMPLETED_STATUS && css.success)}>
-		{status}
-	</span>
-);
+export const StatusBadge = ({ status }: StatusBadgeProps) => {
+	const isCompleted = COMPLETED_STATUSES.includes(status);
+	const label = CREATED_STATUSES.includes(status) ? 'Создан' : status;
+
+	return (
+		<span className={cx(css.badge, isCompleted && css.success)}>
+			{label}
+		</span>
+	);
+};

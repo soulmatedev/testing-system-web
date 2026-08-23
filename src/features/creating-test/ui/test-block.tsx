@@ -15,8 +15,9 @@ import { QuestionList } from '../../question-constructor-form/ui/question-list';
 import { useDeleteTest } from '../../../pages/test-list/hooks/useDeleteTest';
 import { ConfirmationModal } from '../../../pages/passing-test/ui/modal';
 import { useBlockExitWithModal } from '../../../pages/test-list/hooks/useBlockExitWithModal';
-import { ExecutorDropdown } from '../../executor-dropdown';
 import { authAPI } from '../../../entities/user/auth/api/api';
+import { TestSettings } from './test-settings';
+import { PlusIcon } from '../../../shared/ui/icons';
 import { useAppDispatch, useAppSelector } from '../../../shared/libs/utils/redux';
 import { testActions, testSelectors } from '../../../entities/tests/model/slices/testSlice';
 
@@ -145,39 +146,86 @@ export const TestBlock = () => {
 
 	return (
 		<>
-			<div className={css.wrapper_block}>
-				<div className={css.block}>
-					<div className={css.header}>
-						<p className={css.title}>Конструктор тестов</p>
-						<div className={css.options}>
-							<SecondButton
-								text="Добавить вопросы"
-								height={32}
-								onClick={openSelectQuestionsModal}
-							/>
-							<MainButton
-								text="Сохранить"
-								onClick={onCreateTest}
-								height={32}
-							/>
-						</div>
+			<div className={css.wrapper}>
+				<div className={css.header}>
+					<div>
+						<h1 className={css.title}>Конструктор тестов</h1>
+						<p className={css.subtitle}>Черновик</p>
 					</div>
-					<div className={css.executor}>
-						Исполнитель:
-						<ExecutorDropdown
-							value={selectedExecutor}
-							onChange={setSelectedExecutor}
-							options={executors || []}
+					<div className={css.options}>
+						<SecondButton
+							text="Добавить вопросы"
+							onClick={openSelectQuestionsModal}
+						/>
+						<MainButton
+							text="Сохранить"
+							onClick={onCreateTest}
 						/>
 					</div>
-					<QuestionFormPanel
-						description={description}
-						onDescriptionChange={updateDescription}
-						onTitleChange={updateTitle}
-						title={title}
-					/>
-					<div className={css.selected_questions} />
 				</div>
+
+				<div className={css.content}>
+					<div className={css.main}>
+						<QuestionFormPanel
+							description={description}
+							onDescriptionChange={updateDescription}
+							onTitleChange={updateTitle}
+							title={title}
+						/>
+
+						<div className={css.questionsCard}>
+							<div className={css.questionsHeader}>
+								<div className={css.questionsTitle}>
+									Вопросы теста
+									<span className={css.questionsCount}>{questions?.length ?? 0}</span>
+								</div>
+								<button
+									type="button"
+									className={css.libraryLink}
+									onClick={openSelectQuestionsModal}
+								>
+									Выбрать из библиотеки
+								</button>
+							</div>
+
+							{questions?.length ? (
+								<div className={css.list}>
+									{questions.map((question: IQuestion) => (
+										<QuestionList
+											key={question.id}
+											question={question}
+											showDeleteIcon={false}
+										/>
+									))}
+								</div>
+							) : (
+								<div className={css.empty}>
+									<div className={css.emptyIcon}>
+										<PlusIcon />
+									</div>
+									<div className={css.emptyTitle}>Пока ни одного вопроса</div>
+									<div className={css.emptyText}>
+										Добавьте вопросы из библиотеки или сгенерируйте с ИИ
+									</div>
+									<button
+										type="button"
+										className={css.emptyButton}
+										onClick={openSelectQuestionsModal}
+									>
+										Добавить вопросы
+									</button>
+								</div>
+							)}
+						</div>
+					</div>
+
+					<TestSettings
+						executor={selectedExecutor}
+						onExecutorChange={setSelectedExecutor}
+						executors={executors || []}
+					/>
+				</div>
+
 				{testId !== null && (
 					<SelectQuestionsModal
 						active={isModalOpen}
@@ -185,15 +233,6 @@ export const TestBlock = () => {
 						testId={testId}
 					/>
 				)}
-				<div className={css.list}>
-					{questions?.map((question: IQuestion) => (
-						<QuestionList
-							key={question.id}
-							question={question}
-							showDeleteIcon={false}
-						/>
-					))}
-				</div>
 			</div>
 			<ConfirmationModal
 				isOpen={isExitModalOpen}

@@ -1,0 +1,96 @@
+.sidebar {
+  background-color: var(--block-bg-color);
+  border: 1px solid var(--soft-border-color);
+  border-radius: var(--card-border-radius-xl);
+  padding: var(--block-padding);
+  position: sticky;
+  top: 92px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--label-font-color);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-ms);
+  margin-top: var(--gap-m);
+
+  // Селект исполнителя рисуется общим компонентом, растягиваем его
+  // на всю ширину панели — как в макете.
+  select {
+    width: 100%;
+  }
+}
+
+.fieldLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--nav-inactive-color);
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  height: var(--field-height);
+  padding: 0 12px;
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--field-border-radius);
+  font-size: var(--font-size-m);
+  background-color: var(--white-bg-color);
+  color: var(--black-font-color);
+
+  &:disabled {
+    background-color: var(--soft-hover-bg-color);
+    cursor: not-allowed;
+  }
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--divider-color);
+  margin: 18px 0;
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+
+  & + & {
+    padding-top: 10px;
+  }
+}
+
+.toggleLabel {
+  font-size: var(--font-size-m);
+  font-weight: 600;
+  color: var(--body-font-color);
+}
+
+.toggle {
+  width: 38px;
+  height: 22px;
+  border-radius: var(--pill-border-radius);
+  background-color: var(--toggle-off-color);
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--white-bg-color);
+  }
+}

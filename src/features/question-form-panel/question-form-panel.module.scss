@@ -1,44 +1,63 @@
-.wrapper {
-  display: flex;
-  gap: var(--gap-l);
-}
-
-.options {
-  display: flex;
-  justify-content: space-between;
-
-  margin-bottom: 10px;
-}
-
-.block {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-l);
+.card {
   background-color: var(--block-bg-color);
-  border: none;
+  border: 1px solid var(--soft-border-color);
+  border-radius: var(--card-border-radius-xl);
+  padding: var(--gap-l);
+}
 
-  border-radius: 8px;
-  padding: var(--block-padding);
-  width: var(--block-max-width);
+// Подпись и поле обёрнуты в общий label — так подпись кликабельна
+// и связана с контролом без ручных id.
+.field {
+  display: block;
+
+  & + & {
+    margin-top: 22px;
+  }
+}
+
+.label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--label-font-color);
 }
 
 .name_input {
-  font-size: var(--font-size-l);
-  font-weight: var(--font-weight-regular);
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 10px;
   border: none;
+  border-bottom: 1px solid var(--input-border-color);
   outline: none;
-  padding-bottom: 4px;
-  transition: border-bottom 0.3s ease;
+  padding: 6px 0 12px;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--black-font-color);
+  transition: border-color 0.2s ease;
 
-  ::placeholder {
-    color: var(--black-font-color);
+  &::placeholder {
+    color: var(--placeholder-color);
   }
 }
 
 .description_input {
-  font-size: var(--font-size-m);
-  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 10px;
+  min-height: 70px;
+  resize: vertical;
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--default-border-radius);
+  padding: 12px 14px;
+  font-size: 14.5px;
+  background-color: var(--option-bg-color);
+  color: var(--black-font-color);
   outline: none;
-  padding-bottom: 4px;
-  transition: border-bottom 0.3s ease;
+
+  &::placeholder {
+    color: var(--placeholder-color);
+  }
 }

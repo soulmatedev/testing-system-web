@@ -15,7 +15,6 @@ export const RegistrationLoginInput = (props: RegistrationLoginInputProps) => {
 			<p className={css.label}>Логин</p>
 			<Input
 				placeholder="Введите логин"
-				width={349}
 				height={40}
 				value={value}
 				type={InputTypes.TEXT}

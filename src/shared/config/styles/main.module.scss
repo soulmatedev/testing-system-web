@@ -118,6 +118,19 @@ select {
   font: inherit;
 }
 
+// Единые состояния полей ввода из макета: розовая рамка в фокусе
+// и приглушённый плейсхолдер — чтобы не дублировать это в каждом модуле.
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--second-font-color);
+}
+
+::placeholder {
+  color: var(--placeholder-color);
+}
+
 p {
   margin: 0;
 }

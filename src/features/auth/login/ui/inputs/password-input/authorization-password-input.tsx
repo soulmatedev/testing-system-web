@@ -15,7 +15,6 @@ export const AuthorizationPasswordInput = (props: AuthorizationPasswordInputProp
 			<p className={css.label}>Пароль</p>
 			<Input
 				placeholder="Введите пароль"
-				width={349}
 				height={40}
 				type={InputTypes.PASSWORD}
 				value={value}

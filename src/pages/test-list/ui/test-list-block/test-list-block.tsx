@@ -8,64 +8,54 @@ import { ALL_TESTS_TAB, COMPLETED_TESTS_TAB } from '../tabs/model/consts';
 import { CompletedTestList } from './completed-tests-list';
 import { MainButton } from '../../../../shared/ui/main-button';
 import { StatCard } from './stat-card';
+import { SearchIcon } from '../../../../shared/ui/icons';
+import { ADMIN } from '../../../../shared/types/role';
 
 export const TestListBlock = () => {
 	const navigate = useNavigate();
 
 	const userId = localStorage.getItem('id');
-	const roleId = localStorage.getItem('role');
+	const roleId = Number(localStorage.getItem('role'));
+	const isAdmin = roleId === ADMIN;
 
 	const [activeTab, setActiveTab] = useState(ALL_TESTS_TAB);
 	const [search, setSearch] = useState('');
 
-	const { data: allTests } = testAPI.useGetAllTestsQuery(undefined, {
-		skip: roleId === '0',
+	const { data: allTests } = testAPI.useGetAllTestsQuery(undefined, { skip: !isAdmin });
+	const { data: myTests } = testAPI.useGetTestsByUserQuery(undefined, { skip: isAdmin });
+
+	// Данные обеих вкладок нужны сразу: счётчики и карточки статистики
+	// показываются до переключения вкладки.
+	const { data: completedTestsByUser } = testAPI.useGetCompletedTestsByUserQuery(Number(userId), {
+		skip: isAdmin || !userId,
 	});
 
-	const { data: myTests } = testAPI.useGetTestsByUserQuery(undefined, {
-		skip: roleId !== '0',
+	const { data: allCompletedTests } = testAPI.useGetAllCompletedTestsQuery(undefined, {
+		skip: !isAdmin,
 	});
 
-	// Раньше эти запросы делались лениво (только при переключении на вкладку
-	// «Завершённые»). Теперь счётчик завершённых тестов виден сразу на вкладке
-	// и в карточках статистики, поэтому грузим данные независимо от activeTab.
-	const {
-		data: completedTestsByUser,
-	} = testAPI.useGetCompletedTestsByUserQuery(Number(userId), {
-		skip: roleId !== '0' || !userId,
-	});
+	// Пустые тесты-черновики (name: '') создаются при заходе в конструктор
+	// и остаются в БД, если тест не заполнили — в списке они не нужны.
+	const notCompletedTests = useMemo(() => (
+		(isAdmin ? allTests : myTests)
+			?.filter((test) => test.status !== 'Завершен' && test.name.trim() !== '') ?? []
+	), [isAdmin, allTests, myTests]);
 
-	const {
-		data: allCompletedTests,
-	} = testAPI.useGetAllCompletedTestsQuery(undefined, {
-		skip: roleId === '0',
-	});
+	const completedTests = useMemo(() => (
+		(isAdmin ? allCompletedTests : completedTestsByUser) ?? []
+	), [isAdmin, allCompletedTests, completedTestsByUser]);
 
-	// Пустые тесты-черновики (name: '') создаются автоматически при заходе
-	// в конструктор (см. TestBlock) и остаются в БД, если тест не заполнили —
-	// исключаем их из статистики и счётчиков вкладок здесь же, один раз,
-	// чтобы цифры совпадали с тем, что реально показывает таблица.
-	const notCompletedTests = (roleId === '0' ? myTests : allTests)
-		?.filter((test) => test.status !== 'Завершен' && test.name.trim() !== '') ?? [];
+	const matchesSearch = (name: string) => name.toLowerCase().includes(search.toLowerCase());
 
-	const completedTests = roleId === '0' ? completedTestsByUser : allCompletedTests;
+	const filteredNotCompleted = useMemo(
+		() => notCompletedTests.filter((test) => matchesSearch(test.name)),
+		[notCompletedTests, search],
+	);
 
-	const filteredNotCompletedTests = useMemo(() => (
-		notCompletedTests.filter((test) => test.name.toLowerCase().includes(search.toLowerCase()))
-	), [notCompletedTests, search]);
-
-	const filteredCompletedTests = useMemo(() => (
-		(completedTests ?? []).filter((test) => test.name.toLowerCase().includes(search.toLowerCase()))
-	), [completedTests, search]);
-
-	// Статистика считается по уже загруженным данным — без дополнительных
-	// запросов к API.
-	const totalTests = notCompletedTests.length + (completedTests?.length ?? 0);
-
-	// «Средний балл» есть в макете, но требует агрегации результатов по
-	// каждому тесту — такой ручки нет ни на бэкенде, ни на фронте. Не
-	// изобретаем эту логику, просто честно показываем прочерк на её месте.
-	const averageScoreLabel = '—';
+	const filteredCompleted = useMemo(
+		() => completedTests.filter((test) => matchesSearch(test.name)),
+		[completedTests, search],
+	);
 
 	const onCreateTest = () => navigate('/test-constructor');
 
@@ -77,7 +67,8 @@ export const TestListBlock = () => {
 					<p className={css.subtitle}>Назначенные и завершённые проверки знаний команды</p>
 				</div>
 				<div className={css.headerActions}>
-					<div className={css.searchWrapper}>
+					<div className={css.searchField}>
+						<SearchIcon />
 						<input
 							className={css.search}
 							placeholder="Поиск по тестам"
@@ -85,40 +76,44 @@ export const TestListBlock = () => {
 							onChange={(e) => setSearch(e.target.value)}
 						/>
 					</div>
-					<MainButton text="Создать тест" onClick={onCreateTest} height={40} />
+					{isAdmin && <MainButton text="Создать тест" onClick={onCreateTest} />}
 				</div>
 			</div>
 
 			<div className={css.stats}>
-				<StatCard label="Всего тестов" value={totalTests} />
-				<StatCard label="В работе" value={notCompletedTests.length} />
-				<StatCard label="Завершено" value={completedTests?.length ?? 0} />
-				<StatCard label="Средний балл" value={averageScoreLabel} />
+				<StatCard label="Всего тестов" value={notCompletedTests.length + completedTests.length} />
+				<StatCard label="В работе" value={notCompletedTests.length} tone="info" />
+				<StatCard label="Завершено" value={completedTests.length} tone="success" />
+				{/* «Средний балл» из макета: агрегата по результатам тестов на бэкенде
+				    нет, поэтому показываем прочерк вместо выдуманного процента. */}
+				<StatCard label="Средний балл" value="—" />
 			</div>
 
-			<div className={css.block}>
-				<div className={css.tabsRow}>
-					<TestTabs
-						data={[
-							{ name: ALL_TESTS_TAB, disabled: false, count: filteredNotCompletedTests.length },
-							{ name: COMPLETED_TESTS_TAB, disabled: false, count: filteredCompletedTests.length },
-						]}
-						activeName={activeTab}
-						onTabChange={setActiveTab}
-					/>
-				</div>
+			<div className={css.tabsRow}>
+				<TestTabs
+					data={[
+						{ name: ALL_TESTS_TAB, disabled: false, count: filteredNotCompleted.length },
+						{ name: COMPLETED_TESTS_TAB, disabled: false, count: filteredCompleted.length },
+					]}
+					activeName={activeTab}
+					onTabChange={setActiveTab}
+				/>
+			</div>
 
-				<div className={css.headers}>
+			<div className={css.tableCard}>
+				<div className={css.tableHeader}>
 					<div>Название</div>
 					<div>Статус</div>
 					<div>Вопросов</div>
 					<div>Исполнитель</div>
+					<div>Обновлён</div>
+					<div />
 				</div>
 
 				{activeTab === ALL_TESTS_TAB ? (
-					<TestList data={filteredNotCompletedTests} />
+					<TestList data={filteredNotCompleted} />
 				) : (
-					<CompletedTestList data={filteredCompletedTests} />
+					<CompletedTestList data={filteredCompleted} />
 				)}
 			</div>
 		</div>

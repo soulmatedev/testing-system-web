@@ -1,52 +1,8 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 24px 0 32px 0;
-  min-height: 350px;
-  min-width: 500px;
-  max-height: 700px;
-  padding: 0 24px 0 24px;
-  gap: 32px;
-
-  h1 {
-    margin: 0;
-  }
-
-  p {
-    margin-bottom: 10px;
-  }
-
-  .title {
-    color: var(--title-default-color);
-    font-size: var(--font-size-m);
-    font-weight: var(--font-weight-thin);
-  }
-
-  .name {
-    color: #272727;
-    font-weight: var(--font-weight-regular);
-  }
-
-  .description {
-    color: #272727;
-    font-weight: var(--font-weight-regular);
-    font-size: var(--font-size-m);
-  }
-
-  .status {
-    display: inline-block;
-    padding: 4px 20px;
-    border-radius: 4px;
-    background-color: var(--light-bg-color);
-    color: var(--second-font-color);
-    font-weight: var(--font-weight-regular);
-    font-size: var(--font-size-m);
-  }
-
-  .options {
-    display: flex;
-    gap: 14px;
-    margin-top: 10px;
-  }
+// Габариты окна из макета: 560px, крупные скругления и мягкая тень.
+.modal {
+  width: 100%;
+  max-width: 560px !important;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 24px 60px rgba(18, 23, 42, 0.28);
 }

@@ -1,49 +1,24 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  // См. пояснение в list/list.module.scss — горизонтальный отступ даёт
-  // padding самой строки, а не эта обёртка, иначе шапка колонок съезжает.
-  padding: 16px 0 20px 0;
-}
-
 .not_found_block {
   display: flex;
-  flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 44px 20px;
 }
 
 .not_found {
   text-align: center;
-  padding: 20px;
-  font-size: 14px !important;
-  font-weight: 300;
-  color: #DCDCDC;
-  margin: auto;
-  word-wrap: break-word;
+  font-size: var(--font-size-m);
+  color: var(--muted-font-color);
   max-width: 300px;
   line-height: 1.5;
 }
 
-.block {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-m);
-}
-
 .footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 0 26px 0 26px;
-}
-
-.shown {
-  margin: 0;
-  font-size: var(--font-size-s);
-  color: var(--muted-font-color);
+  justify-content: space-between;
+  padding: 14px 24px;
+  font-size: 13px;
+  color: var(--label-font-color);
 }

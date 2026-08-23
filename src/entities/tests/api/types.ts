@@ -8,6 +8,13 @@ export interface ITest {
 	status: string;
 	questions: IQuestion[];
 	user: IUserResponse
+	/** ISO-дата последнего изменения теста. */
+	updatedAt: string;
+	/**
+	 * Сотруднику бэкенд отдаёт тесты в сокращённом виде (TestSummary) —
+	 * там вместо списка вопросов приходит только их количество.
+	 */
+	questionsCount?: number;
 }
 
 export interface ICreateTestRequest {

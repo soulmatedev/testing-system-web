@@ -2,17 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: var(--font-weight-medium);
+  font-weight: 700;
 
   cursor: pointer;
 
+  height: var(--control-height);
   font-size: var(--font-size-m);
   background-color: var(--main-button-bg-color);
   color: var(--white-font-color);
-  border-radius: var(--main-button-border-radius);
-  padding: var(--main-button-padding);
+  border-radius: var(--control-border-radius);
+  padding: 0 22px;
   box-shadow: var(--main-button-shadow);
   transition: background-color 0.2s ease;
+  white-space: nowrap;
 
   &:hover {
     background-color: var(--main-button-bg-hover-color);
@@ -20,7 +22,8 @@
 }
 
 .disabled {
-  background-color: var(--main-button-disabled-bg-color);
+  background-color: var(--pink-disabled-bg-color);
+  box-shadow: none;
   cursor: not-allowed;
 
   pointer-events: none;

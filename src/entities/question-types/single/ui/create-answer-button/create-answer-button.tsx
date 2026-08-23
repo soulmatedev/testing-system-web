@@ -24,7 +24,7 @@ export const CreateAnswerButton = (props: ICreateAnswerButtonProps) => {
 			role="button"
 			tabIndex={0}
 		>
-			Добавить вариант
+			+ Вариант ответа
 		</div>
 	);
 };

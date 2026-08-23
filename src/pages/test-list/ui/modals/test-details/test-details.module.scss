@@ -1,0 +1,104 @@
+.wrapper {
+  // Оставляем место под кнопку закрытия модалки в правом верхнем углу.
+  padding-right: 46px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.name {
+  margin: 12px 0 0 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--black-font-color);
+}
+
+.description {
+  margin: 10px 0 0 0;
+  font-size: 14.5px;
+  color: var(--muted-font-color);
+  line-height: 1.5;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--gap-ml);
+  margin-top: 22px;
+}
+
+.tile {
+  background-color: var(--table-header-bg-color);
+  border-radius: var(--default-border-radius);
+  padding: 14px;
+  overflow: hidden;
+}
+
+.tileLabel {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--label-font-color);
+}
+
+.tileCount {
+  font-size: 19px;
+  font-weight: 800;
+  margin-top: 5px;
+  color: var(--black-font-color);
+}
+
+.tileValue {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 7px;
+  color: var(--black-font-color);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: var(--gap-l);
+}
+
+.primaryAction {
+  flex: 1;
+  height: 46px;
+  border: none;
+  border-radius: var(--default-border-radius);
+  background-color: var(--second-font-color);
+  color: var(--white-font-color);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--second-font-color-dark);
+  }
+}
+
+.deleteAction {
+  height: 46px;
+  padding: 0 20px;
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--default-border-radius);
+  background-color: var(--white-bg-color);
+  color: var(--second-font-color-dark);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--light-bg-color);
+  }
+}

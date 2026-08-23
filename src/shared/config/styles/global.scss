@@ -1,7 +1,7 @@
 :root {
-  --default-bg-color: #EEF2F8;
+  --default-bg-color: #EEF2FA;
   --white-bg-color: #FFFFFF;
-  --default-border: 1px solid #D8E1EF;
+  --default-border: 1px solid #E1E7F3;
   --default-border-radius: 12px;
   --disabled-button: #ccc;
   --light-bg-color: #FDF0F5;
@@ -86,9 +86,9 @@
   --rounded-checkbox-background-size: 75%;
 
   // * Navbar
-  --navbar-height: 80px;
-  --navbar-padding: 0 3rem 0 3rem;
-  --navbar-border-radius: 0 0 16px 16px;
+  --navbar-height: 68px;
+  --navbar-padding: 0 32px;
+  --navbar-border-radius: 0;
   --navbar-navlink-active-color: var(--second-font-color);
 
   // * Icon
@@ -152,15 +152,72 @@
   --competency-card-padding: 3px 12px;
   --competency-card-radius: 8px;
 
-  // * Redesign — токены из макета "Soulmate Redesign" (карточки статистики,
-  // бейджи статуса, аватары, pill-элементы), используются на списке тестов.
-  --pill-border-radius: 999px;
-  --card-border-radius-lg: 14px;
-  --soft-border-color: #E4E9F4;
+  // * Redesign — палитра и метрики из макета "Soulmate Redesign".
+  // Значения сняты напрямую с макета, поэтому по всему приложению
+  // используем только эти токены, без произвольных hex-ов в модулях.
+
+  // Текст
+  --label-font-color: #8A93A8;     // мелкие uppercase-подписи
+  --body-font-color: #3C445E;      // основной текст в таблицах/списках
+  --option-font-color: #2A3149;    // текст вариантов ответа
+  --placeholder-color: #9AA3B8;
+  --arrow-color: #B4BCCE;
+
+  // Границы и фоны
+  --soft-border-color: #E4E9F4;    // рамка карточек
+  --input-border-color: #E1E7F3;   // рамка инпутов/кнопок
+  --hairline-border-color: #E9EEF7;
+  --row-divider-color: #F0F3FA;
+  --table-header-bg-color: #F7F9FD;
+  --chip-bg-color: #F3F5FB;
+  --row-hover-bg-color: #FAFBFE;
+  --soft-hover-bg-color: #F7F9FD;
+  --dashed-border-color: #C9D2E5;
+  --toggle-off-color: #DCE3F0;
+  --divider-color: var(--default-bg-color);
+
+  // Акцент
+  --pink-border-color: #F5B9CE;
+  --pink-disabled-bg-color: #FBD3E1;
+  --danger-icon-color: #D4536F;
+
+  // Статусы
   --badge-bg-color: var(--light-bg-color);
   --badge-text-color: var(--second-font-color-dark);
-  --badge-success-bg-color: #E7F7EF;
+  --badge-success-bg-color: #E9F7F0;
   --badge-success-text-color: #12925F;
+  --badge-info-bg-color: #EDF3FE;
+  --badge-info-text-color: #1D63D6;
+
+  // Варианты ответа
+  --option-bg-color: #FCFDFF;
+  --option-border-color: #EAEFF8;
+  --option-correct-bg-color: #F3FBF7;
+  --option-correct-border-color: #BFE8D4;
+  --radio-border-color: #CFD8EA;
+
+  // Аватар
   --avatar-bg-color: #FDE7EF;
   --avatar-text-color: var(--second-font-color);
+
+  // Радиусы и метрики страницы
+  --pill-border-radius: 999px;
+  --card-border-radius-lg: 14px;
+  --card-border-radius-xl: 16px;
+  --card-border-radius-2xl: 18px;
+  --control-border-radius: 11px;
+  --control-height: 42px;
+  --field-height: 40px;
+  --field-border-radius: 10px;
+
+  --page-max-width: 1240px;
+  --page-padding: 40px 32px 80px;
+  --page-side-padding: 32px;
+  --sidebar-width: 320px;
+
+  // Сетка таблицы тестов. Шапка колонок и строки лежат в разных CSS-модулях,
+  // поэтому храним раскладку одним токеном — иначе колонки разъезжаются.
+  --test-row-grid: minmax(280px, 2.2fr) 140px 110px 190px 130px 40px;
+  --test-row-min-width: 1020px;
+  --test-row-padding: 18px 24px;
 }

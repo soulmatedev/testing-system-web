@@ -42,8 +42,7 @@ export const DraftQuestionCard = (props: DraftQuestionCardProps) => {
 				placeholder="Текст вопроса"
 				value={draft.text}
 				onChange={(e) => onChange({ text: e.target.value })}
-				width="100%"
-				height={120}
+				height={100}
 			/>
 
 			{isChoiceType && (

@@ -30,45 +30,42 @@ export const CompletedTestList = ({ data }: TestListProps) => {
 		setSelectedTest(null);
 	};
 
+	if (testArray.length === 0) {
+		return (
+			<div className={css.not_found_block}>
+				<p className={css.not_found}>Здесь пока ничего нет, но это отличный повод начать!</p>
+			</div>
+		);
+	}
+
 	return (
 		<>
-			<div className={css.wrapper}>
-				{testArray.length === 0 ? (
-					<div className={css.not_found_block}>
-						<p className={css.not_found}>Здесь пока ничего нет, но это отличный повод начать!</p>
-					</div>
-				) : (
-					<div className={css.block}>
-						{pageItems.map((test) => (
-							<TestListItem
-								key={test.id}
-								title={test.name}
-								description={test.description}
-								status={test.status}
-								questionsCount={test.questions?.length ?? 0}
-								executorLogin={test.user?.login ?? null}
-								isSelected={selectedTest?.id === test.id}
-								onClick={() => openTestInfoModal(test)}
-							/>
-						))}
-					</div>
-				)}
-			</div>
+			{pageItems.map((test) => (
+				<TestListItem
+					key={test.id}
+					title={test.name}
+					description={test.description}
+					status={test.status}
+					questionsCount={test.questions?.length ?? test.questionsCount ?? 0}
+					executorLogin={test.user?.login ?? null}
+					updatedAt={test.updatedAt}
+					isSelected={selectedTest?.id === test.id}
+					onClick={() => openTestInfoModal(test)}
+				/>
+			))}
 
-			{testArray.length > 0 && (
-				<div className={css.footer}>
-					<p className={css.shown}>
-						Показано
-						{' '}
-						{pageItems.length}
-						{' '}
-						из
-						{' '}
-						{testArray.length}
-					</p>
-					<Pagination page={page} pageCount={pageCount} onPageChange={setPage} />
+			<div className={css.footer}>
+				<div>
+					Показано
+					{' '}
+					{pageItems.length}
+					{' '}
+					из
+					{' '}
+					{testArray.length}
 				</div>
-			)}
+				<Pagination page={page} pageCount={pageCount} onPageChange={setPage} />
+			</div>
 
 			<CompletedTestsModal
 				id={selectedTest?.id ?? null}
@@ -76,6 +73,8 @@ export const CompletedTestList = ({ data }: TestListProps) => {
 				description={selectedTest?.description ?? ''}
 				user={selectedTest?.user ?? null}
 				status={selectedTest?.status ?? ''}
+				questionsCount={selectedTest?.questions?.length ?? selectedTest?.questionsCount ?? 0}
+				updatedAt={selectedTest?.updatedAt ?? ''}
 				active={isModalOpen}
 				closeFunc={closeTestInfoModal}
 			/>

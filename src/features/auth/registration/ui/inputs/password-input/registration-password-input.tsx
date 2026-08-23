@@ -15,7 +15,6 @@ export const RegistrationPasswordInput = (props: RegistrationPasswordInputProps)
 			<p className={css.label}>Пароль</p>
 			<Input
 				placeholder="Введите пароль"
-				width={349}
 				height={40}
 				value={value}
 				type={InputTypes.PASSWORD}

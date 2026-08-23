@@ -1,3 +1,20 @@
+/**
+ * Короткая дата в формате макета — «21 авг».
+ * Пустое или некорректное значение превращается в прочерк, чтобы
+ * вызывающий код не разбирал этот случай сам.
+ */
+export const formatShortDate = (dateString?: string | null): string => {
+	if (!dateString) return '—';
+
+	const date = new Date(dateString.replace(' ', 'T'));
+	if (Number.isNaN(date.getTime())) return '—';
+
+	// Intl добавляет точку к сокращённому месяцу («21 авг.»), в макете её нет.
+	return date
+		.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })
+		.replace('.', '');
+};
+
 export const formatDate = (dateString?: string): string => {
 	if (!dateString) return '';
 
